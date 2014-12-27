@@ -5,6 +5,7 @@ syntax enable
 syntax on
 "配色方案
 "colo desert
+"vundle plugins----{{{
 "set rtp+=~/vimfiles/bundle/Vundle.vim/ 
 set rtp+=$VIM/vimfiles/bundle/Vundle.vim/ 
 
@@ -22,34 +23,42 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
-
+"Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'powerline/powerline'
 " All of your Plugins must be added before the following line
+Plugin 'bradfitz/goimports'
+Plugin 'cespare/vim-golang'
+Plugin 'dgryski/vim-godef'
+Plugin 'Blackrush/vim-gocode' 
+Plugin 'majutsushi/tagbar'
+Plugin  'majutsushi/tagbar'
+Plugin 'Shougo/neocomplete.vim'
 call vundle#end()            " required
+"}}}
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 colo FoxDark
 nmap <leader>ps :ColorSchemeExplorer<cr>
 "滚动条+工具栏+菜单栏-----{{{
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-        \set guioptions-=T <Bar>
-        \set guioptions-=m <Bar>
-        \set guioptions-=R <Bar>
-        \set guioptions-=L <Bar>
-    \else <Bar>
-        \set guioptions+=T <Bar>
-        \set guioptions+=m <Bar>
-        \set guioptions+=R <Bar>
-        \set guioptions+=L <Bar>
-    \endif<CR>
+            \set guioptions-=T <Bar>
+            \set guioptions-=m <Bar>
+            \set guioptions-=R <Bar>
+            \set guioptions-=L <Bar>
+            \else <Bar>
+            \set guioptions+=T <Bar>
+            \set guioptions+=m <Bar>
+            \set guioptions+=R <Bar>
+            \set guioptions+=L <Bar>
+            \endif<CR>
 
 "HIDDEN Toolbar
 set guioptions-=T
@@ -76,7 +85,7 @@ set guifont=Courier\ New:h20:cANSI "Courier New日后网上查找修改
 set guifontwide=楷体:b:h18:cGB2312
 lang mes zh_CN.utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,
-                    \unicode,utf-32
+            \unicode,utf-32
 set fileencoding=utf-8
 "改变字体"{{{
 if has('gui_running') && has('gui_win32')
@@ -112,7 +121,7 @@ function <SID>FontSize_Enlarge()
     let &gfw=cmd 
 endfunction 
 nnoremap <A-+> :call <SID>FontSize_Enlarge()<CR> 
- 
+
 "缩小字体 
 function <SID>FontSize_Reduce() 
     if GetSystem() == "linux" 
@@ -246,11 +255,11 @@ endfunction
 "}}} 
 "vjde---vim java develop enverement{{{
 "<Load project>
-		":Vjdeload filename 
+":Vjdeload filename 
 "<Save project as  a new project >
-        ":Vjdeas filename 
+":Vjdeas filename 
 "<Save the current project >
-        ":Vjdesave 
+":Vjdesave 
 
 "<Setup custom completion function  >
 au FileType java set cfu="VjdeCompletionFun"
@@ -310,12 +319,12 @@ endf
 
 "inoremap <CR> <C-R>=TabSkir()<CR>
 "function MyEnter()
-    "let char = getline('.')[col('.') - 1]
-    "if char == '}' || char == ')' || char == ']' || char == ';'
-        "return "\<Right>\<CR>"
-    "else
-        "return "\<CR>"
-    "endif
+"let char = getline('.')[col('.') - 1]
+"if char == '}' || char == ')' || char == ']' || char == ';'
+"return "\<Right>\<CR>"
+"else
+"return "\<CR>"
+"endif
 "endf
 "imap <C-S-delete> <esc>dda
 "========= sketch =========
@@ -878,9 +887,9 @@ let Tlist_Inc_Winwidth=0
 
 "--------------------Cscope设置--------------------
 "if filereadable("cscope.out")
-    "cs add cscope.out
+"cs add cscope.out
 "elseif $CSCOPE_DB != ""
-    "cs add $CSCOPE_DB
+"cs add $CSCOPE_DB
 "endif
 "--------------------PowerLine设置--------------------
 "set t_Co=256 
@@ -910,4 +919,127 @@ let Tlist_Inc_Winwidth=0
 nmap <leader>mT :NERDTreeToggle<CR>
 nmap <leader>mt :TlistToggle<CR>
 nmap <leader>mm :WMToggle<CR>
+"}}}
+"go lang ide{{{
+autocmd BufWritePre *.go :Fmt
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+"}}}
+"neo-complete----实时补全插件{{{
+""Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
