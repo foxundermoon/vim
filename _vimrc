@@ -38,7 +38,6 @@ Plugin 'cespare/vim-golang'
 Plugin 'dgryski/vim-godef'
 Plugin 'Blackrush/vim-gocode' 
 Plugin 'majutsushi/tagbar'
-Plugin  'majutsushi/tagbar'
 Plugin 'Shougo/neocomplete.vim'
 call vundle#end()            " required
 "}}}
@@ -71,6 +70,11 @@ set guioptions-=m
 set guioptions-=L
 "'l'	左边的滚动条总是存在
 set guioptions-=l
+"}}}
+"status line{{{
+set laststatus=2
+let g:Powerline_symbols='unicode'
+"
 "}}}
 "常用设置"{{{
 set expandtab "用空格代替tab
@@ -958,7 +962,7 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 "}}}
-"neo-complete----实时补全插件{{{
+"neo -complete----实时补全插件{{{
 ""Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
