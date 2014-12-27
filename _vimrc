@@ -5,8 +5,10 @@ syntax enable
 syntax on
 "ÅäÉ«·½°¸
 "colo desert
-set rtp+=~/vimfiles/bundle/Vundle.vim/ 
-let path='~/vimfiles/bundle'
+"set rtp+=~/vimfiles/bundle/Vundle.vim/ 
+set rtp+=$VIM/vimfiles/bundle/Vundle.vim/ 
+
+let path='$VIM/vimfiles/bundle'
 call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -20,9 +22,9 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+"Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
