@@ -73,7 +73,9 @@ set guioptions-=l
 "}}}
 "status line{{{
 set laststatus=2
-let g:Powerline_symbols='unicode'
+"let g:Powerline_symbols='unicode'
+set t_Co=256 
+let g:Powerline_symbols = 'fancy' 
 "
 "}}}
 "常用设置"{{{
@@ -85,8 +87,9 @@ set backspace=2
 set encoding=utf-8
 set helplang=cn
 set langmenu=zh_CN.utf-8
-set guifont=Courier\ New:h20:cANSI "Courier New日后网上查找修改
-set guifontwide=楷体:b:h18:cGB2312
+"set guifont=Courier\ New:h20:cANSI "Courier New日后网上查找修改
+set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
+"set guifontwide=雅黑:b:h20:cGB2312
 lang mes zh_CN.utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,
             \unicode,utf-32
@@ -203,7 +206,7 @@ let g:miniBufExplMapWindowNavArrows=1
 let g:mimiBufExplMapCTabSwitchBufs=1
 let g:miniBufExplModSelTarget=1
 "}}}
-""""""""""""Taglist设置{{{
+"Taglist设置{{{
 let Tlist_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
 " 不同时显示多个文件的 tag ，只显示当前文件的
 let Tlist_Show_One_File=1
@@ -218,7 +221,7 @@ let Tlist_Show_Menu=1
 "启动vim自动打开taglist
 "let Tlist_Auto_Open=1  
 "-----------------------------------------------------------}}}
-"" winManager setting""""""""""""{{{
+"" winManager setting{{{
 "设置界面分割
 "let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
 let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
@@ -239,24 +242,6 @@ let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 nnoremap <C-F12> :NERDTreeToggle
 "}}}
-"php------{{{
-au FileType php map <F7> :call CheckPHPSyntax()<CR>
-function CheckPHPSyntax()
-    let php_check_syntax_cmd='ZendCodeAnalyzer  --disable var-arg-unused'
-    let exeFile = expand("%:t")
-    let &makeprg = php_check_syntax_cmd
-    set errorformat=%f(line\ %l):\ %m
-    silent make %
-    if len(getqflist())>2
-        call setqflist(remove(getqflist(),2,-1))
-        copen
-    else
-        cclose
-        normal :
-        echohl WarningMsg | echo "Check over,No error!" | echohl None
-    endif
-endfunction
-"}}} 
 "vjde---vim java develop enverement{{{
 "<Load project>
 ":Vjdeload filename 
@@ -276,7 +261,7 @@ let g:vjde_cfu_java_dot=1
 let g:vjde_show_paras=1
 
 "}}}
-"===================Java======JavaBrowser========={{{
+"Java======JavaBrowser{{{
 let Javabrowser_Use_Icon = 1
 let JavaBrowser_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
 
