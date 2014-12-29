@@ -1,100 +1,35 @@
-set nocompatible
-behave mswin
+"初始化{{{
+set nocompatible "兼容模式关"
+"behave mswin
 "语法高亮
 syntax enable
 syntax on
 "配色方案
 "colo desert
-"vundle plugins----{{{
-"set rtp+=~/vimfiles/bundle/Vundle.vim/ 
-set rtp+=$VIM/vimfiles/bundle/Vundle.vim/ 
-
-let path='$VIM/vimfiles/bundle'
-call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-Plugin 'powerline/powerline'
-" All of your Plugins must be added before the following line
-Plugin 'bradfitz/goimports'
-Plugin 'cespare/vim-golang'
-Plugin 'dgryski/vim-godef'
-Plugin 'Blackrush/vim-gocode' 
-Plugin 'majutsushi/tagbar'
-Plugin 'Shougo/neocomplete.vim'
-call vundle#end()            " required
-"}}}
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-filetype plugin on
-colo FoxDark
-nmap <leader>ps :ColorSchemeExplorer<cr>
-"滚动条+工具栏+菜单栏-----{{{
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-            \set guioptions-=T <Bar>
-            \set guioptions-=m <Bar>
-            \set guioptions-=R <Bar>
-            \set guioptions-=L <Bar>
-            \else <Bar>
-            \set guioptions+=T <Bar>
-            \set guioptions+=m <Bar>
-            \set guioptions+=R <Bar>
-            \set guioptions+=L <Bar>
-            \endif<CR>
-
-"HIDDEN Toolbar
-set guioptions-=T
-"HIDDEN Right Scrool bar 'R'	如有垂直分割的窗口，右边的滚动条总是存在。
-set guioptions-=R
-"'r'	右边的滚动条总是存在
-set guioptions-=r
-"NO USE Menu
-set guioptions-=m
-set guioptions-=L
-"'l'	左边的滚动条总是存在
-set guioptions-=l
-"}}}
-"status line{{{
-set laststatus=2
-"let g:Powerline_symbols='unicode'
-set t_Co=256 
-let g:Powerline_symbols = 'fancy' 
-"
-"}}}
-"常用设置"{{{
+set encoding=utf-8
 set expandtab "用空格代替tab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set backspace=2
-set encoding=utf-8
 set helplang=cn
 set langmenu=zh_CN.utf-8
-"set guifont=Courier\ New:h20:cANSI "Courier New日后网上查找修改
-set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
-"set guifontwide=雅黑:b:h20:cGB2312
+set guifont=Anonymice\ Powerline:h20:cDEFAULT "Courier New日后网上查找修改
+"set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
+"set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
+set guifontwide=SimSun:h20w10:cDEFAULT
 lang mes zh_CN.utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,
-            \unicode,utf-32
+language messages zh_CN.utf-8
+set history=500
+set termencoding=utf-8
 set fileencoding=utf-8
-"改变字体"{{{
+set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,unicode,utf-32
+language messages zh_CN.utf-8 
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+colo FoxDark
+"改变字体"{{{2
 if has('gui_running') && has('gui_win32')
     let g:MyFontSize = 20
     function! SetFontSize(size)
@@ -148,11 +83,7 @@ nnoremap <A--> :call <SID>FontSize_Reduce()<CR>
 
 
 "}}}
-source $VIMRUNTIME\delmenu.vim
-source $VIMRUNTIME\menu.vim
 "解决consle输出乱码
-language messages zh_CN.utf-8
-set history=500
 set nu!
 set wrap
 "set nowrap
@@ -178,11 +109,89 @@ nmap <leader><space> f{f}zf%
 "设定自动保存折叠
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent !loadview
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+"}}}初始化结束
+"vundle plugins----{{{
+"set rtp+=~/vimfiles/bundle/Vundle.vim/ 
+set rtp+=$VIM/vimfiles/bundle/Vundle.vim/ 
+
+let path='$VIM/vimfiles/bundle'
+call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'powerline/powerline'
+" All of your Plugins must be added before the following line
+Plugin 'bradfitz/goimports'
+Plugin 'cespare/vim-golang'
+Plugin 'dgryski/vim-godef'
+Plugin 'Blackrush/vim-gocode' 
+Plugin 'majutsushi/tagbar'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'zhchang/quick_file'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Shougo/vimproc.vim'
+call vundle#end()            " required
 "}}}
-"------------cue{{{
+"map{{{  
+nmap <leader>ps :ColorSchemeExplorer<cr>
+"}}}
+"滚动条+工具栏+菜单栏-----{{{
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+            \set guioptions-=T <Bar>
+            \set guioptions-=m <Bar>
+            \set guioptions-=R <Bar>
+            \set guioptions-=L <Bar>
+            \else <Bar>
+            \set guioptions+=T <Bar>
+            \set guioptions+=m <Bar>
+            \set guioptions+=R <Bar>
+            \set guioptions+=L <Bar>
+            \endif<CR>
+
+"HIDDEN Toolbar
+set guioptions-=T
+"HIDDEN Right Scrool bar 'R'	如有垂直分割的窗口，右边的滚动条总是存在。
+set guioptions-=R
+"'r'	右边的滚动条总是存在
+set guioptions-=r
+"NO USE Menu
+set guioptions-=m
+set guioptions-=L
+"'l'	左边的滚动条总是存在
+set guioptions-=l
+"}}}
+"cue"{{{
 au BufNewFile,BufRead *.cue setf cue
 "}}}
-"------------autohotkey{{{
+"1status line{{{
+set laststatus=2
+let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+"let g:Powerline_symbols='unicode'
+set t_Co=256 
+let g:Powerline_symbols = 'fancy' 
+"
+"}}}
+"autohotkey{{{
 au FileType autohotkey map <F12> :silent !start autohotkey.exe %
 au FileType autohotkey set fdo=block
 au FileType autohotkey set fdm=manual
@@ -280,10 +289,10 @@ autocmd BufNewFile *.java normal gnp
 let g:snips_author = 'foxUnderMoon'
 "mapping
 "跳到下一行
-imap <C-cr> <esc>A<cr>
+imap <S-cr> <esc>A<cr>
 "删除当前行光标以前部分
 imap <C-bs> <esc>d0i<del>
-inoremap <CR> <C-R>=MyEnter()<CR>
+"inoremap <CR> <C-R>=MyEnter()
 function MyEnter()
     let char = getline('.')[col('.') - 1]
     if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
@@ -366,6 +375,18 @@ if has('gui_running') && has('gui_win32') && has('libcall')
     " 默认设置透明
     autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
 endif
+"}}}
+"高亮列 列对齐{{{2
+map <Leader>ch :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
 "}}}
 ""设置缩进和Tab{{{
 "Linux 风格缩进
