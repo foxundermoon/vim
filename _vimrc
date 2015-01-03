@@ -17,7 +17,7 @@ set langmenu=zh_CN.utf-8
 set guifont=Anonymice\ Powerline:h20:cDEFAULT "Courier New日后网上查找修改
 "set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
-set guifontwide=SimSun:h20w10:cDEFAULT
+set guifontwide=SimSun:h18w9:cDEFAULT
 lang mes zh_CN.utf-8
 language messages zh_CN.utf-8
 set history=500
@@ -150,10 +150,14 @@ Plugin 'zhchang/quick_file'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'ianva/vim-youdao-translater'
+Plugin 'DirDiff.vim'
 call vundle#end()            " required
 "}}}
 "map{{{  
 nmap <leader>ps :ColorSchemeExplorer<cr>
+command! -n=0 -bar Evimrc :e $vim/_vimrc
+"command _vimrc e $vim/_vimrc
 "}}}
 "滚动条+工具栏+菜单栏-----{{{
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
@@ -363,7 +367,9 @@ if has('gui_running') && has('gui_win32') && has('libcall')
         call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
     endfunction
     "映射 Alt+Enter 切换全屏vim
-    map <F11> <esc>:call ToggleFullScreen()<cr>
+    nmap <F11> <esc>:call ToggleFullScreen()<cr>
+    nmap <F5> <esc>:call ToggleFullScreen()<cr>
+    nmap <A-cr> <esc>:call ToggleFullScreen()<cr>
     "切换Vim是否在最前面显示
     nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
     "增加Vim窗体的不透明度
@@ -376,6 +382,11 @@ if has('gui_running') && has('gui_win32') && has('libcall')
     autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
 endif
 "}}}
+"youdao{{{2
+vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
+nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
+noremap <leader>yd :Yde<CR>
+"}}} 
 "高亮列 列对齐{{{2
 map <Leader>ch :call SetColorColumn()<CR>
 function! SetColorColumn()
