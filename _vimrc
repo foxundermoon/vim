@@ -1,5 +1,8 @@
 "初始化{{{
 set nocompatible "兼容模式关"
+let $LANG = 'en'
+set langmenu=en
+source $VIMRUNTIME/vimrc_example.vim 
 "behave mswin
 "语法高亮
 syntax enable
@@ -13,18 +16,17 @@ set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set helplang=cn
-set langmenu=zh_CN.utf-8
 set guifont=Anonymice\ Powerline:h20:cDEFAULT "Courier New日后网上查找修改
 "set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
 set guifontwide=SimSun:h20w10:cDEFAULT
-lang mes zh_CN.utf-8
-language messages zh_CN.utf-8
+"lang mes en_US.utf-8
+language messages en_US.utf-8
 set history=500
 set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,unicode,utf-32
-language messages zh_CN.utf-8 
+"language messages utf-8 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
