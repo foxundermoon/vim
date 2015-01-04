@@ -152,6 +152,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'ianva/vim-youdao-translater'
 Plugin 'DirDiff.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()            " required
 "}}}
 "map{{{  
