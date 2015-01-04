@@ -17,7 +17,7 @@ set langmenu=zh_CN.utf-8
 set guifont=Anonymice\ Powerline:h20:cDEFAULT "Courier New日后网上查找修改
 "set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
-set guifontwide=SimSun:h20w10:cDEFAULT
+set guifontwide=SimSun:cDEFAULT
 lang mes zh_CN.utf-8
 language messages zh_CN.utf-8
 set history=500
@@ -130,7 +130,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+"lugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -328,7 +328,7 @@ endf
 "========= sketch =========
 command! Sketch call ToggleSketch()
 "}}} 
-" {{{  Win---全屏+透明+置顶-----组件 gvimfullscreen.dll
+" {{{  Win---全屏+透明+置顶----组件 gvimfullscreen.dll
 " F11 全屏切换
 " Shift + F11 降低窗口透明度
 " Alt + F11 加大窗口透明度
