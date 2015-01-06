@@ -168,10 +168,30 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/vimfiler.vim'
 
-
+NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'wincent/command-t'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'chase/vim-ansible-yaml'
+NeoBundle 't9md/vim-choosewin'
+NeoBundle 'abijr/colorpicker'
+NeoBundle 'MattesGroeger/vim-bookmarks'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'chrisbra/csv.vim'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'bogado/file-line'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'leshill/vim-json'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'mhinz/vim-signify'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'godlygeek/tabular'
+
 call neobundle#end()            " required
 filetype on
 filetype plugin on
