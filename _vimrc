@@ -1,5 +1,4 @@
 "初始化{{{
-set nocompatible "兼容模式关"
 let $LANG = 'en'
 set langmenu=en
 source $VIMRUNTIME/vimrc_example.vim 
@@ -16,10 +15,10 @@ set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set helplang=cn
-set guifont=Anonymice\ Powerline:h20:cDEFAULT "Courier New日后网上查找修改
+set guifont=DejaVu_Sans_Mono_for_Powerline:h20:cDEFAULT "Courier New日后网上查找修改
 "set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
-set guifontwide=SimSun:h20w10:cDEFAULT
+set guifontwide=DejaVu_Sans_Mono_for_Powerline:h20w10:cDEFAULT
 "lang mes en_US.utf-8
 language messages en_US.utf-8
 set history=500
@@ -98,9 +97,6 @@ set autoindent
 set showmatch
 set smartindent
 set nobackup
-filetype on
-filetype plugin on
-filetype indent on
 "用空格来开关折叠
 set foldenable
 "set statusline=[%F]%y%r%m%*%=[Line:%l,Column:%c][%p%%]
@@ -114,49 +110,74 @@ au BufWinEnter *.* silent !loadview
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 "}}}初始化结束
-"vundle plugins----{{{
+"neobundle plugins----{{{
 "set rtp+=~/vimfiles/bundle/Vundle.vim/ 
-set rtp+=$VIM/vimfiles/bundle/Vundle.vim/ 
+if !1 | finish | endif
 
-let path='$VIM/vimfiles/bundle'
-call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
+ if has('vim_starting')
+   if &compatible
+     set nocompatible               " Be iMproved
+   endif
+
+   " Required:
+   "set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set rtp+=$VIM/vimfiles/bundle/neobundle.vim/ 
+ endif
+
+let pluginPath='$VIM/vimfiles/bundle'
+"call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call neobundle#begin(pluginPath)
+NeoBundleFetch 'Shougo/neobundle.vim' 
+ " let Vundle manage Vundle, required
+"NeoBundle 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+NeoBundle 'L9'
 " Git plugin not hosted on GitHub
-"lugin 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
-Plugin 'powerline/powerline'
+NeoBundle 'Lokaltog/vim-powerline'
 " All of your Plugins must be added before the following line
-Plugin 'bradfitz/goimports'
-Plugin 'cespare/vim-golang'
-Plugin 'dgryski/vim-godef'
-Plugin 'Blackrush/vim-gocode' 
-Plugin 'majutsushi/tagbar'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'zhchang/quick_file'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'ianva/vim-youdao-translater'
-Plugin 'DirDiff.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-call vundle#end()            " required
+NeoBundle 'bradfitz/goimports'
+NeoBundle 'cespare/vim-golang'
+NeoBundle 'dgryski/vim-godef'
+NeoBundle 'Blackrush/vim-gocode' 
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'zhchang/quick_file'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'ianva/vim-youdao-translater'
+NeoBundle 'DirDiff.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/vimfiler.vim'
+
+
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'wincent/command-t'
+call neobundle#end()            " required
+filetype on
+filetype plugin on
+filetype indent on
+filetype plugin indent on
+
 "}}}
 "map{{{  
 nmap <leader>ps :ColorSchemeExplorer<cr>
@@ -193,7 +214,7 @@ au BufNewFile,BufRead *.cue setf cue
 "}}}
 "1status line{{{
 set laststatus=2
-let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 "let g:Powerline_symbols='unicode'
 set t_Co=256 
 let g:Powerline_symbols = 'fancy' 
