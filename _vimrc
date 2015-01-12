@@ -154,9 +154,10 @@ NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'Lokaltog/vim-powerline'
 " All of your Plugins must be added before the following line
 NeoBundle 'bradfitz/goimports'
-NeoBundle 'cespare/vim-golang'
+"NeoBundle 'cespare/vim-golang'
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode' 
+"NeoBundle 'nsf/gocode'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'zhchang/quick_file'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -1136,28 +1137,28 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl =
             \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-if !exists('g:neocomplete#sources#omni#functions')
-    let g:neocomplete#sources#omni#functions = {}
-endif
+"if !exists('g:neocomplete#sources#omni#functions')
+    "let g:neocomplete#sources#omni#functions = {}
+"endif
 " Go (plugin: gocode)
-let g:neocomplete#sources#omni#functions.go =
-            \ 'go#complete#Complete'
+"let g:neocomplete#sources#omni#functions.go =
+            "\ 'go#complete#Complete'
 " Clojure (plugin: vim-clojure)
-let g:neocomplete#sources#omni#functions.clojure =
-            \ 'vimclojure#OmniCompletion'
-" SQL
-let g:neocomplete#sources#omni#functions.sql =
-            \ 'sqlcomplete#Complete'
-" R (plugin: vim-R-plugin)
-let g:neocomplete#sources#omni#input_patterns.r =
-            \ '[[:alnum:].\\]\+'
-let g:neocomplete#sources#omni#functions.r =
-            \ 'rcomplete#CompleteR'
-" XQuery (plugin: XQuery-indentomnicomplete)
-let g:neocomplete#sources#omni#input_patterns.xquery =
-            \ '\k\|:\|\-\|&'
-let g:neocomplete#sources#omni#functions.xquery =
-            \ 'xquerycomplete#CompleteXQuery'
+"let g:neocomplete#sources#omni#functions.clojure =
+            "\ 'vimclojure#OmniCompletion'
+"" SQL
+"let g:neocomplete#sources#omni#functions.sql =
+            "\ 'sqlcomplete#Complete'
+"" R (plugin: vim-R-plugin)
+"let g:neocomplete#sources#omni#input_patterns.r =
+            "\ '[[:alnum:].\\]\+'
+"let g:neocomplete#sources#omni#functions.r =
+            "\ 'rcomplete#CompleteR'
+"" XQuery (plugin: XQuery-indentomnicomplete)
+"let g:neocomplete#sources#omni#input_patterns.xquery =
+            "\ '\k\|:\|\-\|&'
+"let g:neocomplete#sources#omni#functions.xquery =
+            "\ 'xquerycomplete#CompleteXQuery'
 "omini complete END }}}
 "config END 2}}}
 "{{{3 Plugin key-mappings.
