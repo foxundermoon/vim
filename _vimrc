@@ -1,7 +1,96 @@
-"初始化{{{
+"neobundle plugins----{{{2
+" neobund head {{{3
+"set rtp+=~/vimfiles/bundle/Vundle.vim/ 
+if !1 | finish | endif
+filetype off
+if has('vim_starting')
+    if &compatible
+        set nocompatible               " Be iMproved
+    endif
+
+    " Required:
+    "set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set rtp+=$VIM/vimfiles/bundle/neobundle.vim/ 
+endif
+
+let pluginPath='$VIM/vimfiles/bundle'
+"call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
+"}}}
+"call vundle#begin('~/some/path/here')
+call neobundle#begin(pluginPath)
+NeoBundleFetch 'Shougo/neobundle.vim' 
+"NeoBundle 'gmarik/Vundle.vim'
+NeoBundle 'L9'
+NeoBundle 'Conque-Shell'
+NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
+NeoBundle 'mattn/lisper-vim' "provide lisp environments 
+NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common Lisp & Scheme. Configurable & well-documented.
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
+NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
+NeoBundle 'bling/vim-airline'
+"NeoBundle 'bradfitz/goimports'
+" use the  https://github.com/josharian/impl
+NeoBundle 'rhysd/vim-go-impl'  
+"NeoBundle 'cespare/vim-golang'
+NeoBundle 'dgryski/vim-godef'
+NeoBundle 'Blackrush/vim-gocode' 
+"NeoBundle 'nsf/gocode'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'zhchang/quick_file'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'ianva/vim-youdao-translater'
+NeoBundle 'DirDiff.vim'
+NeoBundle 'DrawIt'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+
+"NeoBundle 'SirVer/ultisnips'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neoinclude.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/context_filetype.vim'
+NeoBundle 'ujihisa/neco-look'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'wincent/command-t'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'chase/vim-ansible-yaml'
+NeoBundle 't9md/vim-choosewin'
+"NeoBundle 'abijr/colorpicker'
+NeoBundle 'MattesGroeger/vim-bookmarks'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'chrisbra/csv.vim'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'bogado/file-line'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'leshill/vim-json'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'mhinz/vim-signify'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'mattn/gist-vim' 
+call neobundle#end()            " required
+filetype plugin indent on
+NeoBundleCheck
+"}}}
+"初始化{{{2
 let $LANG = 'en'
 set langmenu=en
-set autochdir
+"set autochdir
 source $VIMRUNTIME/vimrc_example.vim 
 "behave mswin
 "语法高亮
@@ -29,7 +118,7 @@ set fileencodings=ucs-bom,utf-8,cp936,gbk,gb18030,big5,latin-1,unicode,utf-32
 "language messages utf-8 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-filetype plugin on
+"filetype plugin on
 colo FoxDark
 "改变字体"{{{2
 if has('gui_running') && has('gui_win32')
@@ -90,7 +179,7 @@ set nu!
 set wrap
 "set nowrap
 set linebreak
-set autochdir
+"set autochdir
 set scrolloff=5
 set hlsearch "高亮显示查找结果
 set incsearch "增量查找
@@ -103,118 +192,31 @@ set foldenable
 "set statusline=[%F]%y%r%m%*%=[Line:%l,Column:%c][%p%%]
 set ruler
 set foldmethod=marker "manual
-nnoremap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
-nmap <leader><space> f{f}zf%
 "设定自动保存折叠
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent !loadview
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 "}}}初始化结束
-"neobundle plugins----{{{
-"set rtp+=~/vimfiles/bundle/Vundle.vim/ 
-if !1 | finish | endif
-
-if has('vim_starting')
-    if &compatible
-        set nocompatible               " Be iMproved
-    endif
-
-    " Required:
-    "set runtimepath+=~/.vim/bundle/neobundle.vim/
-    set rtp+=$VIM/vimfiles/bundle/neobundle.vim/ 
-endif
-
-let pluginPath='$VIM/vimfiles/bundle'
-"call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-call neobundle#begin(pluginPath)
-NeoBundleFetch 'Shougo/neobundle.vim' 
-" let Vundle manage Vundle, required
-"NeoBundle 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-NeoBundle 'L9'
-NeoBundle 'Conque-Shell'
-NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
-NeoBundle 'mattn/lisper-vim' "provide lisp environments 
-NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common Lisp & Scheme. Configurable & well-documented.
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-NeoBundle 'Lokaltog/vim-powerline'
-" All of your Plugins must be added before the following line
-NeoBundle 'bradfitz/goimports'
-"NeoBundle 'cespare/vim-golang'
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'Blackrush/vim-gocode' 
-"NeoBundle 'nsf/gocode'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'zhchang/quick_file'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'ianva/vim-youdao-translater'
-NeoBundle 'DirDiff.vim'
-NeoBundle 'DrawIt'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
-
-"NeoBundle 'SirVer/ultisnips'
-NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neoinclude.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'wincent/command-t'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 't9md/vim-choosewin'
-"NeoBundle 'abijr/colorpicker'
-NeoBundle 'MattesGroeger/vim-bookmarks'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'bogado/file-line'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'mhinz/vim-signify'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'godlygeek/tabular'
-call neobundle#end()            " required
-filetype on
-filetype plugin on
-filetype indent on
-filetype plugin indent on
-NeoBundleCheck
-"}}}
-"map{{{  
-nmap <leader>ps :ColorSchemeExplorer<cr>
+"key map{{{2  
 command! -n=0 -bar Evimrc :e $vim/_vimrc
+vnoremap <C-c> "*y
+vnoremap <C-v> "*p
+vnoremap <C-x> "*d
+vnoremap <C-s> :w<CR>
+nnoremap <S-w> @=(Ydc)<CR>
+nnoremap <Esc> :call <SID>my_noremap_esc_function()<CR>
+nmap <leader>ps :ColorSchemeExplorer<cr>
+nnoremap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
+nmap <leader><space> zf%
+"{{{3 
+nnoremap <Esc> :call <SID>my_noremap_esc_function()<CR>
+function! s:my_noremap_esc_function()
+    execute "noh"
+endfunction
 "command _vimrc e $vim/_vimrc
 "}}}
-"滚动条+工具栏+菜单栏-----{{{
+"滚动条+工具栏+菜单栏-----{{{2
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
             \set guioptions-=T <Bar>
             \set guioptions-=m <Bar>
@@ -239,10 +241,10 @@ set guioptions-=L
 "'l'	左边的滚动条总是存在
 set guioptions-=l
 "}}}
-"cue"{{{
+"cue"{{{2
 au BufNewFile,BufRead *.cue setf cue
 "}}}
-"1status line{{{
+"1status line{{{2
 set laststatus=2
 "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 "let g:Powerline_symbols='unicode'
@@ -250,14 +252,14 @@ set t_Co=256
 let g:Powerline_symbols = 'fancy' 
 "
 "}}}
-"autohotkey{{{
+"autohotkey{{{2
 au FileType autohotkey map <F12> :silent !start autohotkey.exe %
 au FileType autohotkey set fdo=block
 au FileType autohotkey set fdm=manual
 
 au FileType autohotkey set commentstring =;%s
 "au FileType autohotkey set comments="n:;"}}}
-"python{{{
+"python{{{2
 "set filetype=python
 au BufNewFile,BufRead *.py setf python
 au FileType python map <F12> :silent !start python.exe %
@@ -268,13 +270,13 @@ let g:pydiction_location = $VIM . '\data\python\complete-dict'
 "default=15
 let g:pydiction_menu_height = 20
 "==============================python END =====================}}}
-"MiniBufExplorer{{{
+"MiniBufExplorer{{{2
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
 let g:mimiBufExplMapCTabSwitchBufs=1
 let g:miniBufExplModSelTarget=1
 "}}}
-"Taglist设置{{{
+"Taglist设置{{{2
 let Tlist_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
 " 不同时显示多个文件的 tag ，只显示当前文件的
 let Tlist_Show_One_File=1
@@ -289,7 +291,7 @@ let Tlist_Show_Menu=1
 "启动vim自动打开taglist
 "let Tlist_Auto_Open=1  
 "-----------------------------------------------------------}}}
-"" winManager setting{{{
+"" winManager setting{{{2
 "设置界面分割
 "let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
 let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
@@ -297,7 +299,7 @@ let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
 let g:winManagerWidth = 30
 "定义打开关闭winmanager按键
 "nmap <F8> :WMToggle<cr>}}}
-"NERD Tree{{{
+"NERD Tree{{{2
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
 let NERDTreeBookmarksFile=$VIM.'\Data\NERDTreeBookmarks.txt'
@@ -310,7 +312,7 @@ let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 nnoremap <C-F12> :NERDTreeToggle
 "}}}
-"vjde---vim java develop enverement{{{
+"vjde---vim java develop enverement{{{2
 "<Load project>
 ":Vjdeload filename 
 "<Save project as  a new project >
@@ -329,7 +331,7 @@ let g:vjde_cfu_java_dot=1
 let g:vjde_show_paras=1
 
 "}}}
-"Java======JavaBrowser{{{
+"Java======JavaBrowser{{{2
 let Javabrowser_Use_Icon = 1
 let JavaBrowser_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
 
@@ -344,8 +346,8 @@ autocmd BufNewFile *.java normal gnp
 
 "============= java END=================
 "}}} 
-"snipMate--+ map ---{{{
-let g:snips_author = 'foxUnderMoon'
+"snipMate--+ map ---{{{2
+"let g:snips_author = 'foxUnderMoon'
 "mapping
 "跳到下一行
 imap <S-cr> <esc>A<cr>
@@ -437,7 +439,7 @@ if has('gui_running') && has('gui_win32') && has('libcall')
     autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
 endif
 "}}}
-"youdao{{{
+"youdao{{{2
 vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
 nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
@@ -454,7 +456,7 @@ function! SetColorColumn()
     endif
 endfunction
 "}}}
-""设置缩进和Tab{{{
+""设置缩进和Tab{{{2
 "Linux 风格缩进
 func! LT()
     " 设定缩进时的宽度为8
@@ -549,12 +551,12 @@ func! DS()
     endif
 endfunc
 "}}}
-""编译、调试、运行相关函数{{{
+""编译、调试、运行相关函数{{{2
 func MySys()
     return 'windows'
 endf
 "Debug 调试期版本
-"编译c源文件{{{2
+"编译c源文件{{{3
 func! CompileC()
     exec "update"
     set makeprg=gcc\ -g\ -Wall\ -o\ %<\ %
@@ -562,7 +564,7 @@ func! CompileC()
     set makeprg=make
 endfunc
 
-"编译cpp源文件{{{2
+"编译cpp源文件{{{3
 func! CompileCpp()
     exec "update"
     set makeprg=g++\ -g\ -Wall\ -o\ %<\ %
@@ -570,7 +572,7 @@ func! CompileCpp()
     set makeprg=make
 endfunc
 
-"汇编、连接asm源文件{{{2
+"汇编、连接asm源文件{{{3
 func! CompileAsm()
     if MySys() == "Windows"
         exec "update"
@@ -593,14 +595,14 @@ func! CompileAsm()
     endif
 endfunc
 
-"编译makefile项目{{{2
+"编译makefile项目{{{3 
 func! CompileMake()
     exec "update"
     set makeprg=make
     exec "make\ -f\ %"
 endfunc
 
-"Release 最终的释放期版{{{2
+"Release 最终的释放期版{{{3
 "编译C源文件
 func! ReleaseCompileC()
     exec "update"
@@ -609,7 +611,7 @@ func! ReleaseCompileC()
     set makeprg=make
 endfunc
 
-"编译C++源文件{{{2
+"编译C++源文件{{{3
 func! ReleaseCompileCpp()
     exec "update"
     set makeprg=g++\ -Wall\ -O2\ -o\ %<\ %
@@ -617,7 +619,7 @@ func! ReleaseCompileCpp()
     set makeprg=make
 endfunc
 
-"编译Java源文件{{{2
+"编译Java源文件{{{3
 func! CompileJava()
     exec "update"
     set makeprg=javac\ -g\ -d\ .\ %
@@ -625,7 +627,7 @@ func! CompileJava()
     set makeprg=make
 endfunc
 
-"编译ASM源文件{{{2
+"编译ASM源文件{{{3
 func! ReleaseCompileAsm()
     if MySys() == "Windows"
         exec "update"
@@ -648,14 +650,14 @@ func! ReleaseCompileAsm()
     endif
 endfunc
 
-"编译makefile项目{{{2
+"编译makefile项目{{{3
 func! ReleaseCompileMake()
     exec "update"
     set makeprg=make
     exec "make\ -f\ %"
 endfunc
 
-"编译Java源文件{{{2
+"编译Java源文件{{{3
 func! ReleaseCompileJava()
     exec "update"
     set makeprg=javac\ -d\ .\ %
@@ -663,7 +665,7 @@ func! ReleaseCompileJava()
     set makeprg=make
 endfunc
 
-"编译LaTeX源文件{{{2
+"编译LaTeX源文件{{{3
 func! CompileLaTeX()
     exec "update"
     let compilecmd="!latex"
@@ -674,7 +676,7 @@ func! CompileLaTeX()
     "exec "make"
 endfunc
 
-"运行c、cpp、asm程序{{{2
+"运行c、cpp、asm程序{{{3
 func! RunCCppAsm()
     if MySys() == "Windows"
         "exec "!.\\".expand("%<")
@@ -685,7 +687,7 @@ func! RunCCppAsm()
     endif
 endfunc
 
-"运行java类文件{{{2
+"运行java类文件{{{3
 func! RunJava()
     if search('^\s*package\s\+.*;$', 'pw') > 0
         "exec "norm gg/package/s+8" | exec "!java " . expand('<cfile>') . ".%<"
@@ -701,25 +703,25 @@ func! RunJava()
     endif
 endfunc
 
-"运行perl源文件{{{2
+"运行perl源文件{{{3
 func! RunPerl()
     exec "update"
     exec "!perl %"
 endfunc
 
-"运行python源文件{{{2
+"运行python源文件{{{3
 func! RunPython()
     exec "update"
     exec "!python %"
 endfunc
 
-"运行ruby源文件{{{2
+"运行ruby源文件{{{3
 func! RunRuby()
     exec "update"
     exec "!ruby %"
 endfunc
 
-"预览htm、html、xhtml结果{{{2
+"预览htm、html、xhtml结果{{{3
 func! RunHtml()
     exec "update"
     if MySys() == "Windows"
@@ -730,7 +732,7 @@ func! RunHtml()
     endif
 endfunc
 
-"预览LaTex结果{{{2
+"预览LaTex结果{{{3
 func! RunLaTeX()
     if MySys() == "Windows"
         exec "!yap %<.dvi"
@@ -739,7 +741,7 @@ func! RunLaTeX()
     endif
 endfunc
 
-"根据文件类型自动选择相应的编译函数{{{2
+"根据文件类型自动选择相应的编译函数{{{3
 func! CompileCode()
     if &filetype == "c"
         exec "call CompileC()"
@@ -764,7 +766,7 @@ func! CompileCode()
     endif
 endfunc
 
-"根据文件类型自动选择相应的编译函数{{{2
+"根据文件类型自动选择相应的编译函数{{{3
 func! ReleaseCompileCode()
     if &filetype == "c"
         exec "call ReleaseCompileC()"
@@ -802,7 +804,7 @@ func! TexToPdf()
     exec "!pdflatex %"
 endfun
 
-"根据文件类型自动选择相应的调试器调试{{{2
+"根据文件类型自动选择相应的调试器调试{{{3
 func! DebugCode()
     if &filetype == "c"
         exec "!gdb %<"
@@ -817,7 +819,7 @@ func! DebugCode()
     endif
 endfunc
 
-"运行可执行文件{{{2
+"运行可执行文件{{{3
 func! RunResult()
     if &filetype == "c"
         exec "call RunCCppAsm()"
@@ -850,7 +852,7 @@ func! RunResult()
     endif
 endfunc
 "}}}
-"设置:Run执行的命令，主要用于带参数运行命令{{{
+"设置:Run执行的命令，主要用于带参数运行命令{{{3
 if MySys() == "windows"
     if has("autocmd")
         autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe "!.\\".expand('<cfile>')." <args>"
@@ -878,7 +880,7 @@ func! SetJavaRunType()
 endfunc
 
 "}}}
-""设置快捷键{{{
+""设置快捷键{{{2
 "gh临时关闭高亮显示搜索结果
 map gh :noh<CR>:normal v:normal<ESC>
 "gy系统剪切板复制
@@ -996,7 +998,7 @@ nmap <leader>mT :NERDTreeToggle<CR>
 nmap <leader>mt :TlistToggle<CR>
 nmap <leader>mm :WMToggle<CR>
 "}}}
-"go lang ide{{{
+"go lang ide{{{2
 autocmd BufWritePre *.go :Fmt
 " Some Linux distributions set filetype in /etc/vimrc.
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
@@ -1034,10 +1036,12 @@ let g:tagbar_type_go = {
             \ 'ctagsargs' : '-sort -silent'
             \ }
 "}}}
-"emmet  zencoding  html扩展{{{
+"emmet  zencoding  html扩展{{{2
 let g:user_emmet_leader_key='<leader>e'
 "}}}
-"{{{1neosnippet config
+"github  gist{{{2
+let g:gist_use_password_in_gitconfig = 1
+"{{{2neosnippet config
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -1060,9 +1064,9 @@ endif
 " Enable snipMate compatibility feature.
 " let g:neosnippet#enable_snipmate_compatibility = 1
 " neosnippet END}}} 
-"neocomplete  config{{{1
+"neocomplete  config{{{2
 "{{{3 config
-"let g:acp_enableAtStartup = 1
+let g:acp_enableAtStartup = 1
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
