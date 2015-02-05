@@ -18,7 +18,7 @@ let pluginPath='$VIM/vimfiles/bundle'
 "}}}
 "call vundle#begin('~/some/path/here')
 call neobundle#begin(pluginPath)
-NeoBundleFetch 'Shougo/neobundle.vim' 
+NeoBundle 'Shougo/neobundle.vim' 
 "NeoBundle 'gmarik/Vundle.vim'
 NeoBundle 'L9'
 NeoBundle 'Conque-Shell'
@@ -29,10 +29,11 @@ NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
-NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
-NeoBundle 'bling/vim-airline'
+"NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
+NeoBundle 'powerline/powerline'
+"NeoBundle 'bling/vim-airline'
 "NeoBundle 'bradfitz/goimports'
-" use the  https://github.com/josharian/impl
+"undle/vimpro use the  https://github.com/josharian/impl
 NeoBundle 'rhysd/vim-go-impl'  
 "NeoBundle 'cespare/vim-golang'
 NeoBundle 'dgryski/vim-godef'
@@ -47,7 +48,6 @@ NeoBundle 'DirDiff.vim'
 NeoBundle 'DrawIt'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
-
 "NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/neosnippet.vim'
@@ -138,12 +138,13 @@ if has('gui_running') && has('gui_win32')
     map <A-F10> <esc>:call SetFontSize(+1)<cr>
     map <S-F10> <esc>:call SetFontSize(-1)<cr>
 endif
-
+breakadd func FontSize_Reduce
+breakadd func FontSize_Enlarge
 "放大字体 
 function <SID>FontSize_Enlarge() 
-    if GetSystem() == "linux" 
+    if has("linux")
         let pattern = '\<\d\+$' 
-    elseif GetSystem() == "windows" 
+    elseif has("windows")
         let pattern = ':h\zs\d\+\ze:' 
     endif 
     let fontsize = matchstr(&gfn, pattern) 
@@ -153,23 +154,23 @@ function <SID>FontSize_Enlarge()
     let cmd = substitute(&gfw, pattern, string(fontsize + 1), 'g') 
     let &gfw=cmd 
 endfunction 
-nnoremap <A-+> :call <SID>FontSize_Enlarge()<CR> 
+nnoremap <C-=> :call <SID>FontSize_Enlarge()<CR> 
 
 "缩小字体 
 function <SID>FontSize_Reduce() 
-    if GetSystem() == "linux" 
+    if has("linux")
         let pattern = '\<\d\+$' 
-    elseif GetSystem() == "windows" 
+    elseif has("windows")
         let pattern = ':h\zs\d\+\ze:' 
     endif 
     let fontsize = matchstr(&gfn, pattern) 
     let cmd = substitute(&gfn, pattern, string(fontsize - 1), 'g') 
-    let &gfn=cmd 
+    let &gfn=cmd
     let fontsize = matchstr(&gfw, pattern) 
     let cmd = substitute(&gfw, pattern, string(fontsize - 1), 'g') 
     let &gfw=cmd 
 endfunction 
-nnoremap <A--> :call <SID>FontSize_Reduce()<CR> 
+nnoremap <C--> :call <SID>FontSize_Reduce()<CR> 
 
 
 
