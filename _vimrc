@@ -1067,7 +1067,7 @@ endif
 " neosnippet END}}} 
 "neocomplete  config{{{2
 "{{{3 config
-let g:acp_enableAtStartup = 1
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
