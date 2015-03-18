@@ -9,15 +9,15 @@
 		syntax reset
 	endif
 
-	let g:colors_name = 'foxDark'
+	let g:colors_name = 'FoxDark'
 
-	if ! has('gui_running')
-		if &t_Co != 256
-			echoe 'The ' . g:colors_name . ' color scheme requires gvim or a 256-color terminal'
+	"if ! has('gui_running')
+		"if &t_Co != 256
+			"echoe 'The ' . g:colors_name . ' color scheme requires gvim or a 256-color terminal'
 
-			finish
-		endif
-	endif
+			"finish
+		"endif
+	"endif
 " }}}
 " Color dictionary parser {{{
 	function! s:ColorDictParser(color_dict)
