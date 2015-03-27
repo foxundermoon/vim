@@ -83,6 +83,7 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'mattn/gist-vim' 
+NeoBundle 'kien/ctrlp.vim'
 call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
@@ -105,10 +106,10 @@ set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set helplang=cn
-set guifont=DejaVu_Sans_Mono_for_Powerline:h20:cDEFAULT "Courier New日后网上查找修改
+set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT "Courier New日后网上查找修改
 "set guifont=Innovation:h20:cANSI "Courier New日后网上查找修改
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
-set guifontwide=DejaVu_Sans_Mono_for_Powerline:h20w10:cDEFAULT
+set guifontwide=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT
 "lang mes en_US.utf-8
 language messages en_US.utf-8
 set history=500
@@ -154,7 +155,7 @@ function <SID>FontSize_Enlarge()
     let cmd = substitute(&gfw, pattern, string(fontsize + 1), 'g') 
     let &gfw=cmd 
 endfunction 
-nnoremap <C-=> :call <SID>FontSize_Enlarge()<CR> 
+nnoremap <C-kPlus> :call <SID>FontSize_Enlarge()<CR> 
 
 "缩小字体 
 function <SID>FontSize_Reduce() 
@@ -170,7 +171,7 @@ function <SID>FontSize_Reduce()
     let cmd = substitute(&gfw, pattern, string(fontsize - 1), 'g') 
     let &gfw=cmd 
 endfunction 
-nnoremap <C--> :call <SID>FontSize_Reduce()<CR> 
+nnoremap <C-kMinus> :call <SID>FontSize_Reduce()<CR> 
 
 
 
@@ -1275,3 +1276,21 @@ endfunction
 "key founction END}}}
 " key mapping END 3}}}
 " neocomplete EDD }}}
+"ctrl-p {{{2
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+if has('windows')
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+endif
+if has('Linux')
+    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+endif
