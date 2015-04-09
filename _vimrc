@@ -25,12 +25,12 @@ NeoBundle 'Conque-Shell'
 NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
 NeoBundle 'mattn/lisper-vim' "provide lisp environments 
 NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common Lisp & Scheme. Configurable & well-documented.
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
 "NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
-NeoBundle 'powerline/powerline'
+"NeoBundle 'powerline/powerline', {'rtp':'powerline/powerline/bindings/vim/'}
 "NeoBundle 'bling/vim-airline'
 "NeoBundle 'bradfitz/goimports'
 "undle/vimpro use the  https://github.com/josharian/impl
@@ -202,159 +202,24 @@ source $VIMRUNTIME/menu.vim
 "}}}初始化结束
 "key map{{{2  
 command! -n=0 -bar Evimrc :e $vim/_vimrc
-vnoremap <C-c> "*y
-vnoremap <C-v> "*p
-vnoremap <C-x> "*d
+"vnoremap <C-c> "*y
+"vnoremap <C-v> "*p
+"vnoremap <C-x> "*d
 vnoremap <C-s> :w<CR>
 nnoremap <S-w> @=(Ydc)<CR>
-nnoremap <Esc> :call <SID>my_noremap_esc_function()<CR>
-nmap <leader>ps :ColorSchemeExplorer<cr>
+nmap <leader>ps :call ColorSchemeExplorer<cr>
 nnoremap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
 nmap <leader><space> zf%
-"{{{3 
-nnoremap <Esc> :call <SID>my_noremap_esc_function()<CR>
-function! s:my_noremap_esc_function()
-    execute "noh"
-endfunction
-"command _vimrc e $vim/_vimrc
-"}}}
-"滚动条+工具栏+菜单栏-----{{{2
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-            \set guioptions-=T <Bar>
-            \set guioptions-=m <Bar>
-            \set guioptions-=R <Bar>
-            \set guioptions-=L <Bar>
-            \else <Bar>
-            \set guioptions+=T <Bar>
-            \set guioptions+=m <Bar>
-            \set guioptions+=R <Bar>
-            \set guioptions+=L <Bar>
-            \endif<CR>
-
-"HIDDEN Toolbar
-set guioptions-=T
-"HIDDEN Right Scrool bar 'R'	如有垂直分割的窗口，右边的滚动条总是存在。
-set guioptions-=R
-"'r'	右边的滚动条总是存在
-set guioptions-=r
-"NO USE Menu
-set guioptions-=m
-set guioptions-=L
-"'l'	左边的滚动条总是存在
-set guioptions-=l
-"}}}
-"cue"{{{2
-au BufNewFile,BufRead *.cue setf cue
-"}}}
-"1status line{{{2
-set laststatus=2
-"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-"let g:Powerline_symbols='unicode'
-set t_Co=256 
-let g:Powerline_symbols = 'fancy' 
-"
-"}}}
-"autohotkey{{{2
-au FileType autohotkey map <F12> :silent !start autohotkey.exe %
-au FileType autohotkey set fdo=block
-au FileType autohotkey set fdm=manual
-
-au FileType autohotkey set commentstring =;%s
-"au FileType autohotkey set comments="n:;"}}}
-"python{{{2
-"set filetype=python
-au BufNewFile,BufRead *.py setf python
-au FileType python map <F12> :silent !start python.exe %
-"set ofu=syntaxcomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python runtime! autoload/pythoncomplete.vim
-let g:pydiction_location = $VIM . '\data\python\complete-dict'
-"default=15
-let g:pydiction_menu_height = 20
-"==============================python END =====================}}}
-"MiniBufExplorer{{{2
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:mimiBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1
-"}}}
-"Taglist设置{{{2
-let Tlist_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
-" 不同时显示多个文件的 tag ，只显示当前文件的
-let Tlist_Show_One_File=1
-" 如果 taglist 窗口是最后一个窗口，则退出 vim
-let Tlist_Exit_OnlyWindow=1
-"让当前不被编辑的文件的方法列表自动折叠起来 
-let Tlist_File_Fold_Auto_Close=1
-"把taglist窗口放在屏幕的右侧，缺省在左侧
-let Tlist_Use_Right_Window=1
-"显示taglist菜单
-let Tlist_Show_Menu=1
-"启动vim自动打开taglist
-"let Tlist_Auto_Open=1  
-"-----------------------------------------------------------}}}
-"" winManager setting{{{2
-"设置界面分割
-"let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
-let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
-"设置winmanager的宽度，默认为25
-let g:winManagerWidth = 30
-"定义打开关闭winmanager按键
-"nmap <F8> :WMToggle<cr>}}}
-"NERD Tree{{{2
-let NERDChristmasTree=1
-let NERDTreeAutoCenter=1
-let NERDTreeBookmarksFile=$VIM.'\Data\NERDTreeBookmarks.txt'
-let NERDTreeMouseMode=2
-let NERDTreeShowBookmarks=1
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
-let NERDTreeWinPos='left'
-let NERDTreeWinSize=31
-nnoremap <C-F12> :NERDTreeToggle
-"}}}
-"vjde---vim java develop enverement{{{2
-"<Load project>
-":Vjdeload filename 
-"<Save project as  a new project >
-":Vjdeas filename 
-"<Save the current project >
-":Vjdesave 
-
-"<Setup custom completion function  >
-au FileType java set cfu="VjdeCompletionFun"
-"<Setup classpath variable: >
-let g:vjde_lib_path="lib/j2ee.jar:lib/struts.jar:build/classes"
-let g:vjde_java_command='javaw'
-let g:vjde_completion_key='<c-l>'
-let g:vjde_cfu_java_para=1
-let g:vjde_cfu_java_dot=1
-let g:vjde_show_paras=1
-
-"}}}
-"Java======JavaBrowser{{{2
-let Javabrowser_Use_Icon = 1
-let JavaBrowser_Ctags_Cmd = 'D:/Server/shell/ctags.exe'
-
-"假如编辑的是 java 文件, 那么读入 java.vim 的宏定义
-autocmd FileType java source $VIM . '\data\java\java.vim'
-"假如编辑的是 java 文件, 那么读入 jcommenter.vim 定义
-autocmd FileType java source $VIM . '\data\java\jcommenter.vim'
-"在新建 java 文件时, 预先将 java.skel 的内容复制进来
-autocmd BufNewFile *.java 0r $VIM . '\data\java\java.skel'
-"在读入 java.skel 内容后, 运行 gnp 这个宏命令
-autocmd BufNewFile *.java normal gnp
-
-"============= java END=================
-"}}} 
-"snipMate--+ map ---{{{2
-"let g:snips_author = 'foxUnderMoon'
-"mapping
+nnoremap <Esc> :execute "noh"<CR>
 "跳到下一行
 imap <S-cr> <esc>A<cr>
+nnoremap <S-cr> <esc>A<cr>
+"imap <C-s> :<esc>
+nnoremap <leader>w :w<cr>
+nnoremap <Leader>fg :setf go <CR>
+nnoremap <Leader>q :q<CR>
 "删除当前行光标以前部分
-imap <C-bs> <esc>d0i<del>
+"imap <C-bs> <esc>d0i<del>
 "inoremap <CR> <C-R>=MyEnter()
 function MyEnter()
     let char = getline('.')[col('.') - 1]
@@ -388,6 +253,139 @@ endf
 "endif
 "endf
 "imap <C-S-delete> <esc>dda
+"滚动条+工具栏+菜单栏-----{{{2
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+            \set guioptions-=T <Bar>
+            \set guioptions-=m <Bar>
+            \set guioptions-=R <Bar>
+            \set guioptions-=L <Bar>
+            \else <Bar>
+            \set guioptions+=T <Bar>
+            \set guioptions+=m <Bar>
+            \set guioptions+=R <Bar>
+            \set guioptions+=L <Bar>
+            \endif<CR>
+
+"HIDDEN Toolbar
+set guioptions-=T
+"HIDDEN Right Scrool bar 'R'	如有垂直分割的窗口，右边的滚动条总是存在。
+set guioptions-=R
+"'r'	右边的滚动条总是存在
+set guioptions-=r
+"NO USE Menu
+set guioptions-=m
+set guioptions-=L
+"'l'	左边的滚动条总是存在
+set guioptions-=l
+"}}}
+"cue"{{{2
+au BufNewFile,BufRead *.cue setf cue
+"}}}
+"status line{{{2
+set laststatus=2
+"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+"let g:Powerline_symbols='unicode'
+set t_Co=256 
+let g:Powerline_symbols = 'fancy' 
+"
+"}}}
+"autohotkey{{{2
+au FileType autohotkey map <F12> :silent !start autohotkey.exe %
+au FileType autohotkey set fdo=block
+au FileType autohotkey set fdm=manual
+
+au FileType autohotkey set commentstring =;%s
+"au FileType autohotkey set comments="n:;"}}}
+"python{{{2
+"set filetype=python
+au BufNewFile,BufRead *.py setf python
+au FileType python map <F12> :silent !start python.exe %
+"set ofu=syntaxcomplete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python runtime! autoload/pythoncomplete.vim
+let g:pydiction_location = $VIM . '\data\python\complete-dict'
+"default=15
+let g:pydiction_menu_height = 20
+"==============================python END =====================}}}
+"MiniBufExplorer{{{2
+let g:miniBufExplMapWindowNavVim=1
+let g:miniBufExplMapWindowNavArrows=1
+let g:mimiBufExplMapCTabSwitchBufs=1
+let g:miniBufExplModSelTarget=1
+"}}}
+"Taglist设置{{{2
+let Tlist_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
+" 不同时显示多个文件的 tag ，只显示当前文件的
+let Tlist_Show_One_File=1
+" 如果 taglist 窗口是最后一个窗口，则退出 vim
+let Tlist_Exit_OnlyWindow=1
+"让当前不被编辑的文件的方法列表自动折叠起来 
+let Tlist_File_Fold_Auto_Close=1
+"把taglist窗口放在屏幕的右侧，缺省在左侧
+let Tlist_Use_Right_Window=1
+"显示taglist菜单
+let Tlist_Show_Menu=1
+"启动vim自动打开taglist
+let Tlist_Auto_Open=1  
+"-----------------------------------------------------------}}}
+"" winManager setting{{{2
+"设置界面分割
+"let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
+let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
+"设置winmanager的宽度，默认为25
+let g:winManagerWidth = 30
+"定义打开关闭winmanager按键
+"nmap <F8> :WMToggle<cr>}}}
+"NERD Tree{{{2
+let NERDChristmasTree=1
+let NERDTreeAutoCenter=1
+let NERDTreeBookmarksFile=$VIM.'\Data\NERDTreeBookmarks.txt'
+let NERDTreeMouseMode=2
+let NERDTreeShowBookmarks=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeWinPos='left'
+let NERDTreeWinSize=31
+nnoremap <C-F12> :NERDTreeToggle<CR>
+"}}}
+"vjde---vim java develop enverement{{{2
+"<Load project>
+":Vjdeload filename 
+"<Save project as  a new project >
+":Vjdeas filename 
+"<Save the current project >
+":Vjdesave 
+
+"<Setup custom completion function  >
+"au FileType java set cfu="VjdeCompletionFun"
+"<Setup classpath variable: >
+"let g:vjde_lib_path="lib/j2ee.jar:lib/struts.jar:build/classes"
+"let g:vjde_java_command='javaw'
+"let g:vjde_completion_key='<c-l>'
+"let g:vjde_cfu_java_para=1
+"let g:vjde_cfu_java_dot=1
+"let g:vjde_show_paras=1
+
+"}}}
+"Java======JavaBrowser{{{2
+let Javabrowser_Use_Icon = 1
+let JavaBrowser_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
+
+"假如编辑的是 java 文件, 那么读入 java.vim 的宏定义
+"autocmd FileType java source $VIM . '\data\java\java.vim'
+"假如编辑的是 java 文件, 那么读入 jcommenter.vim 定义
+"autocmd FileType java source $VIM . '\data\java\jcommenter.vim'
+"在新建 java 文件时, 预先将 java.skel 的内容复制进来
+"autocmd BufNewFile *.java 0r $VIM . '\data\java\java.skel'
+"在读入 java.skel 内容后, 运行 gnp 这个宏命令
+"autocmd BufNewFile *.java normal gnp
+
+"============= java END=================
+"}}} 
+"snipMate {{{2
+"let g:snips_author = 'foxUnderMoon'
+"mapping
 "========= sketch =========
 command! Sketch call ToggleSketch()
 "}}} 
@@ -891,6 +889,8 @@ map gy "+y
 "map gy "+ye
 "gY复制一个单词(到光标所在字符结束)，可配合YouDao词典的剪切板监视功能查词
 "map gY my"+yb`y
+nnoremap gc "+d
+nnoremap gp "+p
 
 "Linux缩进风格 g=l
 map g=l :call LT()<CR>v<Esc>
@@ -997,18 +997,47 @@ let Tlist_Inc_Winwidth=0
 "}}}
 ""插件的快捷键设置{{{
 nmap <leader>mT :NERDTreeToggle<CR>
-nmap <leader>mt :TlistToggle<CR>
-nmap <leader>mm :WMToggle<CR>
+"nmap <leader>mt :TlistToggle<CR>
+"nmap <leader>mm :WMToggle<CR>
 "}}}
 "go lang ide{{{2
+"
+"
+let g:go_play_open_browser = 0
+let g:go_fmt_fail_silently = 1
+"let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+"let g:go_bin_path = expand("~/.gotools")
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 autocmd BufWritePre *.go :Fmt
+autocmd FileType go nnoremap <F12> :!go run %<CR> 
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
 " Some Linux distributions set filetype in /etc/vimrc.
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
+"filetype off
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"filetype plugin indent on
+"syntax on
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_go = {
             \ 'ctagstype' : 'go',
@@ -1046,9 +1075,9 @@ let g:gist_use_password_in_gitconfig = 1
 "{{{2neosnippet config
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets' behavior.
 "imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -1072,7 +1101,7 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#max_list = 1000
+let g:neocomplete#max_list = 2000
 let g:neocomplete#max_keyword_width = 70
 let g:neocomplete#auto_completion_start_length=2
 let g:neocomplete#manual_completion_start_length = 0
@@ -1090,7 +1119,7 @@ let g:neocomplete#lock_buffer_name_pattern= ''
 "let g:neocomplete#
 
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#enable_auto_close_preview = 0
 let g:neocomplete#fallback_mappings = 
@@ -1131,40 +1160,40 @@ endif
 if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php =
-"\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-"let g:neocomplete#sources#omni#input_patterns.c =
-"\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-"let g:neocomplete#sources#omni#input_patterns.cpp =
-"\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.php =
+\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.c =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.cpp =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl =
             \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-"if !exists('g:neocomplete#sources#omni#functions')
-    "let g:neocomplete#sources#omni#functions = {}
-"endif
+if !exists('g:neocomplete#sources#omni#functions')
+    let g:neocomplete#sources#omni#functions = {}
+endif
 " Go (plugin: gocode)
-"let g:neocomplete#sources#omni#functions.go =
-            "\ 'go#complete#Complete'
+let g:neocomplete#sources#omni#functions.go =
+            \ 'go#complete#Complete'
 " Clojure (plugin: vim-clojure)
-"let g:neocomplete#sources#omni#functions.clojure =
-            "\ 'vimclojure#OmniCompletion'
+let g:neocomplete#sources#omni#functions.clojure =
+            \ 'vimclojure#OmniCompletion'
 "" SQL
-"let g:neocomplete#sources#omni#functions.sql =
-            "\ 'sqlcomplete#Complete'
+let g:neocomplete#sources#omni#functions.sql =
+            \ 'sqlcomplete#Complete'
 "" R (plugin: vim-R-plugin)
-"let g:neocomplete#sources#omni#input_patterns.r =
-            "\ '[[:alnum:].\\]\+'
-"let g:neocomplete#sources#omni#functions.r =
-            "\ 'rcomplete#CompleteR'
+let g:neocomplete#sources#omni#input_patterns.r =
+            \ '[[:alnum:].\\]\+'
+let g:neocomplete#sources#omni#functions.r =
+            \ 'rcomplete#CompleteR'
 "" XQuery (plugin: XQuery-indentomnicomplete)
-"let g:neocomplete#sources#omni#input_patterns.xquery =
-            "\ '\k\|:\|\-\|&'
-"let g:neocomplete#sources#omni#functions.xquery =
-            "\ 'xquerycomplete#CompleteXQuery'
+let g:neocomplete#sources#omni#input_patterns.xquery =
+            \ '\k\|:\|\-\|&'
+let g:neocomplete#sources#omni#functions.xquery =
+            \ 'xquerycomplete#CompleteXQuery'
 "omini complete END }}}
 "config END 2}}}
 "{{{3 Plugin key-mappings.
