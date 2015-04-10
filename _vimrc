@@ -1240,7 +1240,7 @@ let g:tagbar_type_go = {
             \ }
 "}}}
 "emmet  zencoding  html¿©’π{{{2
-let g:user_emmet_leader_key='<leader>e'
+let g:user_emmet_leader_key='<C-y>'
 "}}}
 "github  gist{{{2
 let g:gist_use_password_in_gitconfig = 1
