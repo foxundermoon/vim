@@ -84,6 +84,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'mattn/gist-vim' 
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'foxundermoon/snip'
 call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
@@ -205,22 +206,204 @@ command! -n=0 -bar Evimrc :e $vim/_vimrc
 "vnoremap <C-c> "*y
 "vnoremap <C-v> "*p
 "vnoremap <C-x> "*d
-vnoremap <C-s> :w<CR>
+"vnoremap <C-s> :w<CR>
 nnoremap <S-w> @=(Ydc)<CR>
 nmap <leader>ps :call ColorSchemeExplorer<cr>
 nnoremap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
 nmap <leader><space> zf%
 nnoremap <Esc> :execute "noh"<CR>
 "跳到下一行
-imap <S-cr> <esc>A<cr>
-nnoremap <S-cr> <esc>A<cr>
+inoremap <S-cr> <esc>A<C-cr>
+nnoremap <S-cr> <esc>A<C-cr>
+snoremap <S-CR> <esc>A<C-cr>
 "imap <C-s> :<esc>
 nnoremap <leader>w :w<cr>
+nnoremap <leader>1w :w!<cr>
 nnoremap <Leader>fg :setf go <CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>1q :q!<CR>
 "删除当前行光标以前部分
 "imap <C-bs> <esc>d0i<del>
 "inoremap <CR> <C-R>=MyEnter()
+"neocomplete key map
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><silent><CR> <SID>my_cr_function('i')
+snoremap <expr><silent><CR> <SID>my_cr_function('s')
+"smap <expr><silent><CR> <SID>s_my_cr_function()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><Esc> <SID>my_esc_function('i') 
+inoremap <expr><Up> <SID>my_up_function()
+inoremap <expr><Down> <SID>my_down_function()
+inoremap <expr> <TAB> <SID>my_tab_function('i')
+snoremap <expr> <TAB> <SID>my_tab_function('s')
+inoremap <expr><silent> <C-TAB> <SID>my_control_tap_function('i')
+snoremap <expr><silent><C-TAB> <SID>my_control_tap_function('s')
+inoremap <expr><silent><M-CR> <SID>my_alt_cr_function('i')
+nnoremap <expr><silent><M-CR> <SID>my_alt_cr_function('n')
+inoremap <expr><silent><C-CR> <SID>my_control_cr_function('i')
+nnoremap <expr><silent><C-CR> <SID>my_control_cr_function('n')
+inoremap <expr><silent><S-CR> <SID>my_shift_cr_function('i')
+nnoremap <expr><silent><S-CR> <SID>my_shift_cr_function('n')
+
+"{{{4 key functions
+"{{{5 <S-CR>
+function! s:my_shift_cr_function(mod)
+    if a:mod=='i'
+        if pumvisible()
+            return neocomplete#cancel_popup() . "\<esc>". "\<A>" . "\<CR>"
+        else
+            return "\<esc>" . "\<A>" . "\<CR>"
+        endif
+    elseif a:mod=='n'
+        return "\<A>" . "\<cr>"
+    endif
+endfunction
+"{{{5 <A-CR>
+function! s:my_alt_cr_function(mod)
+    if a:mod=='i'
+        return "\<A-cr>"
+    elseif a:mod=='n'
+        return "\<A-cr>"
+    endif
+endfunction
+"{{{5 <CR>
+function! s:my_cr_function(mod)
+    if a:mod == 'i'
+    "return neocomplete#close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    if pumvisible()
+        "return neocomplete#close_popup() . "\<CR>"
+        if neosnippet#expandable()
+            return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
+            "call neosnippet#mappings#expand_or_jump_impl()
+        else
+            return  neocomplete#close_popup()
+        endif
+    elseif neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
+        "call neosnippet#mappings#expand_or_jump_impl()
+    elseif neosnippet#expandable()
+        return neosnippet#mappings#expand_impl()
+    else
+        return "\<CR>"
+    endif
+elseif a:mo=='s'
+    if neosnippet#expandable()
+        return neosnippet#mappings#expand_impl()
+    else
+        return "\<CR>"
+    endif
+endif
+    "return pumvisible() ? neocomplete#close_popup() : 
+    "\ "\<CR>"
+endfunction
+"{{{5 <C-CR>
+function! s:my_control_cr_function(mod)
+    if a:mod =='i'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return "\<C-cr>"
+        endif
+    elseif  a:mod =='n'
+        return "\<C-cr>"
+    endif
+endfunction
+"{{{5
+function! s:my_shift_cr_function(mod)
+    if a:mod =='i'
+        if pumvisible()
+            return neocomplete#close_popup() . "\<esc>" . "\<a>" . "\<cr>"
+        else
+            return  "\<esc>" . "\<a>" . "\<cr>"
+        endif
+    elseif a:mod =='n'
+        return "\<a>" . "\<CR>"
+    endif
+endfunction
+"{{{5 <TAB>
+function! s:my_tab_function(mod)
+    if a:mod == 'i'
+        let char = getline('.')[col('.') - 1]
+        if pumvisible()
+            return "\<C-n>"  
+            "if neosnippet#expandable_or_jumpable()
+            "return "\<C-n>"  
+            "" "\<Plug>(neosnippet_expand_or_jump)"
+            ""call neosnippet#mappings#expand_or_jump_impl()
+            "else
+            "return neocomplete#close_popup()
+            "endif
+            "elseif neosnippet#jumpable()
+            "return neosnippet#mappings#jump_impl()
+            "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
+            "return "\<Right>"
+        elseif <SID>check_back_space()
+            return "\<TAB>"
+        else
+            return neocomplete#start_manual_complete()
+        endif
+    elseif a:mod == 's'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        endif
+    endif
+endfunction
+"{{{5 <C-TAP>
+function! s:my_control_tap_function(mod) 
+    if a:mod == 'i'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return ""
+        endif
+    elseif a:mod =='n'
+        return "\<C-TAP>"
+    elseif a:mod == 's'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return ""
+        endif
+    endif
+endfunction
+"{{{5 check_back_space
+function! s:check_back_space() 
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+"{{{5 <Esc>
+function! s:my_esc_function(mod)
+    if a:mod=='i'
+        if pumvisible()
+            return neocomplete#cancel_popup()
+        else
+            return "\<Esc>"
+        endif
+    if a:mod=='n'
+        return "\<Esc>"
+    endif
+endfunction
+"{{{5 <Up>
+function! s:my_up_function()
+    if pumvisible()
+        return "\<C-p>"
+    else
+        return "\<Up>"
+    endif
+endfunction
+"{{{5 <Down>
+function! s:my_down_function()
+    if pumvisible()
+        return "\<C-n>"
+    else
+        return "\<Down>"
+endfunction
+"{{{5 MyEnter
 function MyEnter()
     let char = getline('.')[col('.') - 1]
     if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
@@ -229,7 +412,7 @@ function MyEnter()
         return "\<CR>"
     endif
 endf
-
+"{{{5 ControlDel
 function ControlDel()
     let flag=1
     while flag
@@ -241,18 +424,7 @@ function ControlDel()
             return
         endif
     endwhile
-endf
-
-"inoremap <CR> <C-R>=TabSkir()<CR>
-"function MyEnter()
-"let char = getline('.')[col('.') - 1]
-"if char == '}' || char == ')' || char == ']' || char == ';'
-"return "\<Right>\<CR>"
-"else
-"return "\<CR>"
-"endif
-"endf
-"imap <C-S-delete> <esc>dda
+endfunction
 "滚动条+工具栏+菜单栏-----{{{2
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
             \set guioptions-=T <Bar>
@@ -1073,7 +1245,18 @@ let g:user_emmet_leader_key='<leader>e'
 "github  gist{{{2
 let g:gist_use_password_in_gitconfig = 1
 "{{{2neosnippet config
-
+let g:neosnippet#snippets_directory=$VIM .'/vimfiles/bundle/snip' 
+let g:neosnippet#disable_select_mode_mappings =1
+let g:neosnippet#disable_runtime_snippets = {
+            \ 'java': 1 ,
+            \ 'cpp': 1 ,
+            \ }
+let g:neosnippet#enable_snipmate_compatibility=0
+let g:neosnippet#enable_preview =0
+let g:neosnippet#expand_word_boundary=1
+let g:neosnippet#scope_aliases = {
+            \ 'go': 'go,gof',
+            \}
 " Plugin key-mappings.
 "imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 "smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -1196,115 +1379,6 @@ let g:neocomplete#sources#omni#functions.xquery =
             \ 'xquerycomplete#CompleteXQuery'
 "omini complete END }}}
 "config END 2}}}
-"{{{3 Plugin key-mappings.
-"{{{4 debug 
-"imap <expr> <C-d> <SID>my_debug()
-function! s:my_debug()
-    if pumvisible()
-        echo "pumvisible()"
-        return "pumvisible"
-    endif
-    if neosnippet#expandable_or_jumpable()
-        echo "neosnippet#expandable_or_jumpable()"
-        call  neosnippet#mappings#expand_impl()
-        return "\<C-k>"
-    endif
-endfunction
-"}}} 
-"{{{4  key map
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-imap <expr><silent><CR> <SID>my_cr_function()
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-inoremap <expr><Esc> <SID>my_esc_function() 
-inoremap <expr><Up> <SID>my_up_function()
-inoremap <expr><Down> <SID>my_down_function()
-imap <expr> <TAB> <SID>my_tab_function()
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)"
-            \: "\<TAB>"
-"{{{4 key functions
-"{{{5 <CR>
-function! s:my_cr_function()
-    "return neocomplete#close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    if pumvisible()
-        "return neocomplete#close_popup() . "\<CR>"
-        if neosnippet#expandable()
-            return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
-            "call neosnippet#mappings#expand_or_jump_impl()
-        else
-            return  neocomplete#close_popup()
-        endif
-    elseif neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-        "call neosnippet#mappings#expand_or_jump_impl()
-    elseif neosnippet#expandable()
-        return neosnippet#mappings#expand_impl()
-    else
-        return "\<CR>"
-    endif
-    "return pumvisible() ? neocomplete#close_popup() : 
-    "\ "\<CR>"
-endfunction
-"{{{5 <TAB>
-function! s:my_tab_function()
-    let char = getline('.')[col('.') - 1]
-    if pumvisible()
-        return "\<C-n>"  
-        "if neosnippet#expandable_or_jumpable()
-        "return "\<C-n>"  
-        "" "\<Plug>(neosnippet_expand_or_jump)"
-        ""call neosnippet#mappings#expand_or_jump_impl()
-        "else
-        "return neocomplete#close_popup()
-        "endif
-    "elseif neosnippet#jumpable()
-        "return neosnippet#mappings#jump_impl()
-    "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
-        "return "\<Right>"
-    elseif <SID>check_back_space()
-        return "\<TAB>"
-    else
-        return neocomplete#start_manual_complete()
-    endif
-endif
-endfunction
-"{{{5 check_back_space
-function! s:check_back_space() 
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-"{{{5 <Esc>
-function! s:my_esc_function()
-    if pumvisible()
-        return neocomplete#cancel_popup()
-    else
-        return "\<Esc>"
-    endif
-endfunction
-"{{{5 <Up>
-function! s:my_up_function()
-    if pumvisible()
-        return "\<C-p>"
-    else
-        return "\<Up>"
-    endif
-endfunction
-"{{{5 <Down>
-function! s:my_down_function()
-    if pumvisible()
-        return "\<C-n>"
-    else
-        return "\<Down>"
-endfunction
-
-"key founction END}}}
-" key mapping END 3}}}
-" neocomplete EDD }}}
 "ctrl-p {{{2
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
