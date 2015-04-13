@@ -85,6 +85,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'mattn/gist-vim' 
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'foxundermoon/snip'
+NeoBundle 'cespare/vim-toml'
 call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
@@ -211,11 +212,8 @@ nnoremap <S-w> @=(Ydc)<CR>
 nmap <leader>ps :call ColorSchemeExplorer<cr>
 nnoremap <space> @=((foldclosed(line('.'))<0)?'zc':'zo')<CR>
 nmap <leader><space> zf%
-nnoremap <Esc> :execute "noh"<CR>
-"跳到下一行
-inoremap <S-cr> <esc>A<C-cr>
-nnoremap <S-cr> <esc>A<C-cr>
-snoremap <S-CR> <esc>A<C-cr>
+nnoremap <silent><Esc> :execute "noh"<CR>
+
 "imap <C-s> :<esc>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>1w :w!<cr>
@@ -244,22 +242,33 @@ inoremap <expr><silent> <C-TAB> <SID>my_control_tap_function('i')
 snoremap <expr><silent><C-TAB> <SID>my_control_tap_function('s')
 inoremap <expr><silent><M-CR> <SID>my_alt_cr_function('i')
 nnoremap <expr><silent><M-CR> <SID>my_alt_cr_function('n')
-inoremap <expr><silent><C-CR> <SID>my_control_cr_function('i')
-nnoremap <expr><silent><C-CR> <SID>my_control_cr_function('n')
-inoremap <expr><silent><S-CR> <SID>my_shift_cr_function('i')
-nnoremap <expr><silent><S-CR> <SID>my_shift_cr_function('n')
-
+inoremap <expr><C-CR> <SID>my_control_cr_function('i')
+nnoremap <expr><C-CR> <SID>my_control_cr_function('n')
+imap <expr><S-CR> MyShiftCrFunction('i')
+nmap <expr><S-CR> MyShiftCrFunction('n')
+"imap <S-CR>  <Esc>A<cr>
+"nmap <S-CR>  A<cr>
 "{{{4 key functions
+"{{{5 <S-cr>
+function! MyShiftCrFunction(mod)
+    if a:mod == 'i'
+        return "\<End>" . "\<C-CR>"
+    elseif a:mod == 'n'
+        return "A" . "\<C-cr>"
+    endif
+endfunction
+
 "{{{5 <S-CR>
 function! s:my_shift_cr_function(mod)
-    if a:mod=='i'
-        if pumvisible()
-            return neocomplete#cancel_popup() . "\<esc>". "\<A>" . "\<CR>"
-        else
-            return "\<esc>" . "\<A>" . "\<CR>"
-        endif
-    elseif a:mod=='n'
-        return "\<A>" . "\<cr>"
+    if a:mod == 'i'
+        return "\<CR>"
+        "if pumvisible()
+            "return neocomplete#cancel_popup() . "\<esc>". "A" . "\<CR>"
+            "else
+            "return "\<esc>" . "A" . "\<CR>"
+        "endif
+    elseif a:mod == 'n'
+        return  "\<CR>"
     endif
 endfunction
 "{{{5 <A-CR>
@@ -283,11 +292,11 @@ function! s:my_cr_function(mod)
         else
             return  neocomplete#close_popup()
         endif
-    elseif neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
         "call neosnippet#mappings#expand_or_jump_impl()
     elseif neosnippet#expandable()
         return neosnippet#mappings#expand_impl()
+    elseif neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
     else
         return "\<CR>"
     endif
