@@ -1073,6 +1073,8 @@ map gy "+y
 nnoremap gc "+d
 nnoremap gp "+p
 
+vnoremap gc "+d
+vnoremap gp "+p
 "Linux缩进风格 g=l
 map g=l :call LT()<CR>v<Esc>
 "K&R缩进风格 g=k
