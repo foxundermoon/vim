@@ -313,7 +313,9 @@ endfunction
 "{{{5 <C-CR>
 function! s:my_control_cr_function(mod)
     if a:mod =='i'
-        if neosnippet#jumpable()
+        if pumvisible()
+            return "\<CR>" . "\<S-CR>"
+        elseif neosnippet#jumpable()
             return neosnippet#mappings#jump_impl()
         else
             return "\<C-cr>"
@@ -1186,17 +1188,24 @@ nmap <leader>mT :NERDTreeToggle<CR>
 "go lang ide{{{2
 "
 "
+let g:go_snippet_engine = "neosnippet"
 let g:go_play_open_browser = 0
 let g:go_fmt_fail_silently = 1
-"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
 "let g:go_bin_path = expand("~/.gotools")
-
+let g:go_highlight_structs = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_textobj_enabled = 1
 
 autocmd BufWritePre *.go :Fmt
 autocmd FileType go nnoremap <F12> :!go run %<CR> 
@@ -1221,7 +1230,8 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 "set runtimepath+=$GOROOT/misc/vim
 "filetype plugin indent on
 "syntax on
-nmap <F8> :TagbarToggle<CR>
+"nmap <F9> :TagbarToggle<CR>
+"imap <F9>> :TagbarToggle<CR>
 let g:tagbar_type_go = {
             \ 'ctagstype' : 'go',
             \ 'kinds'     : [
