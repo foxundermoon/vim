@@ -30,7 +30,7 @@ NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common L
 "Plugin 'user/L9', {'name': 'newL9'}
 NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
 "NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
-"NeoBundle 'powerline/powerline', {'rtp':'powerline/powerline/bindings/vim/'}
+NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
 "NeoBundle 'bling/vim-airline'
 "NeoBundle 'bradfitz/goimports'
 "undle/vimpro use the  https://github.com/josharian/impl
@@ -246,208 +246,210 @@ inoremap <expr><C-CR> <SID>my_control_cr_function('i')
 nnoremap <expr><C-CR> <SID>my_control_cr_function('n')
 imap <expr><S-CR> MyShiftCrFunction('i')
 nmap <expr><S-CR> MyShiftCrFunction('n')
-"imap <S-CR>  <Esc>A<cr>
-"nmap <S-CR>  A<cr>
+
+nmap <F9> :TagbarToggle<CR>
+imap <F9>  <Esc><Esc>:TagbarToggle<CR>a
+imap <C-[> <Esc><Esc>
 "{{{4 key functions
 "{{{5 <S-cr>
 function! MyShiftCrFunction(mod)
-    if a:mod == 'i'
-        return "\<End>" . "\<C-CR>"
-    elseif a:mod == 'n'
-        return "A" . "\<C-cr>"
-    endif
+if a:mod == 'i'
+    return "\<End>" . "\<C-CR>"
+elseif a:mod == 'n'
+    return "A" . "\<C-cr>"
+endif
 endfunction
 
 "{{{5 <S-CR>
 function! s:my_shift_cr_function(mod)
-    if a:mod == 'i'
-        return "\<CR>"
-        "if pumvisible()
-            "return neocomplete#cancel_popup() . "\<esc>". "A" . "\<CR>"
-            "else
-            "return "\<esc>" . "A" . "\<CR>"
-        "endif
-    elseif a:mod == 'n'
-        return  "\<CR>"
-    endif
+if a:mod == 'i'
+    return "\<CR>"
+    "if pumvisible()
+        "return neocomplete#cancel_popup() . "\<esc>". "A" . "\<CR>"
+        "else
+        "return "\<esc>" . "A" . "\<CR>"
+    "endif
+elseif a:mod == 'n'
+    return  "\<CR>"
+endif
 endfunction
 "{{{5 <A-CR>
 function! s:my_alt_cr_function(mod)
-    if a:mod=='i'
-        return "\<A-cr>"
-    elseif a:mod=='n'
-        return "\<A-cr>"
-    endif
+if a:mod=='i'
+    return "\<A-cr>"
+elseif a:mod=='n'
+    return "\<A-cr>"
+endif
 endfunction
 "{{{5 <CR>
 function! s:my_cr_function(mod)
-    if a:mod == 'i'
+if a:mod == 'i'
+"return neocomplete#close_popup() . "\<CR>"
+" For no inserting <CR> key.
+if pumvisible()
     "return neocomplete#close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    if pumvisible()
-        "return neocomplete#close_popup() . "\<CR>"
-        if neosnippet#expandable()
-            return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
-            "call neosnippet#mappings#expand_or_jump_impl()
-        else
-            return  neocomplete#close_popup()
-        endif
-        "call neosnippet#mappings#expand_or_jump_impl()
-    elseif neosnippet#expandable()
-        return neosnippet#mappings#expand_impl()
-    elseif neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-    else
-        return "\<CR>"
-    endif
-elseif a:mo=='s'
     if neosnippet#expandable()
-        return neosnippet#mappings#expand_impl()
+        return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
+        "call neosnippet#mappings#expand_or_jump_impl()
     else
-        return "\<CR>"
+        return  neocomplete#close_popup()
     endif
+    "call neosnippet#mappings#expand_or_jump_impl()
+elseif neosnippet#expandable()
+    return neosnippet#mappings#expand_impl()
+elseif neosnippet#jumpable()
+    return neosnippet#mappings#jump_impl()
+else
+    return "\<CR>"
 endif
-    "return pumvisible() ? neocomplete#close_popup() : 
-    "\ "\<CR>"
+elseif a:mo=='s'
+if neosnippet#expandable()
+    return neosnippet#mappings#expand_impl()
+else
+    return "\<CR>"
+endif
+endif
+"return pumvisible() ? neocomplete#close_popup() : 
+"\ "\<CR>"
 endfunction
 "{{{5 <C-CR>
 function! s:my_control_cr_function(mod)
-    if a:mod =='i'
-        if pumvisible()
-            return "\<CR>" . "\<S-CR>"
-        elseif neosnippet#jumpable()
-            return neosnippet#mappings#jump_impl()
-        else
-            return "\<C-cr>"
-        endif
-    elseif  a:mod =='n'
+if a:mod =='i'
+    if pumvisible()
+        return "\<CR>" . "\<S-CR>"
+    elseif neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
+    else
         return "\<C-cr>"
     endif
+elseif  a:mod =='n'
+    return "\<C-cr>"
+endif
 endfunction
 "{{{5
 function! s:my_shift_cr_function(mod)
-    if a:mod =='i'
-        if pumvisible()
-            return neocomplete#close_popup() . "\<esc>" . "\<a>" . "\<cr>"
-        else
-            return  "\<esc>" . "\<a>" . "\<cr>"
-        endif
-    elseif a:mod =='n'
-        return "\<a>" . "\<CR>"
+if a:mod =='i'
+    if pumvisible()
+        return neocomplete#close_popup() . "\<esc>" . "\<a>" . "\<cr>"
+    else
+        return  "\<esc>" . "\<a>" . "\<cr>"
     endif
+elseif a:mod =='n'
+    return "\<a>" . "\<CR>"
+endif
 endfunction
 "{{{5 <TAB>
 function! s:my_tab_function(mod)
-    if a:mod == 'i'
-        let char = getline('.')[col('.') - 1]
-        if pumvisible()
-            return "\<C-n>"  
-            "if neosnippet#expandable_or_jumpable()
-            "return "\<C-n>"  
-            "" "\<Plug>(neosnippet_expand_or_jump)"
-            ""call neosnippet#mappings#expand_or_jump_impl()
-            "else
-            "return neocomplete#close_popup()
-            "endif
-            "elseif neosnippet#jumpable()
-            "return neosnippet#mappings#jump_impl()
-            "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
-            "return "\<Right>"
-        elseif <SID>check_back_space()
-            return "\<TAB>"
-        else
-            return neocomplete#start_manual_complete()
-        endif
-    elseif a:mod == 's'
-        if neosnippet#jumpable()
-            return neosnippet#mappings#jump_impl()
-        endif
+if a:mod == 'i'
+    let char = getline('.')[col('.') - 1]
+    if pumvisible()
+        return "\<C-n>"  
+        "if neosnippet#expandable_or_jumpable()
+        "return "\<C-n>"  
+        "" "\<Plug>(neosnippet_expand_or_jump)"
+        ""call neosnippet#mappings#expand_or_jump_impl()
+        "else
+        "return neocomplete#close_popup()
+        "endif
+        "elseif neosnippet#jumpable()
+        "return neosnippet#mappings#jump_impl()
+        "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
+        "return "\<Right>"
+    elseif <SID>check_back_space()
+        return "\<TAB>"
+    else
+        return neocomplete#start_manual_complete()
     endif
+elseif a:mod == 's'
+    if neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
+    endif
+endif
 endfunction
 "{{{5 <C-TAP>
 function! s:my_control_tap_function(mod) 
-    if a:mod == 'i'
-        if neosnippet#jumpable()
-            return neosnippet#mappings#jump_impl()
-        else
-            return ""
-        endif
-    elseif a:mod =='n'
-        return "\<C-TAP>"
-    elseif a:mod == 's'
-        if neosnippet#jumpable()
-            return neosnippet#mappings#jump_impl()
-        else
-            return ""
-        endif
+if a:mod == 'i'
+    if neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
+    else
+        return ""
     endif
+elseif a:mod =='n'
+    return "\<C-TAP>"
+elseif a:mod == 's'
+    if neosnippet#jumpable()
+        return neosnippet#mappings#jump_impl()
+    else
+        return ""
+    endif
+endif
 endfunction
 "{{{5 check_back_space
 function! s:check_back_space() 
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 "{{{5 <Esc>
 function! s:my_esc_function(mod)
-    if a:mod=='i'
-        if pumvisible()
-            return neocomplete#cancel_popup()
-        else
-            return "\<Esc>"
-        endif
-    if a:mod=='n'
+if a:mod=='i'
+    if pumvisible()
+        return neocomplete#cancel_popup()
+    else
         return "\<Esc>"
     endif
+if a:mod=='n'
+    return "\<Esc>"
+endif
 endfunction
 "{{{5 <Up>
 function! s:my_up_function()
-    if pumvisible()
-        return "\<C-p>"
-    else
-        return "\<Up>"
-    endif
+if pumvisible()
+    return "\<C-p>"
+else
+    return "\<Up>"
+endif
 endfunction
 "{{{5 <Down>
 function! s:my_down_function()
-    if pumvisible()
-        return "\<C-n>"
-    else
-        return "\<Down>"
+if pumvisible()
+    return "\<C-n>"
+else
+    return "\<Down>"
 endfunction
 "{{{5 MyEnter
 function MyEnter()
-    let char = getline('.')[col('.') - 1]
-    if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
-        return "\<Right>"
-    else
-        return "\<CR>"
-    endif
+let char = getline('.')[col('.') - 1]
+if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
+    return "\<Right>"
+else
+    return "\<CR>"
+endif
 endf
 "{{{5 ControlDel
 function ControlDel()
-    let flag=1
-    while flag
-        let char = getline('.')[col('.') -1]
-        if char == ' '
-            return "\<del>"
-        else
-            let flag=0
-            return
-        endif
-    endwhile
+let flag=1
+while flag
+    let char = getline('.')[col('.') -1]
+    if char == ' '
+        return "\<del>"
+    else
+        let flag=0
+        return
+    endif
+endwhile
 endfunction
 "滚动条+工具栏+菜单栏-----{{{2
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-            \set guioptions-=T <Bar>
-            \set guioptions-=m <Bar>
-            \set guioptions-=R <Bar>
-            \set guioptions-=L <Bar>
-            \else <Bar>
-            \set guioptions+=T <Bar>
-            \set guioptions+=m <Bar>
-            \set guioptions+=R <Bar>
-            \set guioptions+=L <Bar>
-            \endif<CR>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <Bar>
+        \set guioptions-=R <Bar>
+        \set guioptions-=L <Bar>
+        \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+        \set guioptions+=R <Bar>
+        \set guioptions+=L <Bar>
+        \endif<CR>
 
 "HIDDEN Toolbar
 set guioptions-=T
@@ -578,48 +580,47 @@ command! Sketch call ToggleSketch()
 " Alt + F11 加大窗口透明度
 " Contrl + F11 切换Vim是否总在最前面显示
 if has('gui_running') && has('gui_win32') && has('libcall')
-    let g:MyVimLib = 'gvimfullscreen_x64.dll'
-    function! ToggleFullScreen()
-        "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 0)
-        "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
-        call libcall(g:MyVimLib, 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
-    endfunction
+let g:MyVimLib = 'gvimfullscreen_x64.dll'
+function! ToggleFullScreen()
+    "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 0)
+    "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
+    call libcall(g:MyVimLib, 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
+endfunction
 
-    let g:VimAlpha = 225
-    function! SetAlpha(alpha)
-        let g:VimAlpha = g:VimAlpha + a:alpha
-        if g:VimAlpha < 0
-            let g:VimAlpha = 0
-        endif
-        if g:VimAlpha > 255
-            let g:VimAlpha = 255
-        endif
-        call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
-    endfunction
+let g:VimAlpha = 210
+function! SetAlpha(alpha)
+    let g:VimAlpha = g:VimAlpha + a:alpha
+    if g:VimAlpha < 0
+        let g:VimAlpha = 0
+    endif
+    if g:VimAlpha > 255
+        let g:VimAlpha = 255
+    endif
+    call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
+endfunction
 
-    let g:VimTopMost = 0
-    function! SwitchVimTopMostMode()
-        if g:VimTopMost == 0
-            let g:VimTopMost = 1
-        else
-            let g:VimTopMost = 0
-        endif
-        call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
-    endfunction
-    "映射 Alt+Enter 切换全屏vim
-    nmap <F11> <esc>:call ToggleFullScreen()<cr>
-    nmap <F5> <esc>:call ToggleFullScreen()<cr>
-    nmap <A-cr> <esc>:call ToggleFullScreen()<cr>
-    "切换Vim是否在最前面显示
-    nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
-    "增加Vim窗体的不透明度
-    nmap <A-F11> <esc>:call SetAlpha(5)<cr>
-    "增加Vim窗体的透明度
-    nmap <S-F11> <esc>:call SetAlpha(-7)<cr>
-    "Vim启动的时候自动调用InitVim 以去除Vim的白色边框
-    autocmd GUIEnter * call libcallnr(g:MyVimLib, 'InitVim', 0)
-    " 默认设置透明
-    autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
+let g:VimTopMost = 0
+function! SwitchVimTopMostMode()
+    if g:VimTopMost == 0
+        let g:VimTopMost = 1
+    else
+        let g:VimTopMost = 0
+    endif
+    call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
+endfunction
+"映射 Alt+Enter 切换全屏vim
+nmap <F11> <esc>:call ToggleFullScreen()<cr>
+imap <F11> <Esc><Esc>:call ToggleFullScreen()<CR>a
+"切换Vim是否在最前面显示
+nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
+"增加Vim窗体的不透明度
+nmap <A-F11> <esc>:call SetAlpha(5)<cr>
+"增加Vim窗体的透明度
+nmap <S-F11> <esc>:call SetAlpha(-7)<cr>
+"Vim启动的时候自动调用InitVim 以去除Vim的白色边框
+autocmd GUIEnter * call libcallnr(g:MyVimLib, 'InitVim', 0)
+" 默认设置透明
+autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
 endif
 "}}}
 "youdao{{{2
@@ -1209,9 +1210,9 @@ let g:go_textobj_enabled = 1
 
 autocmd BufWritePre *.go :Fmt
 autocmd FileType go nnoremap <F12> :!go run %<CR> 
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>r <Leader>w<Plug>(go-run)
+au FileType go nmap <leader>b <Leader>w<Plug>(go-build)
+au FileType go nmap <leader>t <Leader>w<Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -1230,8 +1231,6 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 "set runtimepath+=$GOROOT/misc/vim
 "filetype plugin indent on
 "syntax on
-"nmap <F9> :TagbarToggle<CR>
-"imap <F9>> :TagbarToggle<CR>
 let g:tagbar_type_go = {
             \ 'ctagstype' : 'go',
             \ 'kinds'     : [
