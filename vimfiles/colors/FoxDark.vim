@@ -37,7 +37,7 @@
 "	   | Highlight group     |    CTFG  |  CTBG   |    CTAttributes | || GUIFG |    GUIBG |   GUIAttributes |
 "	   |---------------------|----------|---------|-----------------| ||-------|----------|-----------------|
 call s:ColorDictParser({
-	\   'Normal'            : [    231,     16,               '',      'd6d6d6',  '000000',               '']
+	\   'Normal'            : [    231,     16,               '',      'd7d7d7',  '000000',               '']
 	\ , 'Visual'            : [    240,    253,               '',      '585858',  'dadada',               '']
 	\
 	\ , 'Cursor'            : [     '',     '',               '',      'c3d5fb',  'dd4010',               '']
@@ -54,7 +54,8 @@ call s:ColorDictParser({
 	\ , 'StatusLine'        : [    231,    236,           'bold',      'b4fcaa',  '303030',           'bold']
 	\ , 'StatusLineNC'      : [    244,    232,               '',      '808080',  '080808',               '']
 	\
-	\ , 'LineNr'            : [    243,    235,               '',      'aebbd6',  '262626',               '']
+	\ , 'LineNr'            : [    243,    235,               '',      '303030',  '101010',               '']
+	\ , 'CursorLineNr'      : [    243,    235,               '',      'a0a0a0',  '101010',               '']
 	\ , 'VertSplit'         : [    240,     '',               '',      '98d3d4',  '1c1c1c',               '']
 	\
 	\ , 'WildMenu'          : [    234,    231,               '',      'ffffff',  '353535',               '']
@@ -80,7 +81,7 @@ call s:ColorDictParser({
 	\ , 'SpellCap'          : [    231,     31,           'bold',      'ffffff',  '0087af',           'bold']
 	\
 	\ , 'SpecialKey'        : [    239,     '',               '',      '4e4e4e',        '',               '']
-	\ , 'NonText'           : [     88,     '',               '',      '870000',        '',               '']
+	\ , 'NonText'           : [     88,     '',               '',      '252313',        '',               '']
 	\ , 'MatchParen'        : [    231,     25,           'bold',      'ffffff',  '005faf',           'bold']
 	\
 	\ , 'Constant'          : [    137,     '',           'bold',      'ffffcc',        '',           'bold']
