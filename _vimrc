@@ -12,12 +12,17 @@ if has('vim_starting')
     "set runtimepath+=~/.vim/bundle/neobundle.vim/
     set rtp+=$VIM/vimfiles/bundle/neobundle.vim/ 
 endif
-
-let pluginPath='$VIM/vimfiles/bundle'
+if has('windows')
+    let pluginPath='$VIM/vimfiles/bundle'
+elseif has('linux')
+    let pluginPath='$VIM/.vim/bundle'
+endif
+    
 "call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
 "}}}
 "call vundle#begin('~/some/path/here')
 call neobundle#begin(pluginPath)
+if has('windows')
 NeoBundle 'Shougo/neobundle.vim' 
 "NeoBundle 'gmarik/Vundle.vim'
 NeoBundle 'L9'
@@ -36,8 +41,8 @@ NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
 "undle/vimpro use the  https://github.com/josharian/impl
 NeoBundle 'rhysd/vim-go-impl'  
 "NeoBundle 'cespare/vim-golang'
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'Blackrush/vim-gocode' 
+"NeoBundle 'dgryski/vim-godef'
+"NeoBundle 'Blackrush/vim-gocode' 
 "NeoBundle 'nsf/gocode'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'zhchang/quick_file'
@@ -86,6 +91,32 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'foxundermoon/snip'
 NeoBundle 'cespare/vim-toml'
+NeoBundle 'PProvost/vim-ps1'
+NeoBundle 'foxundermoon/vimColor'
+NeoBundle 'foxundermoon/myNerdTreePlugin'
+NeoBundle 'autohotkey-ahk'
+elseif has('linux')
+NeoBundle 'Shougo/neobundle.vim' 
+NeoBundle 'rhysd/vim-go-impl'  
+NeoBundle 'Shougo/neobundle.vim' 
+NeoBundle 'rhysd/vim-go-impl'  
+NeoBundle 'foxundermoon/snip'
+NeoBundle 'foxundermoon/vimColor'
+NeoBundle 'leshill/vim-json'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+"NeoBundle 'SirVer/ultisnips'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neoinclude.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/context_filetype.vim'
+endif
 call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
@@ -529,9 +560,12 @@ let NERDTreeMouseMode=2
 let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=0
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
+    let NERDTreeDirArrows=1
+    let NERDTreeAutoDeleteBuffer=1
+    "call NERDTreeAddMenuSeparator()
 nnoremap <C-F12> :NERDTreeToggle<CR>
 "}}}
 "vjde---vim java develop enverement{{{2
@@ -1417,3 +1451,8 @@ endif
 if has('Linux')
     let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 endif
+ 
+" {{{2 powershell
+let g:ps1_nofold_blocks = 1
+let g:ps1_nofold_sig = 1
+
