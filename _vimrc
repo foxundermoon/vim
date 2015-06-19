@@ -42,7 +42,7 @@ if has('windows')
     NeoBundle 'rhysd/vim-go-impl'  
     "NeoBundle 'cespare/vim-golang'
     "NeoBundle 'dgryski/vim-godef'
-    "NeoBundle 'Blackrush/vim-gocode' 
+    NeoBundle 'Blackrush/vim-gocode' 
     "NeoBundle 'nsf/gocode'
     NeoBundle 'majutsushi/tagbar'
     NeoBundle 'zhchang/quick_file'
@@ -95,7 +95,9 @@ if has('windows')
     NeoBundle 'foxundermoon/vimColor'
     NeoBundle 'foxundermoon/myNerdTreePlugin'
     NeoBundle 'autohotkey-ahk'
+    NeoBundle 'nerdtree-execute'
 elseif has('linux')
+    NeoBundle 'nerdtree-execute'
     NeoBundle 'Shougo/neobundle.vim' 
     NeoBundle 'rhysd/vim-go-impl'  
     NeoBundle 'Shougo/neobundle.vim' 
@@ -214,7 +216,7 @@ set nu!
 set wrap
 "set nowrap
 set linebreak
-"set autochdir
+set autochdir
 set scrolloff=5
 set hlsearch "高亮显示查找结果
 set incsearch "增量查找
