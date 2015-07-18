@@ -12,104 +12,137 @@ if has('vim_starting')
     "set runtimepath+=~/.vim/bundle/neobundle.vim/
     set rtp+=$VIM/vimfiles/bundle/neobundle.vim/ 
 endif
+if has('windows')
+    let pluginPath='$VIM/vimfiles/bundle'
+elseif has('linux')
+    let pluginPath='$VIM/.vim/bundle'
+endif
 
-let pluginPath='$VIM/vimfiles/bundle'
 "call vundle#begin(path) " alternatively, pass a path where Vundle should install plugins
 "}}}
 "call vundle#begin('~/some/path/here')
 call neobundle#begin(pluginPath)
-NeoBundle 'Shougo/neobundle.vim' 
-"NeoBundle 'gmarik/Vundle.vim'
-NeoBundle 'L9'
-NeoBundle 'Conque-Shell'
-NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
-NeoBundle 'mattn/lisper-vim' "provide lisp environments 
-NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common Lisp & Scheme. Configurable & well-documented.
-"NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
-"NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
-NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
-"NeoBundle 'bling/vim-airline'
-"NeoBundle 'bradfitz/goimports'
-"undle/vimpro use the  https://github.com/josharian/impl
-NeoBundle 'rhysd/vim-go-impl'  
-"NeoBundle 'cespare/vim-golang'
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'Blackrush/vim-gocode' 
-"NeoBundle 'nsf/gocode'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'zhchang/quick_file'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'ianva/vim-youdao-translater'
-NeoBundle 'DirDiff.vim'
-NeoBundle 'DrawIt'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'SirVer/ultisnips'
-NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neoinclude.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
-"NeoBundle 'wincent/command-t'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 't9md/vim-choosewin'
-"NeoBundle 'abijr/colorpicker'
-NeoBundle 'MattesGroeger/vim-bookmarks'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'bogado/file-line'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'mhinz/vim-signify'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'mattn/gist-vim' 
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'foxundermoon/snip'
-NeoBundle 'cespare/vim-toml'
+if has('windows')
+    NeoBundle 'Shougo/neobundle.vim' 
+    "NeoBundle 'gmarik/Vundle.vim'
+    NeoBundle 'L9'
+    NeoBundle 'Conque-Shell'
+    NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
+    NeoBundle 'mattn/lisper-vim' "provide lisp environments 
+    NeoBundle 'amdt/vim-niji'   " A rainbow parentheses plugin for Clojure, Common Lisp & Scheme. Configurable & well-documented.
+    "NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+    " Avoid a name conflict with L9
+    "Plugin 'user/L9', {'name': 'newL9'}
+    NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
+    "NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
+    NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
+    "NeoBundle 'bling/vim-airline'
+    "NeoBundle 'bradfitz/goimports'
+    "undle/vimpro use the  https://github.com/josharian/impl
+    NeoBundle 'rhysd/vim-go-impl'  
+    "NeoBundle 'cespare/vim-golang'
+    "NeoBundle 'dgryski/vim-godef'
+    NeoBundle 'Blackrush/vim-gocode' 
+    "NeoBundle 'nsf/gocode'
+    NeoBundle 'majutsushi/tagbar'
+    NeoBundle 'zhchang/quick_file'
+    NeoBundle 'terryma/vim-multiple-cursors'
+    NeoBundle 'nathanaelkane/vim-indent-guides'
+    NeoBundle 'ianva/vim-youdao-translater'
+    NeoBundle 'DirDiff.vim'
+    NeoBundle 'DrawIt'
+    NeoBundle 'scrooloose/nerdtree'
+    NeoBundle 'scrooloose/nerdcommenter'
+    "NeoBundle 'SirVer/ultisnips'
+    NeoBundle 'Shougo/vimproc.vim'
+    NeoBundle 'Shougo/neosnippet.vim'
+    NeoBundle 'Shougo/neosnippet-snippets'
+    NeoBundle 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neoinclude.vim'
+    NeoBundle 'Shougo/vimshell.vim'
+    NeoBundle 'Shougo/unite.vim'
+    NeoBundle 'Shougo/vimfiler.vim'
+    NeoBundle 'Shougo/context_filetype.vim'
+    NeoBundle 'ujihisa/neco-look'
+    NeoBundle 'tpope/vim-markdown'
+    NeoBundle 'tpope/vim-surround'
+    NeoBundle 'tpope/vim-fugitive'
+    "NeoBundle 'wincent/command-t'
+    NeoBundle 'gregsexton/gitv'
+    NeoBundle 'chase/vim-ansible-yaml'
+    NeoBundle 't9md/vim-choosewin'
+    "NeoBundle 'abijr/colorpicker'
+    NeoBundle 'MattesGroeger/vim-bookmarks'
+    NeoBundle 'hail2u/vim-css3-syntax'
+    NeoBundle 'chrisbra/csv.vim'
+    NeoBundle 'mattn/emmet-vim'
+    NeoBundle 'bogado/file-line'
+    NeoBundle 'fatih/vim-go'
+    NeoBundle 'sjl/gundo.vim'
+    NeoBundle 'w0ng/vim-hybrid'
+    NeoBundle 'pangloss/vim-javascript'
+    NeoBundle 'leshill/vim-json'
+    NeoBundle 'groenewege/vim-less'
+    NeoBundle 'mustache/vim-mustache-handlebars'
+    NeoBundle 'mhinz/vim-signify'
+    NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'godlygeek/tabular'
+    NeoBundle 'mattn/gist-vim' 
+    NeoBundle 'kien/ctrlp.vim'
+    NeoBundle 'foxundermoon/snip'
+    NeoBundle 'cespare/vim-toml'
+    NeoBundle 'PProvost/vim-ps1'
+    NeoBundle 'foxundermoon/vimColor'
+    NeoBundle 'foxundermoon/myNerdTreePlugin'
+    NeoBundle 'autohotkey-ahk'
+    NeoBundle 'nerdtree-execute'
+elseif has('linux')
+    NeoBundle 'nerdtree-execute'
+    NeoBundle 'Shougo/neobundle.vim' 
+    NeoBundle 'rhysd/vim-go-impl'  
+    NeoBundle 'Shougo/neobundle.vim' 
+    NeoBundle 'rhysd/vim-go-impl'  
+    NeoBundle 'foxundermoon/snip'
+    NeoBundle 'foxundermoon/vimColor'
+    NeoBundle 'leshill/vim-json'
+    NeoBundle 'mattn/emmet-vim'
+    NeoBundle 'scrooloose/nerdtree'
+    NeoBundle 'scrooloose/nerdcommenter'
+    "NeoBundle 'SirVer/ultisnips'
+    NeoBundle 'Shougo/vimproc.vim'
+    NeoBundle 'Shougo/neosnippet.vim'
+    NeoBundle 'Shougo/neosnippet-snippets'
+    NeoBundle 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neoinclude.vim'
+    NeoBundle 'Shougo/vimshell.vim'
+    NeoBundle 'Shougo/unite.vim'
+    NeoBundle 'Shougo/vimfiler.vim'
+    NeoBundle 'Shougo/context_filetype.vim'
+endif
 call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
 "}}}
-"³õÊ¼»¯{{{2
+"åˆå§‹åŒ–{{{2
 let $LANG = 'en'
 set langmenu=en
 "set autochdir
 source $VIMRUNTIME/vimrc_example.vim 
 "behave mswin
-"Óï·¨¸ßÁÁ
+"è¯­æ³•é«˜äº®
 syntax enable
 syntax on
-"ÅäÉ«·½°¸
+"é…è‰²æ–¹æ¡ˆ
 "colo desert
 set encoding=utf-8
-set expandtab "ÓÃ¿Õ¸ñ´úÌætab
+set expandtab "ç”¨ç©ºæ ¼ä»£æ›¿tab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set helplang=cn
-set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT "Courier NewÈÕºóÍøÉÏ²éÕÒĞŞ¸Ä
-"set guifont=Innovation:h20:cANSI "Courier NewÈÕºóÍøÉÏ²éÕÒĞŞ¸Ä
+set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT "Courier Newæ—¥åç½‘ä¸ŠæŸ¥æ‰¾ä¿®æ”¹
+"set guifont=Innovation:h20:cANSI "Courier Newæ—¥åç½‘ä¸ŠæŸ¥æ‰¾ä¿®æ”¹
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
 set guifontwide=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT
 "lang mes en_US.utf-8
@@ -123,7 +156,7 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 colo FoxDark
-"¸Ä±ä×ÖÌå"{{{2
+"æ”¹å˜å­—ä½“"{{{2
 if has('gui_running') && has('gui_win32')
     let g:MyFontSize = 20
     function! SetFontSize(size)
@@ -135,7 +168,7 @@ if has('gui_running') && has('gui_win32')
             let g:MyFontSize = 42
         endif
         let l:MyFont = '"Courier_New:h' . g:MyFonfSize . ':cANSI"'
-        let l:MyFontW = '"¿¬Ìå:h' . g:MyFontSize . ':cGB2312'
+        let l:MyFontW = '"æ¥·ä½“:h' . g:MyFontSize . ':cGB2312'
         "call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
     endfunction
     map <A-F10> <esc>:call SetFontSize(+1)<cr>
@@ -143,7 +176,7 @@ if has('gui_running') && has('gui_win32')
 endif
 breakadd func FontSize_Reduce
 breakadd func FontSize_Enlarge
-"·Å´ó×ÖÌå 
+"æ”¾å¤§å­—ä½“ 
 function <SID>FontSize_Enlarge() 
     if has("linux")
         let pattern = '\<\d\+$' 
@@ -159,7 +192,7 @@ function <SID>FontSize_Enlarge()
 endfunction 
 nnoremap <C-kPlus> :call <SID>FontSize_Enlarge()<CR> 
 
-"ËõĞ¡×ÖÌå 
+"ç¼©å°å­—ä½“ 
 function <SID>FontSize_Reduce() 
     if has("linux")
         let pattern = '\<\d\+$' 
@@ -178,30 +211,30 @@ nnoremap <C-kMinus> :call <SID>FontSize_Reduce()<CR>
 
 
 "}}}
-"½â¾öconsleÊä³öÂÒÂë
+"è§£å†³consleè¾“å‡ºä¹±ç 
 set nu!
 set wrap
 "set nowrap
 set linebreak
-"set autochdir
+set autochdir
 set scrolloff=5
-set hlsearch "¸ßÁÁÏÔÊ¾²éÕÒ½á¹û
-set incsearch "ÔöÁ¿²éÕÒ
+set hlsearch "é«˜äº®æ˜¾ç¤ºæŸ¥æ‰¾ç»“æœ
+set incsearch "å¢é‡æŸ¥æ‰¾
 set autoindent
 set showmatch
 set smartindent
 set nobackup
-"ÓÃ¿Õ¸ñÀ´¿ª¹ØÕÛµş
+"ç”¨ç©ºæ ¼æ¥å¼€å…³æŠ˜å 
 set foldenable
 "set statusline=[%F]%y%r%m%*%=[Line:%l,Column:%c][%p%%]
 set ruler
 set foldmethod=marker "manual
-"Éè¶¨×Ô¶¯±£´æÕÛµş
+"è®¾å®šè‡ªåŠ¨ä¿å­˜æŠ˜å 
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent !loadview
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-"}}}³õÊ¼»¯½áÊø
+"}}}åˆå§‹åŒ–ç»“æŸ
 "key map{{{2  
 command! -n=0 -bar Evimrc :e $vim/_vimrc
 "vnoremap <C-c> "*y
@@ -220,7 +253,7 @@ nnoremap <leader>1w :w!<cr>
 nnoremap <Leader>fg :setf go <CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>1q :q!<CR>
-"É¾³ıµ±Ç°ĞĞ¹â±êÒÔÇ°²¿·Ö
+"åˆ é™¤å½“å‰è¡Œå…‰æ ‡ä»¥å‰éƒ¨åˆ†
 "imap <C-bs> <esc>d0i<del>
 "inoremap <CR> <C-R>=MyEnter()
 "neocomplete key map
@@ -249,1171 +282,1195 @@ nmap <expr><S-CR> MyShiftCrFunction('n')
 
 nmap <F9> :TagbarToggle<CR>
 imap <F9>  <Esc><Esc>:TagbarToggle<CR>a
-imap <C-[> <Esc><Esc>
+"imap <C-[> <Esc><Esc>
+"vimdiff
+if &diff
+map <silent> <leader>1 :diffget 1<CR> :diffupdate<CR>
+map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
+map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
+map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
+map <silent> <leader>p1 :diffput 1<CR> :diffupdate<CR>
+map <silent> <leader>p2 :diffput 2<CR> :diffupdate<CR>
+map <silent> <leader>p3 :diffput 3<CR> :diffupdate<CR>
+map <silent> <leader>p4 :diffput 4<CR> :diffupdate<CR>
+map <silent> dp1 :diffput 1<CR> :diffupdate<CR>
+map <silent> dp2 :diffput 2<CR> :diffupdate<CR>
+map <silent> dp3 :diffput 3<CR> :diffupdate<CR>
+map <silent> dp4 :diffput 4<CR> :diffupdate<CR>
+endif
+nmap <silent> <F5> :source $VIM/_vimrc<CR>
 "{{{4 key functions
 "{{{5 <S-cr>
 function! MyShiftCrFunction(mod)
-if a:mod == 'i'
-    return "\<End>" . "\<C-CR>"
-elseif a:mod == 'n'
-    return "A" . "\<C-cr>"
-endif
+    if a:mod == 'i'
+        return "\<End>" . "\<C-CR>"
+    elseif a:mod == 'n'
+        return "A" . "\<C-cr>"
+    endif
 endfunction
 
 "{{{5 <S-CR>
 function! s:my_shift_cr_function(mod)
-if a:mod == 'i'
-    return "\<CR>"
-    "if pumvisible()
+    if a:mod == 'i'
+        return "\<CR>"
+        "if pumvisible()
         "return neocomplete#cancel_popup() . "\<esc>". "A" . "\<CR>"
         "else
         "return "\<esc>" . "A" . "\<CR>"
-    "endif
-elseif a:mod == 'n'
-    return  "\<CR>"
-endif
+        "endif
+    elseif a:mod == 'n'
+        return  "\<CR>"
+    endif
 endfunction
 "{{{5 <A-CR>
 function! s:my_alt_cr_function(mod)
-if a:mod=='i'
-    return "\<A-cr>"
-elseif a:mod=='n'
-    return "\<A-cr>"
-endif
+    if a:mod=='i'
+        return "\<A-cr>"
+    elseif a:mod=='n'
+        return "\<A-cr>"
+    endif
 endfunction
 "{{{5 <CR>
 function! s:my_cr_function(mod)
-if a:mod == 'i'
-"return neocomplete#close_popup() . "\<CR>"
-" For no inserting <CR> key.
-if pumvisible()
-    "return neocomplete#close_popup() . "\<CR>"
-    if neosnippet#expandable()
-        return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
-        "call neosnippet#mappings#expand_or_jump_impl()
-    else
-        return  neocomplete#close_popup()
+    if a:mod == 'i'
+        "return neocomplete#close_popup() . "\<CR>"
+        " For no inserting <CR> key.
+        if pumvisible()
+            "return neocomplete#close_popup() . "\<CR>"
+            if neosnippet#expandable()
+                return neocomplete#close_popup() . neosnippet#mappings#expand_impl()
+                "call neosnippet#mappings#expand_or_jump_impl()
+            else
+                return  neocomplete#close_popup()
+            endif
+            "call neosnippet#mappings#expand_or_jump_impl()
+        elseif neosnippet#expandable()
+            return neosnippet#mappings#expand_impl()
+        elseif neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return "\<CR>"
+        endif
+    elseif a:mo=='s'
+        if neosnippet#expandable()
+            return neosnippet#mappings#expand_impl()
+        else
+            return "\<CR>"
+        endif
     endif
-    "call neosnippet#mappings#expand_or_jump_impl()
-elseif neosnippet#expandable()
-    return neosnippet#mappings#expand_impl()
-elseif neosnippet#jumpable()
-    return neosnippet#mappings#jump_impl()
-else
-    return "\<CR>"
-endif
-elseif a:mo=='s'
-if neosnippet#expandable()
-    return neosnippet#mappings#expand_impl()
-else
-    return "\<CR>"
-endif
-endif
-"return pumvisible() ? neocomplete#close_popup() : 
-"\ "\<CR>"
+    "return pumvisible() ? neocomplete#close_popup() : 
+    "\ "\<CR>"
 endfunction
 "{{{5 <C-CR>
 function! s:my_control_cr_function(mod)
-if a:mod =='i'
-    if pumvisible()
-        return "\<CR>" . "\<S-CR>"
-    elseif neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-    else
+    if a:mod =='i'
+        if pumvisible()
+            return "\<CR>" . "\<S-CR>"
+        elseif neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return "\<C-cr>"
+        endif
+    elseif  a:mod =='n'
         return "\<C-cr>"
     endif
-elseif  a:mod =='n'
-    return "\<C-cr>"
-endif
 endfunction
 "{{{5
 function! s:my_shift_cr_function(mod)
-if a:mod =='i'
-    if pumvisible()
-        return neocomplete#close_popup() . "\<esc>" . "\<a>" . "\<cr>"
-    else
-        return  "\<esc>" . "\<a>" . "\<cr>"
+    if a:mod =='i'
+        if pumvisible()
+            return neocomplete#close_popup() . "\<esc>" . "\<a>" . "\<cr>"
+        else
+            return  "\<esc>" . "\<a>" . "\<cr>"
+        endif
+    elseif a:mod =='n'
+        return "\<a>" . "\<CR>"
     endif
-elseif a:mod =='n'
-    return "\<a>" . "\<CR>"
-endif
 endfunction
 "{{{5 <TAB>
 function! s:my_tab_function(mod)
-if a:mod == 'i'
-    let char = getline('.')[col('.') - 1]
-    if pumvisible()
-        return "\<C-n>"  
-        "if neosnippet#expandable_or_jumpable()
-        "return "\<C-n>"  
-        "" "\<Plug>(neosnippet_expand_or_jump)"
-        ""call neosnippet#mappings#expand_or_jump_impl()
-        "else
-        "return neocomplete#close_popup()
-        "endif
-        "elseif neosnippet#jumpable()
-        "return neosnippet#mappings#jump_impl()
-        "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
-        "return "\<Right>"
-    elseif <SID>check_back_space()
-        return "\<TAB>"
-    else
-        return neocomplete#start_manual_complete()
+    if a:mod == 'i'
+        let char = getline('.')[col('.') - 1]
+        if pumvisible()
+            return "\<C-n>"  
+            "if neosnippet#expandable_or_jumpable()
+            "return "\<C-n>"  
+            "" "\<Plug>(neosnippet_expand_or_jump)"
+            ""call neosnippet#mappings#expand_or_jump_impl()
+            "else
+            "return neocomplete#close_popup()
+            "endif
+            "elseif neosnippet#jumpable()
+            "return neosnippet#mappings#jump_impl()
+            "elseif char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
+            "return "\<Right>"
+        elseif <SID>check_back_space()
+            return "\<TAB>"
+        else
+            return neocomplete#start_manual_complete()
+        endif
+    elseif a:mod == 's'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        endif
     endif
-elseif a:mod == 's'
-    if neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-    endif
-endif
 endfunction
 "{{{5 <C-TAP>
 function! s:my_control_tap_function(mod) 
-if a:mod == 'i'
-    if neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-    else
-        return ""
+    if a:mod == 'i'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return ""
+        endif
+    elseif a:mod =='n'
+        return "\<C-TAP>"
+    elseif a:mod == 's'
+        if neosnippet#jumpable()
+            return neosnippet#mappings#jump_impl()
+        else
+            return ""
+        endif
     endif
-elseif a:mod =='n'
-    return "\<C-TAP>"
-elseif a:mod == 's'
-    if neosnippet#jumpable()
-        return neosnippet#mappings#jump_impl()
-    else
-        return ""
-    endif
-endif
 endfunction
 "{{{5 check_back_space
 function! s:check_back_space() 
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 "{{{5 <Esc>
 function! s:my_esc_function(mod)
-if a:mod=='i'
-    if pumvisible()
-        return neocomplete#cancel_popup()
-    else
-        return "\<Esc>"
-    endif
-if a:mod=='n'
-    return "\<Esc>"
-endif
-endfunction
-"{{{5 <Up>
-function! s:my_up_function()
-if pumvisible()
-    return "\<C-p>"
-else
-    return "\<Up>"
-endif
-endfunction
-"{{{5 <Down>
-function! s:my_down_function()
-if pumvisible()
-    return "\<C-n>"
-else
-    return "\<Down>"
-endfunction
-"{{{5 MyEnter
-function MyEnter()
-let char = getline('.')[col('.') - 1]
-if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
-    return "\<Right>"
-else
-    return "\<CR>"
-endif
-endf
-"{{{5 ControlDel
-function ControlDel()
-let flag=1
-while flag
-    let char = getline('.')[col('.') -1]
-    if char == ' '
-        return "\<del>"
-    else
-        let flag=0
-        return
-    endif
-endwhile
-endfunction
-"¹ö¶¯Ìõ+¹¤¾ßÀ¸+²Ëµ¥À¸-----{{{2
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-        \set guioptions-=T <Bar>
-        \set guioptions-=m <Bar>
-        \set guioptions-=R <Bar>
-        \set guioptions-=L <Bar>
-        \else <Bar>
-        \set guioptions+=T <Bar>
-        \set guioptions+=m <Bar>
-        \set guioptions+=R <Bar>
-        \set guioptions+=L <Bar>
-        \endif<CR>
+    if a:mod=='i'
+        if pumvisible()
+            return neocomplete#cancel_popup()
+        else
+            return "\<Esc>"
+        endif
+        if a:mod=='n'
+            return "\<Esc>"
+        endif
+    endfunction
+    "{{{5 <Up>
+    function! s:my_up_function()
+        if pumvisible()
+            return "\<C-p>"
+        else
+            return "\<Up>"
+        endif
+    endfunction
+    "{{{5 <Down>
+    function! s:my_down_function()
+        if pumvisible()
+            return "\<C-n>"
+        else
+            return "\<Down>"
+        endfunction
+        "{{{5 MyEnter
+        function MyEnter()
+            let char = getline('.')[col('.') - 1]
+            if char == '}' || char == ')' || char == ']' || char == '"' || char == "'"  
+                return "\<Right>"
+            else
+                return "\<CR>"
+            endif
+        endf
+        "{{{5 ControlDel
+        function ControlDel()
+            let flag=1
+            while flag
+                let char = getline('.')[col('.') -1]
+                if char == ' '
+                    return "\<del>"
+                else
+                    let flag=0
+                    return
+                endif
+            endwhile
+        endfunction
+        "æ»šåŠ¨æ¡+å·¥å…·æ +èœå•æ -----{{{2
+        map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+                    \set guioptions-=T <Bar>
+                    \set guioptions-=m <Bar>
+                    \set guioptions-=R <Bar>
+                    \set guioptions-=L <Bar>
+                    \else <Bar>
+                    \set guioptions+=T <Bar>
+                    \set guioptions+=m <Bar>
+                    \set guioptions+=R <Bar>
+                    \set guioptions+=L <Bar>
+                    \endif<CR>
 
-"HIDDEN Toolbar
-set guioptions-=T
-"HIDDEN Right Scrool bar 'R'	ÈçÓĞ´¹Ö±·Ö¸îµÄ´°¿Ú£¬ÓÒ±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ¡£
-set guioptions-=R
-"'r'	ÓÒ±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ
-set guioptions-=r
-"NO USE Menu
-set guioptions-=m
-set guioptions-=L
-"'l'	×ó±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ
-set guioptions-=l
-"}}}
-"cue"{{{2
-au BufNewFile,BufRead *.cue setf cue
-"}}}
-"status line{{{2
-set laststatus=2
-"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-"let g:Powerline_symbols='unicode'
-set t_Co=256 
-let g:Powerline_symbols = 'fancy' 
-"
-"}}}
-"autohotkey{{{2
-au FileType autohotkey map <F12> :silent !start autohotkey.exe %
-au FileType autohotkey set fdo=block
-au FileType autohotkey set fdm=manual
+        "HIDDEN Toolbar
+        set guioptions-=T
+        "HIDDEN Right Scrool bar 'R'	å¦‚æœ‰å‚ç›´åˆ†å‰²çš„çª—å£ï¼Œå³è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨ã€‚
+        set guioptions-=R
+        "'r'	å³è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨
+        set guioptions-=r
+        "NO USE Menu
+        set guioptions-=m
+        set guioptions-=L
+        "'l'	å·¦è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨
+        set guioptions-=l
+        "}}}
+        "cue"{{{2
+        au BufNewFile,BufRead *.cue setf cue
+        "}}}
+        "status line{{{2
+        set laststatus=2
+        "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
+        "let g:Powerline_symbols='unicode'
+        set t_Co=256 
+        let g:Powerline_symbols = 'fancy' 
+        "
+        "}}}
+        "autohotkey{{{2
+        au FileType autohotkey map <F12> :silent !start autohotkey.exe %
+        au FileType autohotkey set fdo=block
+        au FileType autohotkey set fdm=manual
 
-au FileType autohotkey set commentstring =;%s
-"au FileType autohotkey set comments="n:;"}}}
-"python{{{2
-"set filetype=python
-au BufNewFile,BufRead *.py setf python
-au FileType python map <F12> :silent !start python.exe %
-"set ofu=syntaxcomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python runtime! autoload/pythoncomplete.vim
-let g:pydiction_location = $VIM . '\data\python\complete-dict'
-"default=15
-let g:pydiction_menu_height = 20
-"==============================python END =====================}}}
-"MiniBufExplorer{{{2
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:mimiBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1
-"}}}
-"TaglistÉèÖÃ{{{2
-let Tlist_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
-" ²»Í¬Ê±ÏÔÊ¾¶à¸öÎÄ¼şµÄ tag £¬Ö»ÏÔÊ¾µ±Ç°ÎÄ¼şµÄ
-let Tlist_Show_One_File=1
-" Èç¹û taglist ´°¿ÚÊÇ×îºóÒ»¸ö´°¿Ú£¬ÔòÍË³ö vim
-let Tlist_Exit_OnlyWindow=1
-"ÈÃµ±Ç°²»±»±à¼­µÄÎÄ¼şµÄ·½·¨ÁĞ±í×Ô¶¯ÕÛµşÆğÀ´ 
-let Tlist_File_Fold_Auto_Close=1
-"°Ñtaglist´°¿Ú·ÅÔÚÆÁÄ»µÄÓÒ²à£¬È±Ê¡ÔÚ×ó²à
-let Tlist_Use_Right_Window=1
-"ÏÔÊ¾taglist²Ëµ¥
-let Tlist_Show_Menu=1
-"Æô¶¯vim×Ô¶¯´ò¿ªtaglist
-let Tlist_Auto_Open=1  
-"-----------------------------------------------------------}}}
-"" winManager setting{{{2
-"ÉèÖÃ½çÃæ·Ö¸î
-"let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
-let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
-"ÉèÖÃwinmanagerµÄ¿í¶È£¬Ä¬ÈÏÎª25
-let g:winManagerWidth = 30
-"¶¨Òå´ò¿ª¹Ø±Õwinmanager°´¼ü
-"nmap <F8> :WMToggle<cr>}}}
-"NERD Tree{{{2
-let NERDChristmasTree=1
-let NERDTreeAutoCenter=1
-let NERDTreeBookmarksFile=$VIM.'\Data\NERDTreeBookmarks.txt'
-let NERDTreeMouseMode=2
-let NERDTreeShowBookmarks=1
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
-let NERDTreeWinPos='left'
-let NERDTreeWinSize=31
-nnoremap <C-F12> :NERDTreeToggle<CR>
-"}}}
-"vjde---vim java develop enverement{{{2
-"<Load project>
-":Vjdeload filename 
-"<Save project as  a new project >
-":Vjdeas filename 
-"<Save the current project >
-":Vjdesave 
+        au FileType autohotkey set commentstring =;%s
+        "au FileType autohotkey set comments="n:;"}}}
+        "python{{{2
+        "set filetype=python
+        au BufNewFile,BufRead *.py setf python
+        au FileType python map <F12> :silent !start python.exe %
+        "set ofu=syntaxcomplete
+        autocmd FileType python set omnifunc=pythoncomplete#Complete
+        autocmd FileType python runtime! autoload/pythoncomplete.vim
+        let g:pydiction_location = $VIM . '\data\python\complete-dict'
+        "default=15
+        let g:pydiction_menu_height = 20
+        "==============================python END =====================}}}
+        "MiniBufExplorer{{{2
+        let g:miniBufExplMapWindowNavVim=1
+        let g:miniBufExplMapWindowNavArrows=1
+        let g:mimiBufExplMapCTabSwitchBufs=1
+        let g:miniBufExplModSelTarget=1
+        "}}}
+        "Taglistè®¾ç½®{{{2
+        let Tlist_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
+        " ä¸åŒæ—¶æ˜¾ç¤ºå¤šä¸ªæ–‡ä»¶çš„ tag ï¼Œåªæ˜¾ç¤ºå½“å‰æ–‡ä»¶çš„
+        let Tlist_Show_One_File=1
+        " å¦‚æœ taglist çª—å£æ˜¯æœ€åä¸€ä¸ªçª—å£ï¼Œåˆ™é€€å‡º vim
+        let Tlist_Exit_OnlyWindow=1
+        "è®©å½“å‰ä¸è¢«ç¼–è¾‘çš„æ–‡ä»¶çš„æ–¹æ³•åˆ—è¡¨è‡ªåŠ¨æŠ˜å èµ·æ¥ 
+        let Tlist_File_Fold_Auto_Close=1
+        "æŠŠtaglistçª—å£æ”¾åœ¨å±å¹•çš„å³ä¾§ï¼Œç¼ºçœåœ¨å·¦ä¾§
+        let Tlist_Use_Right_Window=1
+        "æ˜¾ç¤ºtaglistèœå•
+        let Tlist_Show_Menu=1
+        "å¯åŠ¨vimè‡ªåŠ¨æ‰“å¼€taglist
+        let Tlist_Auto_Open=1  
+        "-----------------------------------------------------------}}}
+        "" winManager setting{{{2
+        "è®¾ç½®ç•Œé¢åˆ†å‰²
+        "let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
+        let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
+        "è®¾ç½®winmanagerçš„å®½åº¦ï¼Œé»˜è®¤ä¸º25
+        let g:winManagerWidth = 30
+        "å®šä¹‰æ‰“å¼€å…³é—­winmanageræŒ‰é”®
+        "nmap <F8> :WMToggle<cr>}}}
+        "NERD Tree{{{2
+        let NERDChristmasTree=1
+        let NERDTreeAutoCenter=1
+        let NERDTreeBookmarksFile=$VIM.'\Data\NERDTreeBookmarks.txt'
+        let NERDTreeMouseMode=2
+        let NERDTreeShowBookmarks=1
+        let NERDTreeShowFiles=1
+        let NERDTreeShowHidden=1
+        let NERDTreeShowLineNumbers=0
+        let NERDTreeWinPos='left'
+        let NERDTreeWinSize=31
+        let NERDTreeDirArrows=1
+        let NERDTreeAutoDeleteBuffer=1
+        "call NERDTreeAddMenuSeparator()
+        nnoremap <C-F12> :NERDTreeToggle<CR>
+        "}}}
+        "vjde---vim java develop enverement{{{2
+        "<Load project>
+        ":Vjdeload filename 
+        "<Save project as  a new project >
+        ":Vjdeas filename 
+        "<Save the current project >
+        ":Vjdesave 
 
-"<Setup custom completion function  >
-"au FileType java set cfu="VjdeCompletionFun"
-"<Setup classpath variable: >
-"let g:vjde_lib_path="lib/j2ee.jar:lib/struts.jar:build/classes"
-"let g:vjde_java_command='javaw'
-"let g:vjde_completion_key='<c-l>'
-"let g:vjde_cfu_java_para=1
-"let g:vjde_cfu_java_dot=1
-"let g:vjde_show_paras=1
+        "<Setup custom completion function  >
+        "au FileType java set cfu="VjdeCompletionFun"
+        "<Setup classpath variable: >
+        "let g:vjde_lib_path="lib/j2ee.jar:lib/struts.jar:build/classes"
+        "let g:vjde_java_command='javaw'
+        "let g:vjde_completion_key='<c-l>'
+        "let g:vjde_cfu_java_para=1
+        "let g:vjde_cfu_java_dot=1
+        "let g:vjde_show_paras=1
 
-"}}}
-"Java======JavaBrowser{{{2
-let Javabrowser_Use_Icon = 1
-let JavaBrowser_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
+        "}}}
+        "Java======JavaBrowser{{{2
+        let Javabrowser_Use_Icon = 1
+        let JavaBrowser_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
 
-"¼ÙÈç±à¼­µÄÊÇ java ÎÄ¼ş, ÄÇÃ´¶ÁÈë java.vim µÄºê¶¨Òå
-"autocmd FileType java source $VIM . '\data\java\java.vim'
-"¼ÙÈç±à¼­µÄÊÇ java ÎÄ¼ş, ÄÇÃ´¶ÁÈë jcommenter.vim ¶¨Òå
-"autocmd FileType java source $VIM . '\data\java\jcommenter.vim'
-"ÔÚĞÂ½¨ java ÎÄ¼şÊ±, Ô¤ÏÈ½« java.skel µÄÄÚÈİ¸´ÖÆ½øÀ´
-"autocmd BufNewFile *.java 0r $VIM . '\data\java\java.skel'
-"ÔÚ¶ÁÈë java.skel ÄÚÈİºó, ÔËĞĞ gnp Õâ¸öºêÃüÁî
-"autocmd BufNewFile *.java normal gnp
+        "å‡å¦‚ç¼–è¾‘çš„æ˜¯ java æ–‡ä»¶, é‚£ä¹ˆè¯»å…¥ java.vim çš„å®å®šä¹‰
+        "autocmd FileType java source $VIM . '\data\java\java.vim'
+        "å‡å¦‚ç¼–è¾‘çš„æ˜¯ java æ–‡ä»¶, é‚£ä¹ˆè¯»å…¥ jcommenter.vim å®šä¹‰
+        "autocmd FileType java source $VIM . '\data\java\jcommenter.vim'
+        "åœ¨æ–°å»º java æ–‡ä»¶æ—¶, é¢„å…ˆå°† java.skel çš„å†…å®¹å¤åˆ¶è¿›æ¥
+        "autocmd BufNewFile *.java 0r $VIM . '\data\java\java.skel'
+        "åœ¨è¯»å…¥ java.skel å†…å®¹å, è¿è¡Œ gnp è¿™ä¸ªå®å‘½ä»¤
+        "autocmd BufNewFile *.java normal gnp
 
-"============= java END=================
-"}}} 
-"snipMate {{{2
-"let g:snips_author = 'foxUnderMoon'
-"mapping
-"========= sketch =========
-command! Sketch call ToggleSketch()
-"}}} 
-" {{{  Win---È«ÆÁ+Í¸Ã÷+ÖÃ¶¥----×é¼ş gvimfullscreen.dll
-" F11 È«ÆÁÇĞ»»
-" Shift + F11 ½µµÍ´°¿ÚÍ¸Ã÷¶È
-" Alt + F11 ¼Ó´ó´°¿ÚÍ¸Ã÷¶È
-" Contrl + F11 ÇĞ»»VimÊÇ·ñ×ÜÔÚ×îÇ°ÃæÏÔÊ¾
-if has('gui_running') && has('gui_win32') && has('libcall')
-let g:MyVimLib = 'gvimfullscreen_x64.dll'
-function! ToggleFullScreen()
-    "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 0)
-    "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
-    call libcall(g:MyVimLib, 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
-endfunction
+        "============= java END=================
+        "}}} 
+        "snipMate {{{2
+        "let g:snips_author = 'foxUnderMoon'
+        "mapping
+        "========= sketch =========
+        command! Sketch call ToggleSketch()
+        "}}} 
+        " {{{  Win---å…¨å±+é€æ˜+ç½®é¡¶----ç»„ä»¶ gvimfullscreen.dll
+        " F11 å…¨å±åˆ‡æ¢
+        " Shift + F11 é™ä½çª—å£é€æ˜åº¦
+        " Alt + F11 åŠ å¤§çª—å£é€æ˜åº¦
+        " Contrl + F11 åˆ‡æ¢Vimæ˜¯å¦æ€»åœ¨æœ€å‰é¢æ˜¾ç¤º
+        if has('gui_running') && has('gui_win32') && has('libcall')
+            let g:MyVimLib = 'gvimfullscreen_x64.dll'
+            function! ToggleFullScreen()
+                "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 0)
+                "let s:IsFullScreen = libcallnr("gvimfullscreen.dll", 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
+                call libcall(g:MyVimLib, 'ToggleFullScreen', 27 + 29*256 + 30*256*256)
+            endfunction
 
-let g:VimAlpha = 210
-function! SetAlpha(alpha)
-    let g:VimAlpha = g:VimAlpha + a:alpha
-    if g:VimAlpha < 0
-        let g:VimAlpha = 0
-    endif
-    if g:VimAlpha > 255
-        let g:VimAlpha = 255
-    endif
-    call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
-endfunction
+            let g:VimAlpha = 210
+            function! SetAlpha(alpha)
+                let g:VimAlpha = g:VimAlpha + a:alpha
+                if g:VimAlpha < 0
+                    let g:VimAlpha = 0
+                endif
+                if g:VimAlpha > 255
+                    let g:VimAlpha = 255
+                endif
+                call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
+            endfunction
 
-let g:VimTopMost = 0
-function! SwitchVimTopMostMode()
-    if g:VimTopMost == 0
-        let g:VimTopMost = 1
-    else
-        let g:VimTopMost = 0
-    endif
-    call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
-endfunction
-"Ó³Éä Alt+Enter ÇĞ»»È«ÆÁvim
-nmap <F11> <esc>:call ToggleFullScreen()<cr>
-imap <F11> <Esc><Esc>:call ToggleFullScreen()<CR>a
-"ÇĞ»»VimÊÇ·ñÔÚ×îÇ°ÃæÏÔÊ¾
-nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
-"Ôö¼ÓVim´°ÌåµÄ²»Í¸Ã÷¶È
-nmap <A-F11> <esc>:call SetAlpha(5)<cr>
-"Ôö¼ÓVim´°ÌåµÄÍ¸Ã÷¶È
-nmap <S-F11> <esc>:call SetAlpha(-7)<cr>
-"VimÆô¶¯µÄÊ±ºò×Ô¶¯µ÷ÓÃInitVim ÒÔÈ¥³ıVimµÄ°×É«±ß¿ò
-autocmd GUIEnter * call libcallnr(g:MyVimLib, 'InitVim', 0)
-" Ä¬ÈÏÉèÖÃÍ¸Ã÷
-autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
-endif
-"}}}
-"youdao{{{2
-vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
-nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
-noremap <leader>yd :Yde<CR>
-"}}} 
-"¸ßÁÁÁĞ ÁĞ¶ÔÆë{{{2
-map <Leader>ch :call SetColorColumn()<CR>
-function! SetColorColumn()
-    let col_num = virtcol(".")
-    let cc_list = split(&cc, ',')
-    if count(cc_list, string(col_num)) <= 0
-        execute "set cc+=".col_num
-    else
-        execute "set cc-=".col_num
-    endif
-endfunction
-"}}}
-""ÉèÖÃËõ½øºÍTab{{{2
-"Linux ·ç¸ñËõ½ø
-func! LT()
-    " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª8
-    set shiftwidth=8
-    " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô8¸ö¿Õ¸ñ
-    set softtabstop=8
-    " Éè¶¨tab³¤¶ÈÎª8
-    set tabstop=8
-    " ²»½«tabÓÃ¿Õ¸ñÌæ»»
-    set noexpandtab
-    " ½«¿Õ¸ñÓÃtabÌæ»»
-    set smarttab
-    " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
-    set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-    " ¸ñÊ½»¯´úÂë
-    exec "%!indent\ -linux"
-    exec "normal G"
-endfunc
-"K&R ·ç¸ñËõ½ø
-func! KR()
-    " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
-    set shiftwidth=4
-    " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
-    set softtabstop=4
-    " Éè¶¨tab³¤¶ÈÎª8
-    set tabstop=8
-    " ½«tabÓÃ¿Õ¸ñÌæ»»
-    set expandtab
-    " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
-    set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-    " ¸ñÊ½»¯´úÂë
-    exec "%!indent\ -kr"
-    exec "normal G"
-endfunc
-"MS ·ç¸ñËõ½ø
-func! MS()
-    " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
-    set shiftwidth=4
-    " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
-    set softtabstop=4
-    " Éè¶¨tab³¤¶ÈÎª8
-    set tabstop=8
-    " ½«tabÓÃ¿Õ¸ñÌæ»»
-    set expandtab
-    " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
-    set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:s,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-    " ¸ñÊ½»¯´úÂë
-    exec "%!indent\ -kr\ -bl\ -bli0\ -cli4"
-    exec "normal G"
-endfunc
-"GNU ·ç¸ñËõ½ø
-func! GNU()
-    " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª2
-    set shiftwidth=2
-    " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô2¸ö¿Õ¸ñ
-    set softtabstop=2
-    " Éè¶¨tab³¤¶ÈÎª8
-    set tabstop=8
-    " ½«tabÓÃ¿Õ¸ñÌæ»»
-    set expandtab
-    " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
-    set cinoptions=>s,e0,n0,f0,{s,}0,^0,:0,L-1,=s,l0,b0,gs,hs,p5,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-    " ¸ñÊ½»¯´úÂë
-    exec "%!indent"
-    exec "normal G"
-endfunc
-"Java Eclipse·ç¸ñËõ½ø
-func! JE()
-    " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
-    set shiftwidth=4
-    " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
-    set softtabstop=4
-    " Éè¶¨tab³¤¶ÈÎª4
-    set tabstop=4
-    " ²»½«tabÓÃ¿Õ¸ñÌæ»»
-    set noexpandtab
-    " ½«¿Õ¸ñÓÃtabÌæ»»
-    set smarttab
-    " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
-    set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-    " ¸ñÊ½»¯´úÂë ÓÃ4¸ö¿Õ¸ñËõ½ø
-    exec "%!astyle\ -A2 -I -U -Y -L -p -H -k3 -q"
-    " ¸ñÊ½»¯´úÂë ÓÃtabËõ½ø
-    "exec "%!astyle\ -A2 -I -U -Y -T4 -L -p -H -k3 -q"
-    exec "normal G"
-endfunc
-"DS È¥ĞĞÎ²¿Õ¸ñ
-func! DS()
-    if search('\s\+$', 'pw') > 0
-        " È¥µôĞĞÎ²¿Õ¸ñ
-        exec "%s/\\s\\+$//"
-    endif
-endfunc
-"}}}
-""±àÒë¡¢µ÷ÊÔ¡¢ÔËĞĞÏà¹Øº¯Êı{{{2
-func MySys()
-    return 'windows'
-endf
-"Debug µ÷ÊÔÆÚ°æ±¾
-"±àÒëcÔ´ÎÄ¼ş{{{3
-func! CompileC()
-    exec "update"
-    set makeprg=gcc\ -g\ -Wall\ -o\ %<\ %
-    exec "make"
-    set makeprg=make
-endfunc
-
-"±àÒëcppÔ´ÎÄ¼ş{{{3
-func! CompileCpp()
-    exec "update"
-    set makeprg=g++\ -g\ -Wall\ -o\ %<\ %
-    exec "make"
-    set makeprg=make
-endfunc
-
-"»ã±à¡¢Á¬½ÓasmÔ´ÎÄ¼ş{{{3
-func! CompileAsm()
-    if MySys() == "Windows"
-        exec "update"
-        set makeprg=nasm\ -f\ elf\ -g\ -F\ stabs\ -o\ %<.o\ %
-        exec "make"
-        if getqflist() == []
-            set makeprg=ld\ -o\ %<.exe\ %<.o
+            let g:VimTopMost = 0
+            function! SwitchVimTopMostMode()
+                if g:VimTopMost == 0
+                    let g:VimTopMost = 1
+                else
+                    let g:VimTopMost = 0
+                endif
+                call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
+            endfunction
+            "æ˜ å°„ Alt+Enter åˆ‡æ¢å…¨å±vim
+            nmap <F11> <esc>:call ToggleFullScreen()<cr>
+            imap <F11> <Esc><Esc>:call ToggleFullScreen()<CR>a
+            "åˆ‡æ¢Vimæ˜¯å¦åœ¨æœ€å‰é¢æ˜¾ç¤º
+            nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
+            "å¢åŠ Vimçª—ä½“çš„ä¸é€æ˜åº¦
+            nmap <A-F11> <esc>:call SetAlpha(5)<cr>
+            "å¢åŠ Vimçª—ä½“çš„é€æ˜åº¦
+            nmap <S-F11> <esc>:call SetAlpha(-7)<cr>
+            "Vimå¯åŠ¨çš„æ—¶å€™è‡ªåŠ¨è°ƒç”¨InitVim ä»¥å»é™¤Vimçš„ç™½è‰²è¾¹æ¡†
+            autocmd GUIEnter * call libcallnr(g:MyVimLib, 'InitVim', 0)
+            " é»˜è®¤è®¾ç½®é€æ˜
+            autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
+        endif
+        "}}}
+        "youdao{{{2
+        vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
+        nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
+        noremap <leader>yd :Yde<CR>
+        "}}} 
+        "é«˜äº®åˆ— åˆ—å¯¹é½{{{2
+        map <Leader>ch :call SetColorColumn()<CR>
+        function! SetColorColumn()
+            let col_num = virtcol(".")
+            let cc_list = split(&cc, ',')
+            if count(cc_list, string(col_num)) <= 0
+                execute "set cc+=".col_num
+            else
+                execute "set cc-=".col_num
+            endif
+        endfunction
+        "}}}
+        ""è®¾ç½®ç¼©è¿›å’ŒTab{{{2
+        "Linux é£æ ¼ç¼©è¿›
+        func! LT()
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º8
+            set shiftwidth=8
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰8ä¸ªç©ºæ ¼
+            set softtabstop=8
+            " è®¾å®štabé•¿åº¦ä¸º8
+            set tabstop=8
+            " ä¸å°†tabç”¨ç©ºæ ¼æ›¿æ¢
+            set noexpandtab
+            " å°†ç©ºæ ¼ç”¨tabæ›¿æ¢
+            set smarttab
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
+            set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
+            " æ ¼å¼åŒ–ä»£ç 
+            exec "%!indent\ -linux"
+            exec "normal G"
+        endfunc
+        "K&R é£æ ¼ç¼©è¿›
+        func! KR()
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
+            set shiftwidth=4
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
+            set softtabstop=4
+            " è®¾å®štabé•¿åº¦ä¸º8
+            set tabstop=8
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
+            set expandtab
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
+            set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
+            " æ ¼å¼åŒ–ä»£ç 
+            exec "%!indent\ -kr"
+            exec "normal G"
+        endfunc
+        "MS é£æ ¼ç¼©è¿›
+        func! MS()
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
+            set shiftwidth=4
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
+            set softtabstop=4
+            " è®¾å®štabé•¿åº¦ä¸º8
+            set tabstop=8
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
+            set expandtab
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
+            set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:s,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
+            " æ ¼å¼åŒ–ä»£ç 
+            exec "%!indent\ -kr\ -bl\ -bli0\ -cli4"
+            exec "normal G"
+        endfunc
+        "GNU é£æ ¼ç¼©è¿›
+        func! GNU()
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º2
+            set shiftwidth=2
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰2ä¸ªç©ºæ ¼
+            set softtabstop=2
+            " è®¾å®štabé•¿åº¦ä¸º8
+            set tabstop=8
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
+            set expandtab
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
+            set cinoptions=>s,e0,n0,f0,{s,}0,^0,:0,L-1,=s,l0,b0,gs,hs,p5,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
+            " æ ¼å¼åŒ–ä»£ç 
+            exec "%!indent"
+            exec "normal G"
+        endfunc
+        "Java Eclipseé£æ ¼ç¼©è¿›
+        func! JE()
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
+            set shiftwidth=4
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
+            set softtabstop=4
+            " è®¾å®štabé•¿åº¦ä¸º4
+            set tabstop=4
+            " ä¸å°†tabç”¨ç©ºæ ¼æ›¿æ¢
+            set noexpandtab
+            " å°†ç©ºæ ¼ç”¨tabæ›¿æ¢
+            set smarttab
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
+            set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
+            " æ ¼å¼åŒ–ä»£ç  ç”¨4ä¸ªç©ºæ ¼ç¼©è¿›
+            exec "%!astyle\ -A2 -I -U -Y -L -p -H -k3 -q"
+            " æ ¼å¼åŒ–ä»£ç  ç”¨tabç¼©è¿›
+            "exec "%!astyle\ -A2 -I -U -Y -T4 -L -p -H -k3 -q"
+            exec "normal G"
+        endfunc
+        "DS å»è¡Œå°¾ç©ºæ ¼
+        func! DS()
+            if search('\s\+$', 'pw') > 0
+                " å»æ‰è¡Œå°¾ç©ºæ ¼
+                exec "%s/\\s\\+$//"
+            endif
+        endfunc
+        "}}}
+        ""ç¼–è¯‘ã€è°ƒè¯•ã€è¿è¡Œç›¸å…³å‡½æ•°{{{2
+        func MySys()
+            return 'windows'
+        endf
+        "Debug è°ƒè¯•æœŸç‰ˆæœ¬
+        "ç¼–è¯‘cæºæ–‡ä»¶{{{3
+        func! CompileC()
+            exec "update"
+            set makeprg=gcc\ -g\ -Wall\ -o\ %<\ %
             exec "make"
             set makeprg=make
-        endif
-    elseif MySys() == "Linux"
-        exec "update"
-        set makeprg=nasm\ -f\ elf\ -g\ -F\ stabs\ -o\ %<.o\ %
-        exec "make"
-        if getqflist() == []
-            set makeprg=ld\ -o\ %<\ %<.o
+        endfunc
+
+        "ç¼–è¯‘cppæºæ–‡ä»¶{{{3
+        func! CompileCpp()
+            exec "update"
+            set makeprg=g++\ -g\ -Wall\ -o\ %<\ %
             exec "make"
             set makeprg=make
-        endif
-    endif
-endfunc
+        endfunc
 
-"±àÒëmakefileÏîÄ¿{{{3 
-func! CompileMake()
-    exec "update"
-    set makeprg=make
-    exec "make\ -f\ %"
-endfunc
+        "æ±‡ç¼–ã€è¿æ¥asmæºæ–‡ä»¶{{{3
+        func! CompileAsm()
+            if MySys() == "Windows"
+                exec "update"
+                set makeprg=nasm\ -f\ elf\ -g\ -F\ stabs\ -o\ %<.o\ %
+                exec "make"
+                if getqflist() == []
+                    set makeprg=ld\ -o\ %<.exe\ %<.o
+                    exec "make"
+                    set makeprg=make
+                endif
+            elseif MySys() == "Linux"
+                exec "update"
+                set makeprg=nasm\ -f\ elf\ -g\ -F\ stabs\ -o\ %<.o\ %
+                exec "make"
+                if getqflist() == []
+                    set makeprg=ld\ -o\ %<\ %<.o
+                    exec "make"
+                    set makeprg=make
+                endif
+            endif
+        endfunc
 
-"Release ×îÖÕµÄÊÍ·ÅÆÚ°æ{{{3
-"±àÒëCÔ´ÎÄ¼ş
-func! ReleaseCompileC()
-    exec "update"
-    set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
-    exec "make"
-    set makeprg=make
-endfunc
+        "ç¼–è¯‘makefileé¡¹ç›®{{{3 
+        func! CompileMake()
+            exec "update"
+            set makeprg=make
+            exec "make\ -f\ %"
+        endfunc
 
-"±àÒëC++Ô´ÎÄ¼ş{{{3
-func! ReleaseCompileCpp()
-    exec "update"
-    set makeprg=g++\ -Wall\ -O2\ -o\ %<\ %
-    exec "make"
-    set makeprg=make
-endfunc
-
-"±àÒëJavaÔ´ÎÄ¼ş{{{3
-func! CompileJava()
-    exec "update"
-    set makeprg=javac\ -g\ -d\ .\ %
-    exec "make"
-    set makeprg=make
-endfunc
-
-"±àÒëASMÔ´ÎÄ¼ş{{{3
-func! ReleaseCompileAsm()
-    if MySys() == "Windows"
-        exec "update"
-        set makeprg=nasm\ -f\ elf\ -o\ %<.o\ %
-        exec "make"
-        if getqflist() == []
-            set makeprg=ld\ -o\ %<.exe\ %<.o
+        "Release æœ€ç»ˆçš„é‡Šæ”¾æœŸç‰ˆ{{{3
+        "ç¼–è¯‘Cæºæ–‡ä»¶
+        func! ReleaseCompileC()
+            exec "update"
+            set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
             exec "make"
             set makeprg=make
-        endif
-    elseif MySys() == "Linux"
-        exec "update"
-        set makeprg=nasm\ -f\ elf\ -o\ %<.o\ %
-        exec "make"
-        if getqflist() == []
-            set makeprg=ld\ -o\ %<\ %<.o
+        endfunc
+
+        "ç¼–è¯‘C++æºæ–‡ä»¶{{{3
+        func! ReleaseCompileCpp()
+            exec "update"
+            set makeprg=g++\ -Wall\ -O2\ -o\ %<\ %
             exec "make"
             set makeprg=make
+        endfunc
+
+        "ç¼–è¯‘Javaæºæ–‡ä»¶{{{3
+        func! CompileJava()
+            exec "update"
+            set makeprg=javac\ -g\ -d\ .\ %
+            exec "make"
+            set makeprg=make
+        endfunc
+
+        "ç¼–è¯‘ASMæºæ–‡ä»¶{{{3
+        func! ReleaseCompileAsm()
+            if MySys() == "Windows"
+                exec "update"
+                set makeprg=nasm\ -f\ elf\ -o\ %<.o\ %
+                exec "make"
+                if getqflist() == []
+                    set makeprg=ld\ -o\ %<.exe\ %<.o
+                    exec "make"
+                    set makeprg=make
+                endif
+            elseif MySys() == "Linux"
+                exec "update"
+                set makeprg=nasm\ -f\ elf\ -o\ %<.o\ %
+                exec "make"
+                if getqflist() == []
+                    set makeprg=ld\ -o\ %<\ %<.o
+                    exec "make"
+                    set makeprg=make
+                endif
+            endif
+        endfunc
+
+        "ç¼–è¯‘makefileé¡¹ç›®{{{3
+        func! ReleaseCompileMake()
+            exec "update"
+            set makeprg=make
+            exec "make\ -f\ %"
+        endfunc
+
+        "ç¼–è¯‘Javaæºæ–‡ä»¶{{{3
+        func! ReleaseCompileJava()
+            exec "update"
+            set makeprg=javac\ -d\ .\ %
+            exec "make"
+            set makeprg=make
+        endfunc
+
+        "ç¼–è¯‘LaTeXæºæ–‡ä»¶{{{3
+        func! CompileLaTeX()
+            exec "update"
+            let compilecmd="!latex"
+            let compileflag=""
+            exec compilecmd.compileflag." %"
+            "exec "w"
+            "set makeprg=latex\ %
+            "exec "make"
+        endfunc
+
+        "è¿è¡Œcã€cppã€asmç¨‹åº{{{3
+        func! RunCCppAsm()
+            if MySys() == "Windows"
+                "exec "!.\\".expand("%<")
+                "exec "!start .\\".expand("%<")
+                exec "!start cmd /C \".\\".expand("%<")." && pause\""
+            elseif MySys() == "Linux"
+                exec "!./%<"
+            endif
+        endfunc
+
+        "è¿è¡Œjavaç±»æ–‡ä»¶{{{3
+        func! RunJava()
+            if search('^\s*package\s\+.*;$', 'pw') > 0
+                "exec "norm gg/package/s+8" | exec "!java " . expand('<cfile>') . ".%<"
+                "exec "norm gg/package/s+8" | exec "!start java " . expand('<cfile>') . ".%<"
+                exec "norm gg/package/s+8" | exec "!start cmd /C \"java ".expand('<cfile>').".%<"." && pause\""
+                exec "norm gg"
+            else
+                "exec "!java %<"
+                "exec "!start java %<"
+                "exec "!start cmd /C \"java %< && pause\""
+                exec "!start cmd /C \"java %< && pause\""
+                "exec "!java %<"
+            endif
+        endfunc
+
+        "è¿è¡Œperlæºæ–‡ä»¶{{{3
+        func! RunPerl()
+            exec "update"
+            exec "!perl %"
+        endfunc
+
+        "è¿è¡Œpythonæºæ–‡ä»¶{{{3
+        func! RunPython()
+            exec "update"
+            exec "!python %"
+        endfunc
+
+        "è¿è¡Œrubyæºæ–‡ä»¶{{{3
+        func! RunRuby()
+            exec "update"
+            exec "!ruby %"
+        endfunc
+
+        "é¢„è§ˆhtmã€htmlã€xhtmlç»“æœ{{{3
+        func! RunHtml()
+            exec "update"
+            if MySys() == "Windows"
+                "exec "!start\ cmd\ /C\ \"%\""
+                exec "!start\ cmd\ /C\ \"".iconv(expand("%"), "utf-8", "cp936")."\""
+            elseif MySys() == "Linux"
+                exec "!firefox %"
+            endif
+        endfunc
+
+        "é¢„è§ˆLaTexç»“æœ{{{3
+        func! RunLaTeX()
+            if MySys() == "Windows"
+                exec "!yap %<.dvi"
+            elseif MySys() == "Linux"
+                exec "!xdvi %<"
+            endif
+        endfunc
+
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„ç¼–è¯‘å‡½æ•°{{{3
+        func! CompileCode()
+            if &filetype == "c"
+                exec "call CompileC()"
+            elseif &filetype == "cpp"
+                exec "call CompileCpp()"
+            elseif &filetype == "asm"
+                exec "call CompileAsm()"
+            elseif &filetype == "java"
+                exec "call CompileJava()"
+            elseif &filetype == "tex"
+                exec "call CompileLaTeX()"
+            elseif &filetype == "plaintex"
+                exec "call CompileLaTeX()"
+            elseif &filetype == "make"
+                exec "call CompileMake()"
+            elseif &filetype == "perl"
+                exec "call RunPerl()"
+            elseif &filetype == "python"
+                exec "call RunPython()"
+            elseif &filetype == "ruby"
+                exec "call RunRuby()"
+            endif
+        endfunc
+
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„ç¼–è¯‘å‡½æ•°{{{3
+        func! ReleaseCompileCode()
+            if &filetype == "c"
+                exec "call ReleaseCompileC()"
+            elseif &filetype == "cpp"
+                exec "call ReleaseCompileCpp()"
+            elseif &filetype == "asm"
+                exec "call ReleaseCompileAsm()"
+            elseif &filetype == "java"
+                exec "call ReleaseCompileJava()"
+            elseif &filetype == "tex"
+                exec "call TexToPdf()"
+            elseif &filetype == "plaintex"
+                exec "call TexToPdf()"
+            elseif &filetype == "make"
+                exec "call CompileMake()"
+            elseif &filetype == "perl"
+                exec "call RunPerl()"
+            elseif &filetype == "python"
+                exec "call RunPython()"
+            elseif &filetype == "ruby"
+                exec "call RunRuby()"
+            endif
+        endfunc
+
+        func! DviToPdf()
+            if MySys() == "Windows"
+                exec "!dvipdfmx %<"
+            elseif MySys() == "Linux"
+                exec "!dvipdf %<.dvi"
+            endif
+        endfun
+
+        func! TexToPdf()
+            exec "w"
+            exec "!pdflatex %"
+        endfun
+
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„è°ƒè¯•å™¨è°ƒè¯•{{{3
+        func! DebugCode()
+            if &filetype == "c"
+                exec "!gdb %<"
+            elseif &filetype == "cpp"
+                exec "!gdb %<"
+            elseif &filetype == "asm"
+                exec "!gdb %<"
+            elseif &filetype == "java"
+                exec "!jdb %<"
+            elseif &filetype == "make"
+                exec "normal gg/:<CR>:noh<CR>b"|exec "!gdb " . expand('<cfile>')
+            endif
+        endfunc
+
+        "è¿è¡Œå¯æ‰§è¡Œæ–‡ä»¶{{{3
+        func! RunResult()
+            if &filetype == "c"
+                exec "call RunCCppAsm()"
+            elseif &filetype == "cpp"
+                exec "call RunCCppAsm()"
+            elseif &filetype == "asm"
+                exec "call RunCCppAsm()"
+            elseif &filetype == "java"
+                exec "call RunJava()"
+            elseif &filetype == "tex"
+                exec "call RunLaTeX()"
+            elseif &filetype == "plaintex"
+                exec "call RunLaTeX()"
+            elseif &filetype == "perl"
+                exec "!perl %"
+            elseif &filetype == "python"
+                exec "!python %"
+            elseif &filetype == "ruby"
+                exec "!ruby %"
+            elseif &filetype == "make"
+                exec "normal gg/:<CR>:noh<CR>b"|exec '!' . expand('<cfile>')
+            elseif &filetype == "html"
+                exec "call RunHtml()"
+            elseif &filetype == "xhtml"
+                exec "call RunHtml()"
+            elseif &filetype == "css"
+                exec "call RunHtml()"
+            elseif &filetype == "javascript"
+                exec "call RunHtml()"
+            endif
+        endfunc
+        "}}}
+        "è®¾ç½®:Runæ‰§è¡Œçš„å‘½ä»¤ï¼Œä¸»è¦ç”¨äºå¸¦å‚æ•°è¿è¡Œå‘½ä»¤{{{3
+        if MySys() == "windows"
+            if has("autocmd")
+                autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe "!.\\".expand('<cfile>')." <args>"
+                autocmd filetype c,cpp :command! -nargs=? Run :exe "!.\\".expand("%<")." <args>"
+                autocmd filetype python  :command! -nargs=? Run :!python % <args>
+                autocmd filetype htm,html,xhtml :command! Run :!%
+            endif
+        elseif MySys() == "Linux"
+            if has("autocmd")
+                autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe '!./'.expand('<cfile>').<args>
+                autocmd filetype c,cpp :command! -nargs=? Run :!./%< <args>
+                autocmd filetype python  :command! -nargs=? Run :!python % <args>
+                autocmd filetype htm,html,xhtml :command! Run :!firefox %
+            endif
         endif
-    endif
-endfunc
+        if has("autocmd")
+            autocmd BufReadPost,BufWritePost *.java call SetJavaRunType()
+        endif
+        func! SetJavaRunType()
+            if search('^\s*package\s\+.*;$', 'pw') == 0
+                :command! -nargs=? Run :!java %< <args>
+            else
+                :command! -nargs=? Run :exe "normal gg/package/s+8<CR>:noh<CR>"|:exe "!java ".expand('<cfile>').".%< <args>"
+            endif
+        endfunc
 
-"±àÒëmakefileÏîÄ¿{{{3
-func! ReleaseCompileMake()
-    exec "update"
-    set makeprg=make
-    exec "make\ -f\ %"
-endfunc
+        "}}}
+        ""è®¾ç½®å¿«æ·é”®{{{2
+        "ghä¸´æ—¶å…³é—­é«˜äº®æ˜¾ç¤ºæœç´¢ç»“æœ
+        map gh :noh<CR>:normal v:normal<ESC>
+        "gyç³»ç»Ÿå‰ªåˆ‡æ¿å¤åˆ¶
+        map gy "+y
+        "gyå¤åˆ¶ä¸€ä¸ªå•è¯(ä»å…‰æ ‡æ‰€åœ¨å­—ç¬¦å¼€å§‹)ï¼Œå¯é…åˆYouDaoè¯å…¸çš„å‰ªåˆ‡æ¿ç›‘è§†åŠŸèƒ½æŸ¥è¯
+        "map gy "+ye
+        "gYå¤åˆ¶ä¸€ä¸ªå•è¯(åˆ°å…‰æ ‡æ‰€åœ¨å­—ç¬¦ç»“æŸ)ï¼Œå¯é…åˆYouDaoè¯å…¸çš„å‰ªåˆ‡æ¿ç›‘è§†åŠŸèƒ½æŸ¥è¯
+        "map gY my"+yb`y
+        nnoremap gc "+d
+        nnoremap gp "+p
 
-"±àÒëJavaÔ´ÎÄ¼ş{{{3
-func! ReleaseCompileJava()
-    exec "update"
-    set makeprg=javac\ -d\ .\ %
-    exec "make"
-    set makeprg=make
-endfunc
+        vnoremap gc "+d
+        vnoremap gp "+p
+        "Linuxç¼©è¿›é£æ ¼ g=l
+        map g=l :call LT()<CR>v<Esc>
+        "K&Rç¼©è¿›é£æ ¼ g=k
+        map g=k :call KR()<CR>v<Esc>
+        "MSç¼©è¿›é£æ ¼ g=m
+        map g=m :call MS()<CR>v<Esc>
+        "GNUç¼©è¿›é£æ ¼ g=g
+        map g=g :call GNU()<CR>v<Esc>
+        "Java Eclipseç¼©è¿›é£æ ¼ g=j
+        map g=j :call JE()<CR>v<Esc>
+        "DSå»æ‰å°¾ç©º g=d
+        map g=d :call DS()<CR>v<Esc>
 
-"±àÒëLaTeXÔ´ÎÄ¼ş{{{3
-func! CompileLaTeX()
-    exec "update"
-    let compilecmd="!latex"
-    let compileflag=""
-    exec compilecmd.compileflag." %"
-    "exec "w"
-    "set makeprg=latex\ %
-    "exec "make"
-endfunc
+        func! MAP()
+            " gc ä¿å­˜ã€ç¼–è¯‘
+            nmap <leader>gc :call CompileCode()<CR>
+            " gr ä¿å­˜ã€è¿è¡Œ
+            nmap <leader>gr :call RunResult()<CR>
+            " gl è°ƒè¯•
+            nmap <leader>gl :call DebugCode()<CR>
+            " gw å…‰æ ‡wrapåˆ°ç¬¬ä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
+            nmap <leader>gw :cfirst<CR>
+            " gp å…‰æ ‡è·³åˆ°ä¸Šä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
+            nmap <leader>gp :cprevious<CR>
+            " gn å…‰æ ‡è·³åˆ°ä¸‹ä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
+            nmap <leader>gn :cnext<CR>
+            " gs é‡Šæ”¾
+            nmap <leader>gs :call ReleaseCompileCode()<CR>
+        endfunc
 
-"ÔËĞĞc¡¢cpp¡¢asm³ÌĞò{{{3
-func! RunCCppAsm()
-    if MySys() == "Windows"
-        "exec "!.\\".expand("%<")
-        "exec "!start .\\".expand("%<")
-        exec "!start cmd /C \".\\".expand("%<")." && pause\""
-    elseif MySys() == "Linux"
-        exec "!./%<"
-    endif
-endfunc
+        "ç¼–è¾‘ä¸€ä¸ªæ–‡ä»¶æ—¶ï¼Œç›´æ¥ç”¨ç›¸åº”çš„é”®ç›˜æ˜ å°„
+        if has("autocmd")
+            autocmd FileType c,cpp,make,java call MAP()
+            autocmd FileType python,perl,ruby,php call MAP()
+            autocmd FileType htm,html,xhtml,xml call MAP()
+            autocmd FileType vim,tex,latex call MAP()
+        endif
 
-"ÔËĞĞjavaÀàÎÄ¼ş{{{3
-func! RunJava()
-    if search('^\s*package\s\+.*;$', 'pw') > 0
-        "exec "norm gg/package/s+8" | exec "!java " . expand('<cfile>') . ".%<"
-        "exec "norm gg/package/s+8" | exec "!start java " . expand('<cfile>') . ".%<"
-        exec "norm gg/package/s+8" | exec "!start cmd /C \"java ".expand('<cfile>').".%<"." && pause\""
-        exec "norm gg"
-    else
-        "exec "!java %<"
-        "exec "!start java %<"
-        "exec "!start cmd /C \"java %< && pause\""
-        exec "!start cmd /C \"java %< && pause\""
-        "exec "!java %<"
-    endif
-endfunc
+        "ä¸€äº›ä¸é”™çš„æ˜ å°„è½¬æ¢è¯­æ³•ï¼ˆå¦‚æœåœ¨ä¸€ä¸ªæ–‡ä»¶ä¸­æ··åˆäº†ä¸åŒè¯­è¨€æ—¶æœ‰ç”¨ï¼‰
+        nmap <leader>fh :set filetype=xhtml<CR>
+        nmap <leader>fc :set filetype=css<CR>
+        nmap <leader>fj :set filetype=javascript<CR>
+        nmap <leader>fp :set filetype=php<CR>
 
-"ÔËĞĞperlÔ´ÎÄ¼ş{{{3
-func! RunPerl()
-    exec "update"
-    exec "!perl %"
-endfunc
+        "å°†æœ¬æ–‡ä»¶åŒæ­¥åˆ°éœ€è¦åŒæ­¥çš„æ–‡ä»¶å¤¹é‡Œ
+        ":command SYNC :w! G:/TDDownload/.vimrc |:w! G:/ç™¾åº¦äº‘/æˆ‘çš„é…ç½®/vimrc |:update
+        "çª—å£åˆ†å‰²æ—¶,è¿›è¡Œåˆ‡æ¢çš„æŒ‰é”®çƒ­é”®éœ€è¦è¿æ¥ä¸¤æ¬¡,æ¯”å¦‚ä»ä¸‹æ–¹çª—å£ç§»åŠ¨
+        "å…‰æ ‡åˆ°ä¸Šæ–¹çª—å£,éœ€è¦<c-w>k,éå¸¸éº»çƒ¦,ç°åœ¨é‡æ˜ å°„ä¸º<c-k>,åˆ‡æ¢çš„
+        "æ—¶å€™ä¼šå˜å¾—éå¸¸æ–¹ä¾¿.
+        nnoremap <C-H> <C-W>h
+        nnoremap <C-J> <C-W>j
+        nnoremap <C-K> <C-W>k
+        nnoremap <C-L> <C-W>l
+        "}}}
+        "è®¾ç½®dictionaryç›®å½•{{{
+        if MySys() == "Windows"
+            set dictionary=$Vim\dict\words
+        elseif MySys() == "Linux"
+            set dictionary=/usr/share/dict/words
+        endif
+        "}}}
+        ""æ’ä»¶çš„è®¾ç½®{{{
+        "---------- Taglist.vim [æ˜¾ç¤ºç¨‹åºä¸­çš„å®å®šä¹‰ã€å˜é‡ã€å‡½æ•°ã€ç±»] ----------
+        let Tlist_GainFocus_On_ToggleOpen=0
+        let Tlist_WinWidth=30
+        let Tlist_Exit_OnlyWindow=1
+        let Tlist_File_Fold_Auto_Close=1
+        let Tlist_Enable_Fold_Column=0
+        let Tlist_Inc_Winwidth=0
+        "}}}
+        "---------- WinManager.vim [çª—å£ç®¡ç†] ----------{{{
+        "let g:winManagerWindowLayout='FileExplorer|TagList'
 
-"ÔËĞĞpythonÔ´ÎÄ¼ş{{{3
-func! RunPython()
-    exec "update"
-    exec "!python %"
-endfunc
+        "--------------------Cscopeè®¾ç½®--------------------
+        "if filereadable("cscope.out")
+        "cs add cscope.out
+        "elseif $CSCOPE_DB != ""
+        "cs add $CSCOPE_DB
+        "endif
+        "--------------------PowerLineè®¾ç½®--------------------
+        "set t_Co=256 
+        "set guifont=PowerlineSymbols\ for\ Powerline 
+        "let g:Powerline_symbols = 'fancy' 
 
-"ÔËĞĞrubyÔ´ÎÄ¼ş{{{3
-func! RunRuby()
-    exec "update"
-    exec "!ruby %"
-endfunc
+        "--------------------bufexploreè®¾ç½®--------------------
+        " æ‰“å¼€Buffer Explore
+        "map gb :BufExplorer<CR>
+        " gbp å‰ä¸€ä¸ªBuffer
+        "map gbp :bprevious<CR>
+        " gbn åä¸€ä¸ªBuffer
+        "map gbn :bnext<CR>
+        "å…³é—­ç¼“å†²åŒº
+        "nnoremap g. :bd!<CR>
+        " Buffersæ“ä½œå¿«æ·æ–¹å¼,æ¨¡ä»¿Tabæ“ä½œçš„gtï¼ŒgT
+        "nnoremap gb :next<CR>
+        "nnoremap gB :previous<CR>
 
-"Ô¤ÀÀhtm¡¢html¡¢xhtml½á¹û{{{3
-func! RunHtml()
-    exec "update"
-    if MySys() == "Windows"
-        "exec "!start\ cmd\ /C\ \"%\""
-        exec "!start\ cmd\ /C\ \"".iconv(expand("%"), "utf-8", "cp936")."\""
-    elseif MySys() == "Linux"
-        exec "!firefox %"
-    endif
-endfunc
+        "------------------NERD_commenterè®¾ç½®------------------
+        "map <C-C> <plug>NERDCommenterToggle
 
-"Ô¤ÀÀLaTex½á¹û{{{3
-func! RunLaTeX()
-    if MySys() == "Windows"
-        exec "!yap %<.dvi"
-    elseif MySys() == "Linux"
-        exec "!xdvi %<"
-    endif
-endfunc
+        "------------------ZenCodingè®¾ç½®------------------
+        "let g:user_zen_leader_key = '<C-_>'
+        "}}}
+        ""æ’ä»¶çš„å¿«æ·é”®è®¾ç½®{{{
+        nmap <leader>mT :NERDTreeToggle<CR>
+        "nmap <leader>mt :TlistToggle<CR>
+        "nmap <leader>mm :WMToggle<CR>
+        "}}}
+        "go lang ide{{{2
+        "
+        "
+        let g:go_snippet_engine = "neosnippet"
+        let g:go_play_open_browser = 0
+        let g:go_fmt_fail_silently = 1
+        let g:go_fmt_command = "goimports"
+        let g:go_fmt_autosave = 1
+        "let g:go_bin_path = expand("~/.gotools")
+        let g:go_highlight_structs = 1
+        let g:go_highlight_build_constraints = 1
+        let g:go_highlight_array_whitespace_error = 1
+        let g:go_highlight_chan_whitespace_error = 1
+        let g:go_highlight_extra_types = 1
+        let g:go_highlight_space_tab_error = 1
+        let g:go_highlight_trailing_whitespace_error = 1
+        let g:go_highlight_operators = 1
+        let g:go_highlight_functions = 1
+        let g:go_highlight_methods = 1
+        let g:go_highlight_build_constraints = 1
+        let g:go_textobj_enabled = 1
 
-"¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄ±àÒëº¯Êı{{{3
-func! CompileCode()
-    if &filetype == "c"
-        exec "call CompileC()"
-    elseif &filetype == "cpp"
-        exec "call CompileCpp()"
-    elseif &filetype == "asm"
-        exec "call CompileAsm()"
-    elseif &filetype == "java"
-        exec "call CompileJava()"
-    elseif &filetype == "tex"
-        exec "call CompileLaTeX()"
-    elseif &filetype == "plaintex"
-        exec "call CompileLaTeX()"
-    elseif &filetype == "make"
-        exec "call CompileMake()"
-    elseif &filetype == "perl"
-        exec "call RunPerl()"
-    elseif &filetype == "python"
-        exec "call RunPython()"
-    elseif &filetype == "ruby"
-        exec "call RunRuby()"
-    endif
-endfunc
+        autocmd BufWritePre *.go :Fmt
+        autocmd FileType go nnoremap <F12> :!go run %<CR> 
+        au FileType go nmap <leader>r <Leader>w<Plug>(go-run)
+        au FileType go nmap <leader>b <Leader>w<Plug>(go-build)
+        au FileType go nmap <leader>t <Leader>w<Plug>(go-test)
+        au FileType go nmap <leader>c <Plug>(go-coverage)
+        au FileType go nmap <Leader>ds <Plug>(go-def-split)
+        au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+        au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+        au FileType go nmap <Leader>gd <Plug>(go-doc)
+        au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+        au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+        au FileType go nmap <Leader>s <Plug>(go-implements)
+        au FileType go nmap <Leader>i <Plug>(go-info)
+        au FileType go nmap <Leader>e <Plug>(go-rename)
 
-"¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄ±àÒëº¯Êı{{{3
-func! ReleaseCompileCode()
-    if &filetype == "c"
-        exec "call ReleaseCompileC()"
-    elseif &filetype == "cpp"
-        exec "call ReleaseCompileCpp()"
-    elseif &filetype == "asm"
-        exec "call ReleaseCompileAsm()"
-    elseif &filetype == "java"
-        exec "call ReleaseCompileJava()"
-    elseif &filetype == "tex"
-        exec "call TexToPdf()"
-    elseif &filetype == "plaintex"
-        exec "call TexToPdf()"
-    elseif &filetype == "make"
-        exec "call CompileMake()"
-    elseif &filetype == "perl"
-        exec "call RunPerl()"
-    elseif &filetype == "python"
-        exec "call RunPython()"
-    elseif &filetype == "ruby"
-        exec "call RunRuby()"
-    endif
-endfunc
+        " Some Linux distributions set filetype in /etc/vimrc.
+        " Clear filetype flags before changing runtimepath to force Vim to reload them.
+        "filetype off
+        "filetype plugin indent off
+        "set runtimepath+=$GOROOT/misc/vim
+        "filetype plugin indent on
+        "syntax on
+        let g:tagbar_type_go = {
+                    \ 'ctagstype' : 'go',
+                    \ 'kinds'     : [
+                    \ 'p:package',
+                    \ 'i:imports:1',
+                    \ 'c:constants',
+                    \ 'v:variables',
+                    \ 't:types',
+                    \ 'n:interfaces',
+                    \ 'w:fields',
+                    \ 'e:embedded',
+                    \ 'm:methods',
+                    \ 'r:constructor',
+                    \ 'f:functions'
+                    \ ],
+                    \ 'sro' : '.',
+                    \ 'kind2scope' : {
+                    \ 't' : 'ctype',
+                    \ 'n' : 'ntype'
+                    \ },
+                    \ 'scope2kind' : {
+                    \ 'ctype' : 't',
+                    \ 'ntype' : 'n'
+                    \ },
+                    \ 'ctagsbin'  : 'gotags',
+                    \ 'ctagsargs' : '-sort -silent'
+                    \ }
+        "}}}
+        "emmet  zencoding  htmlæ‰©å±•{{{2
+        let g:user_emmet_leader_key='<C-y>'
+        "}}}
+        "github  gist{{{2
+        let g:gist_use_password_in_gitconfig = 1
+        "{{{2neosnippet config
+        let g:neosnippet#snippets_directory=$VIM .'/vimfiles/bundle/snip' 
+        let g:neosnippet#disable_select_mode_mappings =1
+        let g:neosnippet#disable_runtime_snippets = {
+                    \ 'java': 1 ,
+                    \ 'cpp': 1 ,
+                    \ }
+        let g:neosnippet#enable_snipmate_compatibility=0
+        let g:neosnippet#enable_preview =0
+        let g:neosnippet#expand_word_boundary=1
+        let g:neosnippet#scope_aliases = {
+                    \ 'go': 'go,gof',
+                    \}
+        " Plugin key-mappings.
+        "imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        "smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        "xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-func! DviToPdf()
-    if MySys() == "Windows"
-        exec "!dvipdfmx %<"
-    elseif MySys() == "Linux"
-        exec "!dvipdf %<.dvi"
-    endif
-endfun
+        " SuperTab like snippets' behavior.
+        "imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        "\ "\<Plug>(neosnippet_expand_or_jump)"
+        "\: pumvisible() ? "\<C-n>" : "\<TAB>"
+        "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        "\ "\<Plug>(neosnippet_expand_or_jump)"
+        "\: "\<TAB>"
 
-func! TexToPdf()
-    exec "w"
-    exec "!pdflatex %"
-endfun
+        " For snippet_complete marker.
+        if has('conceal')
+            set conceallevel=2 concealcursor=i
+        endif
 
-"¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄµ÷ÊÔÆ÷µ÷ÊÔ{{{3
-func! DebugCode()
-    if &filetype == "c"
-        exec "!gdb %<"
-    elseif &filetype == "cpp"
-        exec "!gdb %<"
-    elseif &filetype == "asm"
-        exec "!gdb %<"
-    elseif &filetype == "java"
-        exec "!jdb %<"
-    elseif &filetype == "make"
-        exec "normal gg/:<CR>:noh<CR>b"|exec "!gdb " . expand('<cfile>')
-    endif
-endfunc
+        " Enable snipMate compatibility feature.
+        " let g:neosnippet#enable_snipmate_compatibility = 1
+        " neosnippet END}}} 
+        "neocomplete  config{{{2
+        "{{{3 config
+        let g:acp_enableAtStartup = 0
+        let g:neocomplete#enable_at_startup = 1
+        " Use smartcase.
+        let g:neocomplete#enable_smart_case = 1
+        let g:neocomplete#max_list = 2000
+        let g:neocomplete#max_keyword_width = 70
+        let g:neocomplete#auto_completion_start_length=2
+        let g:neocomplete#manual_completion_start_length = 0
+        let g:neocomplete#min_keyword_length=4
+        let g:neocomplete#enable_ignore_case=0
+        let g:neocomplete#enable_smart_case=1
+        let g:neocomplete#enable_camel_case =1
+        let g:neocomplete#disable_auto_complete =0
+        let g:neocomplete#enable_cursor_hold_i=1
+        let g:neocomplete#enable_auto_select =1
+        let g:neocomplete#enable_auto_delimiter =1
+        let g:neocomplete#enable_fuzzy_completion=1
+        let g:neocomplete#enable_multibyte_completion=0
+        let g:neocomplete#lock_buffer_name_pattern= ''
+        "let g:neocomplete#
 
-"ÔËĞĞ¿ÉÖ´ĞĞÎÄ¼ş{{{3
-func! RunResult()
-    if &filetype == "c"
-        exec "call RunCCppAsm()"
-    elseif &filetype == "cpp"
-        exec "call RunCCppAsm()"
-    elseif &filetype == "asm"
-        exec "call RunCCppAsm()"
-    elseif &filetype == "java"
-        exec "call RunJava()"
-    elseif &filetype == "tex"
-        exec "call RunLaTeX()"
-    elseif &filetype == "plaintex"
-        exec "call RunLaTeX()"
-    elseif &filetype == "perl"
-        exec "!perl %"
-    elseif &filetype == "python"
-        exec "!python %"
-    elseif &filetype == "ruby"
-        exec "!ruby %"
-    elseif &filetype == "make"
-        exec "normal gg/:<CR>:noh<CR>b"|exec '!' . expand('<cfile>')
-    elseif &filetype == "html"
-        exec "call RunHtml()"
-    elseif &filetype == "xhtml"
-        exec "call RunHtml()"
-    elseif &filetype == "css"
-        exec "call RunHtml()"
-    elseif &filetype == "javascript"
-        exec "call RunHtml()"
-    endif
-endfunc
-"}}}
-"ÉèÖÃ:RunÖ´ĞĞµÄÃüÁî£¬Ö÷ÒªÓÃÓÚ´ø²ÎÊıÔËĞĞÃüÁî{{{3
-if MySys() == "windows"
-    if has("autocmd")
-        autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe "!.\\".expand('<cfile>')." <args>"
-        autocmd filetype c,cpp :command! -nargs=? Run :exe "!.\\".expand("%<")." <args>"
-        autocmd filetype python  :command! -nargs=? Run :!python % <args>
-        autocmd filetype htm,html,xhtml :command! Run :!%
-    endif
-elseif MySys() == "Linux"
-    if has("autocmd")
-        autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe '!./'.expand('<cfile>').<args>
-        autocmd filetype c,cpp :command! -nargs=? Run :!./%< <args>
-        autocmd filetype python  :command! -nargs=? Run :!python % <args>
-        autocmd filetype htm,html,xhtml :command! Run :!firefox %
-    endif
-endif
-if has("autocmd")
-    autocmd BufReadPost,BufWritePost *.java call SetJavaRunType()
-endif
-func! SetJavaRunType()
-    if search('^\s*package\s\+.*;$', 'pw') == 0
-        :command! -nargs=? Run :!java %< <args>
-    else
-        :command! -nargs=? Run :exe "normal gg/package/s+8<CR>:noh<CR>"|:exe "!java ".expand('<cfile>').".%< <args>"
-    endif
-endfunc
+        " Set minimum syntax keyword length.
+        let g:neocomplete#sources#syntax#min_keyword_length = 2
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+        let g:neocomplete#enable_auto_close_preview = 0
+        let g:neocomplete#fallback_mappings = 
+                    \ ["\<C-x>\<C-o>","\<C-x>\<C-n>"]
+        let g:neocomplete#sources#buffer#cache_limit_size = 900000
 
-"}}}
-""ÉèÖÃ¿ì½İ¼ü{{{2
-"ghÁÙÊ±¹Ø±Õ¸ßÁÁÏÔÊ¾ËÑË÷½á¹û
-map gh :noh<CR>:normal v:normal<ESC>
-"gyÏµÍ³¼ôÇĞ°å¸´ÖÆ
-map gy "+y
-"gy¸´ÖÆÒ»¸öµ¥´Ê(´Ó¹â±êËùÔÚ×Ö·û¿ªÊ¼)£¬¿ÉÅäºÏYouDao´ÊµäµÄ¼ôÇĞ°å¼àÊÓ¹¦ÄÜ²é´Ê
-"map gy "+ye
-"gY¸´ÖÆÒ»¸öµ¥´Ê(µ½¹â±êËùÔÚ×Ö·û½áÊø)£¬¿ÉÅäºÏYouDao´ÊµäµÄ¼ôÇĞ°å¼àÊÓ¹¦ÄÜ²é´Ê
-"map gY my"+yb`y
-nnoremap gc "+d
-nnoremap gp "+p
+        "{{{4 Define dictionary.
+        let g:neocomplete#sources#dictionary#dictionaries = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                    \ }
 
-vnoremap gc "+d
-vnoremap gp "+p
-"LinuxËõ½ø·ç¸ñ g=l
-map g=l :call LT()<CR>v<Esc>
-"K&RËõ½ø·ç¸ñ g=k
-map g=k :call KR()<CR>v<Esc>
-"MSËõ½ø·ç¸ñ g=m
-map g=m :call MS()<CR>v<Esc>
-"GNUËõ½ø·ç¸ñ g=g
-map g=g :call GNU()<CR>v<Esc>
-"Java EclipseËõ½ø·ç¸ñ g=j
-map g=j :call JE()<CR>v<Esc>
-"DSÈ¥µôÎ²¿Õ g=d
-map g=d :call DS()<CR>v<Esc>
+        "{{{4 Define keyword.
+        if !exists('g:neocomplete#keyword_patterns')
+            let g:neocomplete#keyword_patterns = {}
+        endif
+        let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+        "{{{4 Define delimiter
+        if !exists('g:neocomplete#delimiter_patterns')
+            let g:neocomplete#delimiter_patterns={}
+        endif
+        let g:neocomplete#delimiter_patterns.vim=['#']
+        let g:neocomplete#delimiter_patterns.cpp=['::']
+        let g:neocomplete#delimiter_patterns.java=['.']
+        let g:neocomplete#delimiter_patterns.go = ['.']
+        " {{{4 omni completion.
+        "
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-func! MAP()
-    " gc ±£´æ¡¢±àÒë
-    nmap <leader>gc :call CompileCode()<CR>
-    " gr ±£´æ¡¢ÔËĞĞ
-    nmap <leader>gr :call RunResult()<CR>
-    " gl µ÷ÊÔ
-    nmap <leader>gl :call DebugCode()<CR>
-    " gw ¹â±êwrapµ½µÚÒ»¸ö´íÎó»ò¾¯¸æ
-    nmap <leader>gw :cfirst<CR>
-    " gp ¹â±êÌøµ½ÉÏÒ»¸ö´íÎó»ò¾¯¸æ
-    nmap <leader>gp :cprevious<CR>
-    " gn ¹â±êÌøµ½ÏÂÒ»¸ö´íÎó»ò¾¯¸æ
-    nmap <leader>gn :cnext<CR>
-    " gs ÊÍ·Å
-    nmap <leader>gs :call ReleaseCompileCode()<CR>
-endfunc
+        if !exists('g:neocomplete#sources#omni#input_patterns')
+            let g:neocomplete#sources#omni#input_patterns = {}
+        endif
+        if !exists('g:neocomplete#force_omni_input_patterns')
+            let g:neocomplete#force_omni_input_patterns = {}
+        endif
+        let g:neocomplete#sources#omni#input_patterns.php =
+                    \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+        let g:neocomplete#sources#omni#input_patterns.c =
+                    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+        let g:neocomplete#sources#omni#input_patterns.cpp =
+                    \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-"±à¼­Ò»¸öÎÄ¼şÊ±£¬Ö±½ÓÓÃÏàÓ¦µÄ¼üÅÌÓ³Éä
-if has("autocmd")
-    autocmd FileType c,cpp,make,java call MAP()
-    autocmd FileType python,perl,ruby,php call MAP()
-    autocmd FileType htm,html,xhtml,xml call MAP()
-    autocmd FileType vim,tex,latex call MAP()
-endif
+        " For perlomni.vim setting.
+        " https://github.com/c9s/perlomni.vim
+        let g:neocomplete#sources#omni#input_patterns.perl =
+                    \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-"Ò»Ğ©²»´íµÄÓ³Éä×ª»»Óï·¨£¨Èç¹ûÔÚÒ»¸öÎÄ¼şÖĞ»ìºÏÁË²»Í¬ÓïÑÔÊ±ÓĞÓÃ£©
-nmap <leader>fh :set filetype=xhtml<CR>
-nmap <leader>fc :set filetype=css<CR>
-nmap <leader>fj :set filetype=javascript<CR>
-nmap <leader>fp :set filetype=php<CR>
+        if !exists('g:neocomplete#sources#omni#functions')
+            let g:neocomplete#sources#omni#functions = {}
+        endif
+        " Go (plugin: gocode)
+        let g:neocomplete#sources#omni#functions.go =
+                    \ 'go#complete#Complete'
+        " Clojure (plugin: vim-clojure)
+        let g:neocomplete#sources#omni#functions.clojure =
+                    \ 'vimclojure#OmniCompletion'
+        "" SQL
+        let g:neocomplete#sources#omni#functions.sql =
+                    \ 'sqlcomplete#Complete'
+        "" R (plugin: vim-R-plugin)
+        let g:neocomplete#sources#omni#input_patterns.r =
+                    \ '[[:alnum:].\\]\+'
+        let g:neocomplete#sources#omni#functions.r =
+                    \ 'rcomplete#CompleteR'
+        "" XQuery (plugin: XQuery-indentomnicomplete)
+        let g:neocomplete#sources#omni#input_patterns.xquery =
+                    \ '\k\|:\|\-\|&'
+        let g:neocomplete#sources#omni#functions.xquery =
+                    \ 'xquerycomplete#CompleteXQuery'
+        "omini complete END }}}
+        "config END 2}}}
+        "ctrl-p {{{2
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_cmd = 'CtrlP'
+        set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+        set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+        let g:ctrlp_working_path_mode = 'ra'
+        "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+        let g:ctrlp_custom_ignore = {
+                    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                    \ 'file': '\v\.(exe|so|dll)$',
+                    \ 'link': 'some_bad_symbolic_links',
+                    \ }
+        if has('windows')
+            let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+        endif
+        if has('Linux')
+            let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+        endif
 
-"½«±¾ÎÄ¼şÍ¬²½µ½ĞèÒªÍ¬²½µÄÎÄ¼ş¼ĞÀï
-":command SYNC :w! G:/TDDownload/.vimrc |:w! G:/°Ù¶ÈÔÆ/ÎÒµÄÅäÖÃ/vimrc |:update
-"´°¿Ú·Ö¸îÊ±,½øĞĞÇĞ»»µÄ°´¼üÈÈ¼üĞèÒªÁ¬½ÓÁ½´Î,±ÈÈç´ÓÏÂ·½´°¿ÚÒÆ¶¯
-"¹â±êµ½ÉÏ·½´°¿Ú,ĞèÒª<c-w>k,·Ç³£Âé·³,ÏÖÔÚÖØÓ³ÉäÎª<c-k>,ÇĞ»»µÄ
-"Ê±ºò»á±äµÃ·Ç³£·½±ã.
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-"}}}
-"ÉèÖÃdictionaryÄ¿Â¼{{{
-if MySys() == "Windows"
-    set dictionary=$Vim\dict\words
-elseif MySys() == "Linux"
-    set dictionary=/usr/share/dict/words
-endif
-"}}}
-""²å¼şµÄÉèÖÃ{{{
-"---------- Taglist.vim [ÏÔÊ¾³ÌĞòÖĞµÄºê¶¨Òå¡¢±äÁ¿¡¢º¯Êı¡¢Àà] ----------
-let Tlist_GainFocus_On_ToggleOpen=0
-let Tlist_WinWidth=30
-let Tlist_Exit_OnlyWindow=1
-let Tlist_File_Fold_Auto_Close=1
-let Tlist_Enable_Fold_Column=0
-let Tlist_Inc_Winwidth=0
-"}}}
-"---------- WinManager.vim [´°¿Ú¹ÜÀí] ----------{{{
-"let g:winManagerWindowLayout='FileExplorer|TagList'
+        " {{{2 powershell
+        let g:ps1_nofold_blocks = 1
+        let g:ps1_nofold_sig = 1
 
-"--------------------CscopeÉèÖÃ--------------------
-"if filereadable("cscope.out")
-"cs add cscope.out
-"elseif $CSCOPE_DB != ""
-"cs add $CSCOPE_DB
-"endif
-"--------------------PowerLineÉèÖÃ--------------------
-"set t_Co=256 
-"set guifont=PowerlineSymbols\ for\ Powerline 
-"let g:Powerline_symbols = 'fancy' 
-
-"--------------------bufexploreÉèÖÃ--------------------
-" ´ò¿ªBuffer Explore
-"map gb :BufExplorer<CR>
-" gbp Ç°Ò»¸öBuffer
-"map gbp :bprevious<CR>
-" gbn ºóÒ»¸öBuffer
-"map gbn :bnext<CR>
-"¹Ø±Õ»º³åÇø
-"nnoremap g. :bd!<CR>
-" Buffers²Ù×÷¿ì½İ·½Ê½,Ä£·ÂTab²Ù×÷µÄgt£¬gT
-"nnoremap gb :next<CR>
-"nnoremap gB :previous<CR>
-
-"------------------NERD_commenterÉèÖÃ------------------
-"map <C-C> <plug>NERDCommenterToggle
-
-"------------------ZenCodingÉèÖÃ------------------
-"let g:user_zen_leader_key = '<C-_>'
-"}}}
-""²å¼şµÄ¿ì½İ¼üÉèÖÃ{{{
-nmap <leader>mT :NERDTreeToggle<CR>
-"nmap <leader>mt :TlistToggle<CR>
-"nmap <leader>mm :WMToggle<CR>
-"}}}
-"go lang ide{{{2
-"
-"
-let g:go_snippet_engine = "neosnippet"
-let g:go_play_open_browser = 0
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 1
-"let g:go_bin_path = expand("~/.gotools")
-let g:go_highlight_structs = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_build_constraints = 1
-let g:go_textobj_enabled = 1
-
-autocmd BufWritePre *.go :Fmt
-autocmd FileType go nnoremap <F12> :!go run %<CR> 
-au FileType go nmap <leader>r <Leader>w<Plug>(go-run)
-au FileType go nmap <leader>b <Leader>w<Plug>(go-build)
-au FileType go nmap <leader>t <Leader>w<Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-"filetype off
-"filetype plugin indent off
-"set runtimepath+=$GOROOT/misc/vim
-"filetype plugin indent on
-"syntax on
-let g:tagbar_type_go = {
-            \ 'ctagstype' : 'go',
-            \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-            \ ],
-            \ 'sro' : '.',
-            \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-            \ },
-            \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-            \ },
-            \ 'ctagsbin'  : 'gotags',
-            \ 'ctagsargs' : '-sort -silent'
-            \ }
-"}}}
-"emmet  zencoding  htmlÀ©Õ¹{{{2
-let g:user_emmet_leader_key='<C-y>'
-"}}}
-"github  gist{{{2
-let g:gist_use_password_in_gitconfig = 1
-"{{{2neosnippet config
-let g:neosnippet#snippets_directory=$VIM .'/vimfiles/bundle/snip' 
-let g:neosnippet#disable_select_mode_mappings =1
-let g:neosnippet#disable_runtime_snippets = {
-            \ 'java': 1 ,
-            \ 'cpp': 1 ,
-            \ }
-let g:neosnippet#enable_snipmate_compatibility=0
-let g:neosnippet#enable_preview =0
-let g:neosnippet#expand_word_boundary=1
-let g:neosnippet#scope_aliases = {
-            \ 'go': 'go,gof',
-            \}
-" Plugin key-mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets' behavior.
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
-"\: pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
-"\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-" let g:neosnippet#enable_snipmate_compatibility = 1
-" neosnippet END}}} 
-"neocomplete  config{{{2
-"{{{3 config
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#max_list = 2000
-let g:neocomplete#max_keyword_width = 70
-let g:neocomplete#auto_completion_start_length=2
-let g:neocomplete#manual_completion_start_length = 0
-let g:neocomplete#min_keyword_length=4
-let g:neocomplete#enable_ignore_case=0
-let g:neocomplete#enable_smart_case=1
-let g:neocomplete#enable_camel_case =1
-let g:neocomplete#disable_auto_complete =0
-let g:neocomplete#enable_cursor_hold_i=1
-let g:neocomplete#enable_auto_select =1
-let g:neocomplete#enable_auto_delimiter =1
-let g:neocomplete#enable_fuzzy_completion=1
-let g:neocomplete#enable_multibyte_completion=0
-let g:neocomplete#lock_buffer_name_pattern= ''
-"let g:neocomplete#
-
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#enable_auto_close_preview = 0
-let g:neocomplete#fallback_mappings = 
-            \ ["\<C-x>\<C-o>","\<C-x>\<C-n>"]
-let g:neocomplete#sources#buffer#cache_limit_size = 900000
-
-"{{{4 Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-"{{{4 Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"{{{4 Define delimiter
-if !exists('g:neocomplete#delimiter_patterns')
-    let g:neocomplete#delimiter_patterns={}
-endif
-let g:neocomplete#delimiter_patterns.vim=['#']
-let g:neocomplete#delimiter_patterns.cpp=['::']
-let g:neocomplete#delimiter_patterns.java=['.']
-let g:neocomplete#delimiter_patterns.go = ['.']
-" {{{4 omni completion.
-"
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php =
-\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.c =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.cpp =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl =
-            \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-
-if !exists('g:neocomplete#sources#omni#functions')
-    let g:neocomplete#sources#omni#functions = {}
-endif
-" Go (plugin: gocode)
-let g:neocomplete#sources#omni#functions.go =
-            \ 'go#complete#Complete'
-" Clojure (plugin: vim-clojure)
-let g:neocomplete#sources#omni#functions.clojure =
-            \ 'vimclojure#OmniCompletion'
-"" SQL
-let g:neocomplete#sources#omni#functions.sql =
-            \ 'sqlcomplete#Complete'
-"" R (plugin: vim-R-plugin)
-let g:neocomplete#sources#omni#input_patterns.r =
-            \ '[[:alnum:].\\]\+'
-let g:neocomplete#sources#omni#functions.r =
-            \ 'rcomplete#CompleteR'
-"" XQuery (plugin: XQuery-indentomnicomplete)
-let g:neocomplete#sources#omni#input_patterns.xquery =
-            \ '\k\|:\|\-\|&'
-let g:neocomplete#sources#omni#functions.xquery =
-            \ 'xquerycomplete#CompleteXQuery'
-"omini complete END }}}
-"config END 2}}}
-"ctrl-p {{{2
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-if has('windows')
-    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-endif
-if has('Linux')
-    let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-endif
