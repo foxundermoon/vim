@@ -123,26 +123,26 @@ call neobundle#end()            " required
 filetype plugin indent on
 NeoBundleCheck
 "}}}
-"³õÊ¼»¯{{{2
+"åˆå§‹åŒ–{{{2
 let $LANG = 'en'
 set langmenu=en
 "set autochdir
 source $VIMRUNTIME/vimrc_example.vim 
 "behave mswin
-"Óï·¨¸ßÁÁ
+"è¯­æ³•é«˜äº®
 syntax enable
 syntax on
-"ÅäÉ«·½°¸
+"é…è‰²æ–¹æ¡ˆ
 "colo desert
 set encoding=utf-8
-set expandtab "ÓÃ¿Õ¸ñ´úÌætab
+set expandtab "ç”¨ç©ºæ ¼ä»£æ›¿tab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set helplang=cn
-set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT "Courier NewÈÕºóÍøÉÏ²éÕÒĞŞ¸Ä
-"set guifont=Innovation:h20:cANSI "Courier NewÈÕºóÍøÉÏ²éÕÒĞŞ¸Ä
+set guifont=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT "Courier Newæ—¥åç½‘ä¸ŠæŸ¥æ‰¾ä¿®æ”¹
+"set guifont=Innovation:h20:cANSI "Courier Newæ—¥åç½‘ä¸ŠæŸ¥æ‰¾ä¿®æ”¹
 "set guifontwide=Adobe\ Caslon\ Pro,Wingdings\ 3:h16:cGB2312
 set guifontwide=DejaVu_Sans_Mono_for_Powerline:h14:cDEFAULT
 "lang mes en_US.utf-8
@@ -156,7 +156,7 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 colo FoxDark
-"¸Ä±ä×ÖÌå"{{{2
+"æ”¹å˜å­—ä½“"{{{2
 if has('gui_running') && has('gui_win32')
     let g:MyFontSize = 20
     function! SetFontSize(size)
@@ -168,7 +168,7 @@ if has('gui_running') && has('gui_win32')
             let g:MyFontSize = 42
         endif
         let l:MyFont = '"Courier_New:h' . g:MyFonfSize . ':cANSI"'
-        let l:MyFontW = '"¿¬Ìå:h' . g:MyFontSize . ':cGB2312'
+        let l:MyFontW = '"æ¥·ä½“:h' . g:MyFontSize . ':cGB2312'
         "call libcall(g:MyVimLib, 'SetAlpha', g:VimAlpha)
     endfunction
     map <A-F10> <esc>:call SetFontSize(+1)<cr>
@@ -176,7 +176,7 @@ if has('gui_running') && has('gui_win32')
 endif
 breakadd func FontSize_Reduce
 breakadd func FontSize_Enlarge
-"·Å´ó×ÖÌå 
+"æ”¾å¤§å­—ä½“ 
 function <SID>FontSize_Enlarge() 
     if has("linux")
         let pattern = '\<\d\+$' 
@@ -192,7 +192,7 @@ function <SID>FontSize_Enlarge()
 endfunction 
 nnoremap <C-kPlus> :call <SID>FontSize_Enlarge()<CR> 
 
-"ËõĞ¡×ÖÌå 
+"ç¼©å°å­—ä½“ 
 function <SID>FontSize_Reduce() 
     if has("linux")
         let pattern = '\<\d\+$' 
@@ -211,30 +211,30 @@ nnoremap <C-kMinus> :call <SID>FontSize_Reduce()<CR>
 
 
 "}}}
-"½â¾öconsleÊä³öÂÒÂë
+"è§£å†³consleè¾“å‡ºä¹±ç 
 set nu!
 set wrap
 "set nowrap
 set linebreak
 set autochdir
 set scrolloff=5
-set hlsearch "¸ßÁÁÏÔÊ¾²éÕÒ½á¹û
-set incsearch "ÔöÁ¿²éÕÒ
+set hlsearch "é«˜äº®æ˜¾ç¤ºæŸ¥æ‰¾ç»“æœ
+set incsearch "å¢é‡æŸ¥æ‰¾
 set autoindent
 set showmatch
 set smartindent
 set nobackup
-"ÓÃ¿Õ¸ñÀ´¿ª¹ØÕÛµş
+"ç”¨ç©ºæ ¼æ¥å¼€å…³æŠ˜å 
 set foldenable
 "set statusline=[%F]%y%r%m%*%=[Line:%l,Column:%c][%p%%]
 set ruler
 set foldmethod=marker "manual
-"Éè¶¨×Ô¶¯±£´æÕÛµş
+"è®¾å®šè‡ªåŠ¨ä¿å­˜æŠ˜å 
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent !loadview
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-"}}}³õÊ¼»¯½áÊø
+"}}}åˆå§‹åŒ–ç»“æŸ
 "key map{{{2  
 command! -n=0 -bar Evimrc :e $vim/_vimrc
 "vnoremap <C-c> "*y
@@ -253,7 +253,7 @@ nnoremap <leader>1w :w!<cr>
 nnoremap <Leader>fg :setf go <CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>1q :q!<CR>
-"É¾³ıµ±Ç°ĞĞ¹â±êÒÔÇ°²¿·Ö
+"åˆ é™¤å½“å‰è¡Œå…‰æ ‡ä»¥å‰éƒ¨åˆ†
 "imap <C-bs> <esc>d0i<del>
 "inoremap <CR> <C-R>=MyEnter()
 "neocomplete key map
@@ -282,7 +282,23 @@ nmap <expr><S-CR> MyShiftCrFunction('n')
 
 nmap <F9> :TagbarToggle<CR>
 imap <F9>  <Esc><Esc>:TagbarToggle<CR>a
-imap <C-[> <Esc><Esc>
+"imap <C-[> <Esc><Esc>
+"vimdiff
+if &diff
+map <silent> <leader>1 :diffget 1<CR> :diffupdate<CR>
+map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
+map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
+map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
+map <silent> <leader>p1 :diffput 1<CR> :diffupdate<CR>
+map <silent> <leader>p2 :diffput 2<CR> :diffupdate<CR>
+map <silent> <leader>p3 :diffput 3<CR> :diffupdate<CR>
+map <silent> <leader>p4 :diffput 4<CR> :diffupdate<CR>
+map <silent> dp1 :diffput 1<CR> :diffupdate<CR>
+map <silent> dp2 :diffput 2<CR> :diffupdate<CR>
+map <silent> dp3 :diffput 3<CR> :diffupdate<CR>
+map <silent> dp4 :diffput 4<CR> :diffupdate<CR>
+endif
+nmap <silent> <F5> :source $VIM/_vimrc<CR>
 "{{{4 key functions
 "{{{5 <S-cr>
 function! MyShiftCrFunction(mod)
@@ -471,7 +487,7 @@ function! s:my_esc_function(mod)
                 endif
             endwhile
         endfunction
-        "¹ö¶¯Ìõ+¹¤¾ßÀ¸+²Ëµ¥À¸-----{{{2
+        "æ»šåŠ¨æ¡+å·¥å…·æ +èœå•æ -----{{{2
         map <silent> <F2> :if &guioptions =~# 'T' <Bar>
                     \set guioptions-=T <Bar>
                     \set guioptions-=m <Bar>
@@ -486,14 +502,14 @@ function! s:my_esc_function(mod)
 
         "HIDDEN Toolbar
         set guioptions-=T
-        "HIDDEN Right Scrool bar 'R'	ÈçÓĞ´¹Ö±·Ö¸îµÄ´°¿Ú£¬ÓÒ±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ¡£
+        "HIDDEN Right Scrool bar 'R'	å¦‚æœ‰å‚ç›´åˆ†å‰²çš„çª—å£ï¼Œå³è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨ã€‚
         set guioptions-=R
-        "'r'	ÓÒ±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ
+        "'r'	å³è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨
         set guioptions-=r
         "NO USE Menu
         set guioptions-=m
         set guioptions-=L
-        "'l'	×ó±ßµÄ¹ö¶¯Ìõ×ÜÊÇ´æÔÚ
+        "'l'	å·¦è¾¹çš„æ»šåŠ¨æ¡æ€»æ˜¯å­˜åœ¨
         set guioptions-=l
         "}}}
         "cue"{{{2
@@ -531,28 +547,28 @@ function! s:my_esc_function(mod)
         let g:mimiBufExplMapCTabSwitchBufs=1
         let g:miniBufExplModSelTarget=1
         "}}}
-        "TaglistÉèÖÃ{{{2
+        "Taglistè®¾ç½®{{{2
         let Tlist_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
-        " ²»Í¬Ê±ÏÔÊ¾¶à¸öÎÄ¼şµÄ tag £¬Ö»ÏÔÊ¾µ±Ç°ÎÄ¼şµÄ
+        " ä¸åŒæ—¶æ˜¾ç¤ºå¤šä¸ªæ–‡ä»¶çš„ tag ï¼Œåªæ˜¾ç¤ºå½“å‰æ–‡ä»¶çš„
         let Tlist_Show_One_File=1
-        " Èç¹û taglist ´°¿ÚÊÇ×îºóÒ»¸ö´°¿Ú£¬ÔòÍË³ö vim
+        " å¦‚æœ taglist çª—å£æ˜¯æœ€åä¸€ä¸ªçª—å£ï¼Œåˆ™é€€å‡º vim
         let Tlist_Exit_OnlyWindow=1
-        "ÈÃµ±Ç°²»±»±à¼­µÄÎÄ¼şµÄ·½·¨ÁĞ±í×Ô¶¯ÕÛµşÆğÀ´ 
+        "è®©å½“å‰ä¸è¢«ç¼–è¾‘çš„æ–‡ä»¶çš„æ–¹æ³•åˆ—è¡¨è‡ªåŠ¨æŠ˜å èµ·æ¥ 
         let Tlist_File_Fold_Auto_Close=1
-        "°Ñtaglist´°¿Ú·ÅÔÚÆÁÄ»µÄÓÒ²à£¬È±Ê¡ÔÚ×ó²à
+        "æŠŠtaglistçª—å£æ”¾åœ¨å±å¹•çš„å³ä¾§ï¼Œç¼ºçœåœ¨å·¦ä¾§
         let Tlist_Use_Right_Window=1
-        "ÏÔÊ¾taglist²Ëµ¥
+        "æ˜¾ç¤ºtaglistèœå•
         let Tlist_Show_Menu=1
-        "Æô¶¯vim×Ô¶¯´ò¿ªtaglist
+        "å¯åŠ¨vimè‡ªåŠ¨æ‰“å¼€taglist
         let Tlist_Auto_Open=1  
         "-----------------------------------------------------------}}}
         "" winManager setting{{{2
-        "ÉèÖÃ½çÃæ·Ö¸î
+        "è®¾ç½®ç•Œé¢åˆ†å‰²
         "let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList"
         let g:winManagerWindowLayout="TagList|NERDTree,TagList|BufExplorer"
-        "ÉèÖÃwinmanagerµÄ¿í¶È£¬Ä¬ÈÏÎª25
+        "è®¾ç½®winmanagerçš„å®½åº¦ï¼Œé»˜è®¤ä¸º25
         let g:winManagerWidth = 30
-        "¶¨Òå´ò¿ª¹Ø±Õwinmanager°´¼ü
+        "å®šä¹‰æ‰“å¼€å…³é—­winmanageræŒ‰é”®
         "nmap <F8> :WMToggle<cr>}}}
         "NERD Tree{{{2
         let NERDChristmasTree=1
@@ -593,13 +609,13 @@ function! s:my_esc_function(mod)
         let Javabrowser_Use_Icon = 1
         let JavaBrowser_Ctags_Cmd = $VIMRUNTIME . '/ctags.exe'
 
-        "¼ÙÈç±à¼­µÄÊÇ java ÎÄ¼ş, ÄÇÃ´¶ÁÈë java.vim µÄºê¶¨Òå
+        "å‡å¦‚ç¼–è¾‘çš„æ˜¯ java æ–‡ä»¶, é‚£ä¹ˆè¯»å…¥ java.vim çš„å®å®šä¹‰
         "autocmd FileType java source $VIM . '\data\java\java.vim'
-        "¼ÙÈç±à¼­µÄÊÇ java ÎÄ¼ş, ÄÇÃ´¶ÁÈë jcommenter.vim ¶¨Òå
+        "å‡å¦‚ç¼–è¾‘çš„æ˜¯ java æ–‡ä»¶, é‚£ä¹ˆè¯»å…¥ jcommenter.vim å®šä¹‰
         "autocmd FileType java source $VIM . '\data\java\jcommenter.vim'
-        "ÔÚĞÂ½¨ java ÎÄ¼şÊ±, Ô¤ÏÈ½« java.skel µÄÄÚÈİ¸´ÖÆ½øÀ´
+        "åœ¨æ–°å»º java æ–‡ä»¶æ—¶, é¢„å…ˆå°† java.skel çš„å†…å®¹å¤åˆ¶è¿›æ¥
         "autocmd BufNewFile *.java 0r $VIM . '\data\java\java.skel'
-        "ÔÚ¶ÁÈë java.skel ÄÚÈİºó, ÔËĞĞ gnp Õâ¸öºêÃüÁî
+        "åœ¨è¯»å…¥ java.skel å†…å®¹å, è¿è¡Œ gnp è¿™ä¸ªå®å‘½ä»¤
         "autocmd BufNewFile *.java normal gnp
 
         "============= java END=================
@@ -610,11 +626,11 @@ function! s:my_esc_function(mod)
         "========= sketch =========
         command! Sketch call ToggleSketch()
         "}}} 
-        " {{{  Win---È«ÆÁ+Í¸Ã÷+ÖÃ¶¥----×é¼ş gvimfullscreen.dll
-        " F11 È«ÆÁÇĞ»»
-        " Shift + F11 ½µµÍ´°¿ÚÍ¸Ã÷¶È
-        " Alt + F11 ¼Ó´ó´°¿ÚÍ¸Ã÷¶È
-        " Contrl + F11 ÇĞ»»VimÊÇ·ñ×ÜÔÚ×îÇ°ÃæÏÔÊ¾
+        " {{{  Win---å…¨å±+é€æ˜+ç½®é¡¶----ç»„ä»¶ gvimfullscreen.dll
+        " F11 å…¨å±åˆ‡æ¢
+        " Shift + F11 é™ä½çª—å£é€æ˜åº¦
+        " Alt + F11 åŠ å¤§çª—å£é€æ˜åº¦
+        " Contrl + F11 åˆ‡æ¢Vimæ˜¯å¦æ€»åœ¨æœ€å‰é¢æ˜¾ç¤º
         if has('gui_running') && has('gui_win32') && has('libcall')
             let g:MyVimLib = 'gvimfullscreen_x64.dll'
             function! ToggleFullScreen()
@@ -644,18 +660,18 @@ function! s:my_esc_function(mod)
                 endif
                 call libcall(g:MyVimLib, 'EnableTopMost', g:VimTopMost)
             endfunction
-            "Ó³Éä Alt+Enter ÇĞ»»È«ÆÁvim
+            "æ˜ å°„ Alt+Enter åˆ‡æ¢å…¨å±vim
             nmap <F11> <esc>:call ToggleFullScreen()<cr>
             imap <F11> <Esc><Esc>:call ToggleFullScreen()<CR>a
-            "ÇĞ»»VimÊÇ·ñÔÚ×îÇ°ÃæÏÔÊ¾
+            "åˆ‡æ¢Vimæ˜¯å¦åœ¨æœ€å‰é¢æ˜¾ç¤º
             nmap <C-F11> <esc>:call SwitchVimTopMostMode()<cr>
-            "Ôö¼ÓVim´°ÌåµÄ²»Í¸Ã÷¶È
+            "å¢åŠ Vimçª—ä½“çš„ä¸é€æ˜åº¦
             nmap <A-F11> <esc>:call SetAlpha(5)<cr>
-            "Ôö¼ÓVim´°ÌåµÄÍ¸Ã÷¶È
+            "å¢åŠ Vimçª—ä½“çš„é€æ˜åº¦
             nmap <S-F11> <esc>:call SetAlpha(-7)<cr>
-            "VimÆô¶¯µÄÊ±ºò×Ô¶¯µ÷ÓÃInitVim ÒÔÈ¥³ıVimµÄ°×É«±ß¿ò
+            "Vimå¯åŠ¨çš„æ—¶å€™è‡ªåŠ¨è°ƒç”¨InitVim ä»¥å»é™¤Vimçš„ç™½è‰²è¾¹æ¡†
             autocmd GUIEnter * call libcallnr(g:MyVimLib, 'InitVim', 0)
-            " Ä¬ÈÏÉèÖÃÍ¸Ã÷
+            " é»˜è®¤è®¾ç½®é€æ˜
             autocmd GUIEnter * call libcallnr(g:MyVimLib, 'SetAlpha', g:VimAlpha)
         endif
         "}}}
@@ -664,7 +680,7 @@ function! s:my_esc_function(mod)
         nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
         noremap <leader>yd :Yde<CR>
         "}}} 
-        "¸ßÁÁÁĞ ÁĞ¶ÔÆë{{{2
+        "é«˜äº®åˆ— åˆ—å¯¹é½{{{2
         map <Leader>ch :call SetColorColumn()<CR>
         function! SetColorColumn()
             let col_num = virtcol(".")
@@ -676,107 +692,107 @@ function! s:my_esc_function(mod)
             endif
         endfunction
         "}}}
-        ""ÉèÖÃËõ½øºÍTab{{{2
-        "Linux ·ç¸ñËõ½ø
+        ""è®¾ç½®ç¼©è¿›å’ŒTab{{{2
+        "Linux é£æ ¼ç¼©è¿›
         func! LT()
-            " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª8
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º8
             set shiftwidth=8
-            " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô8¸ö¿Õ¸ñ
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰8ä¸ªç©ºæ ¼
             set softtabstop=8
-            " Éè¶¨tab³¤¶ÈÎª8
+            " è®¾å®štabé•¿åº¦ä¸º8
             set tabstop=8
-            " ²»½«tabÓÃ¿Õ¸ñÌæ»»
+            " ä¸å°†tabç”¨ç©ºæ ¼æ›¿æ¢
             set noexpandtab
-            " ½«¿Õ¸ñÓÃtabÌæ»»
+            " å°†ç©ºæ ¼ç”¨tabæ›¿æ¢
             set smarttab
-            " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
             set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-            " ¸ñÊ½»¯´úÂë
+            " æ ¼å¼åŒ–ä»£ç 
             exec "%!indent\ -linux"
             exec "normal G"
         endfunc
-        "K&R ·ç¸ñËõ½ø
+        "K&R é£æ ¼ç¼©è¿›
         func! KR()
-            " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
             set shiftwidth=4
-            " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
             set softtabstop=4
-            " Éè¶¨tab³¤¶ÈÎª8
+            " è®¾å®štabé•¿åº¦ä¸º8
             set tabstop=8
-            " ½«tabÓÃ¿Õ¸ñÌæ»»
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
             set expandtab
-            " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
             set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-            " ¸ñÊ½»¯´úÂë
+            " æ ¼å¼åŒ–ä»£ç 
             exec "%!indent\ -kr"
             exec "normal G"
         endfunc
-        "MS ·ç¸ñËõ½ø
+        "MS é£æ ¼ç¼©è¿›
         func! MS()
-            " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
             set shiftwidth=4
-            " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
             set softtabstop=4
-            " Éè¶¨tab³¤¶ÈÎª8
+            " è®¾å®štabé•¿åº¦ä¸º8
             set tabstop=8
-            " ½«tabÓÃ¿Õ¸ñÌæ»»
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
             set expandtab
-            " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
             set cinoptions=>s,e0,n0,f0,{0,}0,^0,L2,:s,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-            " ¸ñÊ½»¯´úÂë
+            " æ ¼å¼åŒ–ä»£ç 
             exec "%!indent\ -kr\ -bl\ -bli0\ -cli4"
             exec "normal G"
         endfunc
-        "GNU ·ç¸ñËõ½ø
+        "GNU é£æ ¼ç¼©è¿›
         func! GNU()
-            " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª2
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º2
             set shiftwidth=2
-            " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô2¸ö¿Õ¸ñ
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰2ä¸ªç©ºæ ¼
             set softtabstop=2
-            " Éè¶¨tab³¤¶ÈÎª8
+            " è®¾å®štabé•¿åº¦ä¸º8
             set tabstop=8
-            " ½«tabÓÃ¿Õ¸ñÌæ»»
+            " å°†tabç”¨ç©ºæ ¼æ›¿æ¢
             set expandtab
-            " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
             set cinoptions=>s,e0,n0,f0,{s,}0,^0,:0,L-1,=s,l0,b0,gs,hs,p5,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-            " ¸ñÊ½»¯´úÂë
+            " æ ¼å¼åŒ–ä»£ç 
             exec "%!indent"
             exec "normal G"
         endfunc
-        "Java Eclipse·ç¸ñËõ½ø
+        "Java Eclipseé£æ ¼ç¼©è¿›
         func! JE()
-            " Éè¶¨Ëõ½øÊ±µÄ¿í¶ÈÎª4
+            " è®¾å®šç¼©è¿›æ—¶çš„å®½åº¦ä¸º4
             set shiftwidth=4
-            " Ê¹µÃ°´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô4¸ö¿Õ¸ñ
+            " ä½¿å¾—æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰4ä¸ªç©ºæ ¼
             set softtabstop=4
-            " Éè¶¨tab³¤¶ÈÎª4
+            " è®¾å®štabé•¿åº¦ä¸º4
             set tabstop=4
-            " ²»½«tabÓÃ¿Õ¸ñÌæ»»
+            " ä¸å°†tabç”¨ç©ºæ ¼æ›¿æ¢
             set noexpandtab
-            " ½«¿Õ¸ñÓÃtabÌæ»»
+            " å°†ç©ºæ ¼ç”¨tabæ›¿æ¢
             set smarttab
-            " Éè¶¨ Vim À´ÈçºÎ½øĞĞËõ½ø
+            " è®¾å®š Vim æ¥å¦‚ä½•è¿›è¡Œç¼©è¿›
             set cinoptions=>s,e0,n0,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,p0,t0,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j1,J1,)20,*70,#0
-            " ¸ñÊ½»¯´úÂë ÓÃ4¸ö¿Õ¸ñËõ½ø
+            " æ ¼å¼åŒ–ä»£ç  ç”¨4ä¸ªç©ºæ ¼ç¼©è¿›
             exec "%!astyle\ -A2 -I -U -Y -L -p -H -k3 -q"
-            " ¸ñÊ½»¯´úÂë ÓÃtabËõ½ø
+            " æ ¼å¼åŒ–ä»£ç  ç”¨tabç¼©è¿›
             "exec "%!astyle\ -A2 -I -U -Y -T4 -L -p -H -k3 -q"
             exec "normal G"
         endfunc
-        "DS È¥ĞĞÎ²¿Õ¸ñ
+        "DS å»è¡Œå°¾ç©ºæ ¼
         func! DS()
             if search('\s\+$', 'pw') > 0
-                " È¥µôĞĞÎ²¿Õ¸ñ
+                " å»æ‰è¡Œå°¾ç©ºæ ¼
                 exec "%s/\\s\\+$//"
             endif
         endfunc
         "}}}
-        ""±àÒë¡¢µ÷ÊÔ¡¢ÔËĞĞÏà¹Øº¯Êı{{{2
+        ""ç¼–è¯‘ã€è°ƒè¯•ã€è¿è¡Œç›¸å…³å‡½æ•°{{{2
         func MySys()
             return 'windows'
         endf
-        "Debug µ÷ÊÔÆÚ°æ±¾
-        "±àÒëcÔ´ÎÄ¼ş{{{3
+        "Debug è°ƒè¯•æœŸç‰ˆæœ¬
+        "ç¼–è¯‘cæºæ–‡ä»¶{{{3
         func! CompileC()
             exec "update"
             set makeprg=gcc\ -g\ -Wall\ -o\ %<\ %
@@ -784,7 +800,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "±àÒëcppÔ´ÎÄ¼ş{{{3
+        "ç¼–è¯‘cppæºæ–‡ä»¶{{{3
         func! CompileCpp()
             exec "update"
             set makeprg=g++\ -g\ -Wall\ -o\ %<\ %
@@ -792,7 +808,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "»ã±à¡¢Á¬½ÓasmÔ´ÎÄ¼ş{{{3
+        "æ±‡ç¼–ã€è¿æ¥asmæºæ–‡ä»¶{{{3
         func! CompileAsm()
             if MySys() == "Windows"
                 exec "update"
@@ -815,15 +831,15 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "±àÒëmakefileÏîÄ¿{{{3 
+        "ç¼–è¯‘makefileé¡¹ç›®{{{3 
         func! CompileMake()
             exec "update"
             set makeprg=make
             exec "make\ -f\ %"
         endfunc
 
-        "Release ×îÖÕµÄÊÍ·ÅÆÚ°æ{{{3
-        "±àÒëCÔ´ÎÄ¼ş
+        "Release æœ€ç»ˆçš„é‡Šæ”¾æœŸç‰ˆ{{{3
+        "ç¼–è¯‘Cæºæ–‡ä»¶
         func! ReleaseCompileC()
             exec "update"
             set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
@@ -831,7 +847,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "±àÒëC++Ô´ÎÄ¼ş{{{3
+        "ç¼–è¯‘C++æºæ–‡ä»¶{{{3
         func! ReleaseCompileCpp()
             exec "update"
             set makeprg=g++\ -Wall\ -O2\ -o\ %<\ %
@@ -839,7 +855,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "±àÒëJavaÔ´ÎÄ¼ş{{{3
+        "ç¼–è¯‘Javaæºæ–‡ä»¶{{{3
         func! CompileJava()
             exec "update"
             set makeprg=javac\ -g\ -d\ .\ %
@@ -847,7 +863,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "±àÒëASMÔ´ÎÄ¼ş{{{3
+        "ç¼–è¯‘ASMæºæ–‡ä»¶{{{3
         func! ReleaseCompileAsm()
             if MySys() == "Windows"
                 exec "update"
@@ -870,14 +886,14 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "±àÒëmakefileÏîÄ¿{{{3
+        "ç¼–è¯‘makefileé¡¹ç›®{{{3
         func! ReleaseCompileMake()
             exec "update"
             set makeprg=make
             exec "make\ -f\ %"
         endfunc
 
-        "±àÒëJavaÔ´ÎÄ¼ş{{{3
+        "ç¼–è¯‘Javaæºæ–‡ä»¶{{{3
         func! ReleaseCompileJava()
             exec "update"
             set makeprg=javac\ -d\ .\ %
@@ -885,7 +901,7 @@ function! s:my_esc_function(mod)
             set makeprg=make
         endfunc
 
-        "±àÒëLaTeXÔ´ÎÄ¼ş{{{3
+        "ç¼–è¯‘LaTeXæºæ–‡ä»¶{{{3
         func! CompileLaTeX()
             exec "update"
             let compilecmd="!latex"
@@ -896,7 +912,7 @@ function! s:my_esc_function(mod)
             "exec "make"
         endfunc
 
-        "ÔËĞĞc¡¢cpp¡¢asm³ÌĞò{{{3
+        "è¿è¡Œcã€cppã€asmç¨‹åº{{{3
         func! RunCCppAsm()
             if MySys() == "Windows"
                 "exec "!.\\".expand("%<")
@@ -907,7 +923,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "ÔËĞĞjavaÀàÎÄ¼ş{{{3
+        "è¿è¡Œjavaç±»æ–‡ä»¶{{{3
         func! RunJava()
             if search('^\s*package\s\+.*;$', 'pw') > 0
                 "exec "norm gg/package/s+8" | exec "!java " . expand('<cfile>') . ".%<"
@@ -923,25 +939,25 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "ÔËĞĞperlÔ´ÎÄ¼ş{{{3
+        "è¿è¡Œperlæºæ–‡ä»¶{{{3
         func! RunPerl()
             exec "update"
             exec "!perl %"
         endfunc
 
-        "ÔËĞĞpythonÔ´ÎÄ¼ş{{{3
+        "è¿è¡Œpythonæºæ–‡ä»¶{{{3
         func! RunPython()
             exec "update"
             exec "!python %"
         endfunc
 
-        "ÔËĞĞrubyÔ´ÎÄ¼ş{{{3
+        "è¿è¡Œrubyæºæ–‡ä»¶{{{3
         func! RunRuby()
             exec "update"
             exec "!ruby %"
         endfunc
 
-        "Ô¤ÀÀhtm¡¢html¡¢xhtml½á¹û{{{3
+        "é¢„è§ˆhtmã€htmlã€xhtmlç»“æœ{{{3
         func! RunHtml()
             exec "update"
             if MySys() == "Windows"
@@ -952,7 +968,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "Ô¤ÀÀLaTex½á¹û{{{3
+        "é¢„è§ˆLaTexç»“æœ{{{3
         func! RunLaTeX()
             if MySys() == "Windows"
                 exec "!yap %<.dvi"
@@ -961,7 +977,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄ±àÒëº¯Êı{{{3
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„ç¼–è¯‘å‡½æ•°{{{3
         func! CompileCode()
             if &filetype == "c"
                 exec "call CompileC()"
@@ -986,7 +1002,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄ±àÒëº¯Êı{{{3
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„ç¼–è¯‘å‡½æ•°{{{3
         func! ReleaseCompileCode()
             if &filetype == "c"
                 exec "call ReleaseCompileC()"
@@ -1024,7 +1040,7 @@ function! s:my_esc_function(mod)
             exec "!pdflatex %"
         endfun
 
-        "¸ù¾İÎÄ¼şÀàĞÍ×Ô¶¯Ñ¡ÔñÏàÓ¦µÄµ÷ÊÔÆ÷µ÷ÊÔ{{{3
+        "æ ¹æ®æ–‡ä»¶ç±»å‹è‡ªåŠ¨é€‰æ‹©ç›¸åº”çš„è°ƒè¯•å™¨è°ƒè¯•{{{3
         func! DebugCode()
             if &filetype == "c"
                 exec "!gdb %<"
@@ -1039,7 +1055,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
 
-        "ÔËĞĞ¿ÉÖ´ĞĞÎÄ¼ş{{{3
+        "è¿è¡Œå¯æ‰§è¡Œæ–‡ä»¶{{{3
         func! RunResult()
             if &filetype == "c"
                 exec "call RunCCppAsm()"
@@ -1072,7 +1088,7 @@ function! s:my_esc_function(mod)
             endif
         endfunc
         "}}}
-        "ÉèÖÃ:RunÖ´ĞĞµÄÃüÁî£¬Ö÷ÒªÓÃÓÚ´ø²ÎÊıÔËĞĞÃüÁî{{{3
+        "è®¾ç½®:Runæ‰§è¡Œçš„å‘½ä»¤ï¼Œä¸»è¦ç”¨äºå¸¦å‚æ•°è¿è¡Œå‘½ä»¤{{{3
         if MySys() == "windows"
             if has("autocmd")
                 autocmd filetype make :command! -nargs=? Run :exe "normal gg/:<cr>:noh<cr>b"|:exe "!.\\".expand('<cfile>')." <args>"
@@ -1100,51 +1116,51 @@ function! s:my_esc_function(mod)
         endfunc
 
         "}}}
-        ""ÉèÖÃ¿ì½İ¼ü{{{2
-        "ghÁÙÊ±¹Ø±Õ¸ßÁÁÏÔÊ¾ËÑË÷½á¹û
+        ""è®¾ç½®å¿«æ·é”®{{{2
+        "ghä¸´æ—¶å…³é—­é«˜äº®æ˜¾ç¤ºæœç´¢ç»“æœ
         map gh :noh<CR>:normal v:normal<ESC>
-        "gyÏµÍ³¼ôÇĞ°å¸´ÖÆ
+        "gyç³»ç»Ÿå‰ªåˆ‡æ¿å¤åˆ¶
         map gy "+y
-        "gy¸´ÖÆÒ»¸öµ¥´Ê(´Ó¹â±êËùÔÚ×Ö·û¿ªÊ¼)£¬¿ÉÅäºÏYouDao´ÊµäµÄ¼ôÇĞ°å¼àÊÓ¹¦ÄÜ²é´Ê
+        "gyå¤åˆ¶ä¸€ä¸ªå•è¯(ä»å…‰æ ‡æ‰€åœ¨å­—ç¬¦å¼€å§‹)ï¼Œå¯é…åˆYouDaoè¯å…¸çš„å‰ªåˆ‡æ¿ç›‘è§†åŠŸèƒ½æŸ¥è¯
         "map gy "+ye
-        "gY¸´ÖÆÒ»¸öµ¥´Ê(µ½¹â±êËùÔÚ×Ö·û½áÊø)£¬¿ÉÅäºÏYouDao´ÊµäµÄ¼ôÇĞ°å¼àÊÓ¹¦ÄÜ²é´Ê
+        "gYå¤åˆ¶ä¸€ä¸ªå•è¯(åˆ°å…‰æ ‡æ‰€åœ¨å­—ç¬¦ç»“æŸ)ï¼Œå¯é…åˆYouDaoè¯å…¸çš„å‰ªåˆ‡æ¿ç›‘è§†åŠŸèƒ½æŸ¥è¯
         "map gY my"+yb`y
         nnoremap gc "+d
         nnoremap gp "+p
 
         vnoremap gc "+d
         vnoremap gp "+p
-        "LinuxËõ½ø·ç¸ñ g=l
+        "Linuxç¼©è¿›é£æ ¼ g=l
         map g=l :call LT()<CR>v<Esc>
-        "K&RËõ½ø·ç¸ñ g=k
+        "K&Rç¼©è¿›é£æ ¼ g=k
         map g=k :call KR()<CR>v<Esc>
-        "MSËõ½ø·ç¸ñ g=m
+        "MSç¼©è¿›é£æ ¼ g=m
         map g=m :call MS()<CR>v<Esc>
-        "GNUËõ½ø·ç¸ñ g=g
+        "GNUç¼©è¿›é£æ ¼ g=g
         map g=g :call GNU()<CR>v<Esc>
-        "Java EclipseËõ½ø·ç¸ñ g=j
+        "Java Eclipseç¼©è¿›é£æ ¼ g=j
         map g=j :call JE()<CR>v<Esc>
-        "DSÈ¥µôÎ²¿Õ g=d
+        "DSå»æ‰å°¾ç©º g=d
         map g=d :call DS()<CR>v<Esc>
 
         func! MAP()
-            " gc ±£´æ¡¢±àÒë
+            " gc ä¿å­˜ã€ç¼–è¯‘
             nmap <leader>gc :call CompileCode()<CR>
-            " gr ±£´æ¡¢ÔËĞĞ
+            " gr ä¿å­˜ã€è¿è¡Œ
             nmap <leader>gr :call RunResult()<CR>
-            " gl µ÷ÊÔ
+            " gl è°ƒè¯•
             nmap <leader>gl :call DebugCode()<CR>
-            " gw ¹â±êwrapµ½µÚÒ»¸ö´íÎó»ò¾¯¸æ
+            " gw å…‰æ ‡wrapåˆ°ç¬¬ä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
             nmap <leader>gw :cfirst<CR>
-            " gp ¹â±êÌøµ½ÉÏÒ»¸ö´íÎó»ò¾¯¸æ
+            " gp å…‰æ ‡è·³åˆ°ä¸Šä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
             nmap <leader>gp :cprevious<CR>
-            " gn ¹â±êÌøµ½ÏÂÒ»¸ö´íÎó»ò¾¯¸æ
+            " gn å…‰æ ‡è·³åˆ°ä¸‹ä¸€ä¸ªé”™è¯¯æˆ–è­¦å‘Š
             nmap <leader>gn :cnext<CR>
-            " gs ÊÍ·Å
+            " gs é‡Šæ”¾
             nmap <leader>gs :call ReleaseCompileCode()<CR>
         endfunc
 
-        "±à¼­Ò»¸öÎÄ¼şÊ±£¬Ö±½ÓÓÃÏàÓ¦µÄ¼üÅÌÓ³Éä
+        "ç¼–è¾‘ä¸€ä¸ªæ–‡ä»¶æ—¶ï¼Œç›´æ¥ç”¨ç›¸åº”çš„é”®ç›˜æ˜ å°„
         if has("autocmd")
             autocmd FileType c,cpp,make,java call MAP()
             autocmd FileType python,perl,ruby,php call MAP()
@@ -1152,31 +1168,31 @@ function! s:my_esc_function(mod)
             autocmd FileType vim,tex,latex call MAP()
         endif
 
-        "Ò»Ğ©²»´íµÄÓ³Éä×ª»»Óï·¨£¨Èç¹ûÔÚÒ»¸öÎÄ¼şÖĞ»ìºÏÁË²»Í¬ÓïÑÔÊ±ÓĞÓÃ£©
+        "ä¸€äº›ä¸é”™çš„æ˜ å°„è½¬æ¢è¯­æ³•ï¼ˆå¦‚æœåœ¨ä¸€ä¸ªæ–‡ä»¶ä¸­æ··åˆäº†ä¸åŒè¯­è¨€æ—¶æœ‰ç”¨ï¼‰
         nmap <leader>fh :set filetype=xhtml<CR>
         nmap <leader>fc :set filetype=css<CR>
         nmap <leader>fj :set filetype=javascript<CR>
         nmap <leader>fp :set filetype=php<CR>
 
-        "½«±¾ÎÄ¼şÍ¬²½µ½ĞèÒªÍ¬²½µÄÎÄ¼ş¼ĞÀï
-        ":command SYNC :w! G:/TDDownload/.vimrc |:w! G:/°Ù¶ÈÔÆ/ÎÒµÄÅäÖÃ/vimrc |:update
-        "´°¿Ú·Ö¸îÊ±,½øĞĞÇĞ»»µÄ°´¼üÈÈ¼üĞèÒªÁ¬½ÓÁ½´Î,±ÈÈç´ÓÏÂ·½´°¿ÚÒÆ¶¯
-        "¹â±êµ½ÉÏ·½´°¿Ú,ĞèÒª<c-w>k,·Ç³£Âé·³,ÏÖÔÚÖØÓ³ÉäÎª<c-k>,ÇĞ»»µÄ
-        "Ê±ºò»á±äµÃ·Ç³£·½±ã.
+        "å°†æœ¬æ–‡ä»¶åŒæ­¥åˆ°éœ€è¦åŒæ­¥çš„æ–‡ä»¶å¤¹é‡Œ
+        ":command SYNC :w! G:/TDDownload/.vimrc |:w! G:/ç™¾åº¦äº‘/æˆ‘çš„é…ç½®/vimrc |:update
+        "çª—å£åˆ†å‰²æ—¶,è¿›è¡Œåˆ‡æ¢çš„æŒ‰é”®çƒ­é”®éœ€è¦è¿æ¥ä¸¤æ¬¡,æ¯”å¦‚ä»ä¸‹æ–¹çª—å£ç§»åŠ¨
+        "å…‰æ ‡åˆ°ä¸Šæ–¹çª—å£,éœ€è¦<c-w>k,éå¸¸éº»çƒ¦,ç°åœ¨é‡æ˜ å°„ä¸º<c-k>,åˆ‡æ¢çš„
+        "æ—¶å€™ä¼šå˜å¾—éå¸¸æ–¹ä¾¿.
         nnoremap <C-H> <C-W>h
         nnoremap <C-J> <C-W>j
         nnoremap <C-K> <C-W>k
         nnoremap <C-L> <C-W>l
         "}}}
-        "ÉèÖÃdictionaryÄ¿Â¼{{{
+        "è®¾ç½®dictionaryç›®å½•{{{
         if MySys() == "Windows"
             set dictionary=$Vim\dict\words
         elseif MySys() == "Linux"
             set dictionary=/usr/share/dict/words
         endif
         "}}}
-        ""²å¼şµÄÉèÖÃ{{{
-        "---------- Taglist.vim [ÏÔÊ¾³ÌĞòÖĞµÄºê¶¨Òå¡¢±äÁ¿¡¢º¯Êı¡¢Àà] ----------
+        ""æ’ä»¶çš„è®¾ç½®{{{
+        "---------- Taglist.vim [æ˜¾ç¤ºç¨‹åºä¸­çš„å®å®šä¹‰ã€å˜é‡ã€å‡½æ•°ã€ç±»] ----------
         let Tlist_GainFocus_On_ToggleOpen=0
         let Tlist_WinWidth=30
         let Tlist_Exit_OnlyWindow=1
@@ -1184,40 +1200,40 @@ function! s:my_esc_function(mod)
         let Tlist_Enable_Fold_Column=0
         let Tlist_Inc_Winwidth=0
         "}}}
-        "---------- WinManager.vim [´°¿Ú¹ÜÀí] ----------{{{
+        "---------- WinManager.vim [çª—å£ç®¡ç†] ----------{{{
         "let g:winManagerWindowLayout='FileExplorer|TagList'
 
-        "--------------------CscopeÉèÖÃ--------------------
+        "--------------------Cscopeè®¾ç½®--------------------
         "if filereadable("cscope.out")
         "cs add cscope.out
         "elseif $CSCOPE_DB != ""
         "cs add $CSCOPE_DB
         "endif
-        "--------------------PowerLineÉèÖÃ--------------------
+        "--------------------PowerLineè®¾ç½®--------------------
         "set t_Co=256 
         "set guifont=PowerlineSymbols\ for\ Powerline 
         "let g:Powerline_symbols = 'fancy' 
 
-        "--------------------bufexploreÉèÖÃ--------------------
-        " ´ò¿ªBuffer Explore
+        "--------------------bufexploreè®¾ç½®--------------------
+        " æ‰“å¼€Buffer Explore
         "map gb :BufExplorer<CR>
-        " gbp Ç°Ò»¸öBuffer
+        " gbp å‰ä¸€ä¸ªBuffer
         "map gbp :bprevious<CR>
-        " gbn ºóÒ»¸öBuffer
+        " gbn åä¸€ä¸ªBuffer
         "map gbn :bnext<CR>
-        "¹Ø±Õ»º³åÇø
+        "å…³é—­ç¼“å†²åŒº
         "nnoremap g. :bd!<CR>
-        " Buffers²Ù×÷¿ì½İ·½Ê½,Ä£·ÂTab²Ù×÷µÄgt£¬gT
+        " Buffersæ“ä½œå¿«æ·æ–¹å¼,æ¨¡ä»¿Tabæ“ä½œçš„gtï¼ŒgT
         "nnoremap gb :next<CR>
         "nnoremap gB :previous<CR>
 
-        "------------------NERD_commenterÉèÖÃ------------------
+        "------------------NERD_commenterè®¾ç½®------------------
         "map <C-C> <plug>NERDCommenterToggle
 
-        "------------------ZenCodingÉèÖÃ------------------
+        "------------------ZenCodingè®¾ç½®------------------
         "let g:user_zen_leader_key = '<C-_>'
         "}}}
-        ""²å¼şµÄ¿ì½İ¼üÉèÖÃ{{{
+        ""æ’ä»¶çš„å¿«æ·é”®è®¾ç½®{{{
         nmap <leader>mT :NERDTreeToggle<CR>
         "nmap <leader>mt :TlistToggle<CR>
         "nmap <leader>mm :WMToggle<CR>
@@ -1295,7 +1311,7 @@ function! s:my_esc_function(mod)
                     \ 'ctagsargs' : '-sort -silent'
                     \ }
         "}}}
-        "emmet  zencoding  htmlÀ©Õ¹{{{2
+        "emmet  zencoding  htmlæ‰©å±•{{{2
         let g:user_emmet_leader_key='<C-y>'
         "}}}
         "github  gist{{{2
