@@ -35,8 +35,8 @@ if has('windows')
     "Plugin 'user/L9', {'name': 'newL9'}
     NeoBundle 'mattn/webapi-vim' " request the web http ssl  etc...
     "NeoBundle 'Lokaltog/vim-powerline'  "beautiful status line
-    NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
-    "NeoBundle 'bling/vim-airline'
+    "NeoBundle 'powerline/powerline'   ", {'rtp':'powerline/powerline/bindings/vim/'}
+    NeoBundle 'bling/vim-airline'
     "NeoBundle 'bradfitz/goimports'
     "undle/vimpro use the  https://github.com/josharian/impl
     NeoBundle 'rhysd/vim-go-impl'  
