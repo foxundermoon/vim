@@ -99,6 +99,7 @@ if has('windows')
     NeoBundle 'maksimr/vim-jsbeautify'
     NeoBundle 'groenewege/vim-less'
     NeoBundle 'tfnico/vim-gradle'
+    NeoBundle 'burnettk/vim-angular'
 elseif has('linux')
     NeoBundle 'nerdtree-execute'
     NeoBundle 'Shougo/neobundle.vim' 
