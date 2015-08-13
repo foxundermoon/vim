@@ -25,7 +25,7 @@ call neobundle#begin(pluginPath)
 if has('windows')
     NeoBundle 'Shougo/neobundle.vim' 
     "NeoBundle 'gmarik/Vundle.vim'
-    NeoBundle 'L9'
+    "NeoBundle 'L9'
     NeoBundle 'Conque-Shell'
     NeoBundle 'paredit.vim'  "Paredit Mode: Structured Editing of Lisp S-expressions
     NeoBundle 'mattn/lisper-vim' "provide lisp environments 
@@ -42,7 +42,7 @@ if has('windows')
     NeoBundle 'rhysd/vim-go-impl'  
     "NeoBundle 'cespare/vim-golang'
     "NeoBundle 'dgryski/vim-godef'
-    NeoBundle 'Blackrush/vim-gocode' 
+    "NeoBundle 'Blackrush/vim-gocode' 
     "NeoBundle 'nsf/gocode'
     NeoBundle 'majutsushi/tagbar'
     NeoBundle 'zhchang/quick_file'
@@ -54,7 +54,7 @@ if has('windows')
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'scrooloose/nerdcommenter'
     "NeoBundle 'SirVer/ultisnips'
-    NeoBundle 'Shougo/vimproc.vim'
+    "NeoBundle 'Shougo/vimproc.vim'
     NeoBundle 'Shougo/neosnippet.vim'
     NeoBundle 'Shougo/neosnippet-snippets'
     NeoBundle 'Shougo/neocomplete.vim'
